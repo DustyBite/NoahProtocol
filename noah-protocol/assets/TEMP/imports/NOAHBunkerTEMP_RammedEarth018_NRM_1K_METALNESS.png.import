@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://3jhhk4y3eqgh"
+path.s3tc="res://.godot/imported/NOAHBunkerTEMP_RammedEarth018_NRM_1K_METALNESS.png-4a4d2d55f024f54b06809944b0f3331a.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "9670f300f6e73ec301312d73fdbe4b95"
+}
+
+[deps]
+
+source_file="res://assets/TEMP/imports/NOAHBunkerTEMP_RammedEarth018_NRM_1K_METALNESS.png"
+dest_files=["res://.godot/imported/NOAHBunkerTEMP_RammedEarth018_NRM_1K_METALNESS.png-4a4d2d55f024f54b06809944b0f3331a.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/TEMP/imports/NOAHBunkerTEMP_RammedEarth018_NRM_1K_METALNESS.png"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

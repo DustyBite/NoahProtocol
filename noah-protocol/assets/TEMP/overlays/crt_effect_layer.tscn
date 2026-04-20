@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dnclyhd3obbmb"]
+
+[ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://Assets/ScreenEffect/crtShader.gdshader" id="1_ec5le"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsc74"]
+shader = ExtResource("1_ec5le")
+shader_parameter/curvature = 7.0
+shader_parameter/vignette_multiplier = 1.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_5br4a"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
+
+[node name="crtEffectLayer" type="CanvasLayer" unique_id=2008744437]
+
+[node name="crtShader" type="MeshInstance2D" parent="." unique_id=760479072]
+material = SubResource("ShaderMaterial_hsc74")
+mesh = SubResource("QuadMesh_5br4a")

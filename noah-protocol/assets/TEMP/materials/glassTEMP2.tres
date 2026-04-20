@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dxmsaac8ulcsq"]
+
+[ext_resource type="Shader" uid="uid://m4uukyh6xipt" path="res://assets/TEMP/materials/GlassTEMP.gdshader" id="1_c1v46"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c1v46")
+shader_parameter/albedo = Color(1, 1, 1, 0.5882353)
+shader_parameter/roughness = 1.0
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
