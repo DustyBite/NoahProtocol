@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bmooghbjy5ugk"]
+
+[ext_resource type="Script" uid="uid://cqx4us75ek2po" path="res://assets/interactables/basketBall/basketballScript.gd" id="1_ldssh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tdm3k"]
+friction = 0.6
+bounce = 0.65
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jjemw"]
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjemw"]
+albedo_color = Color(0.8968172, 0.4759518, 7.70092e-07, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jjemw"]
+material = SubResource("StandardMaterial3D_jjemw")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ldssh"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:linear_velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:angular_velocity")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="basketBall" type="RigidBody3D" unique_id=1664149343]
+collision_layer = 131
+collision_mask = 3
+mass = 0.6
+physics_material_override = SubResource("PhysicsMaterial_tdm3k")
+script = ExtResource("1_ldssh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1355844867]
+shape = SubResource("SphereShape3D_jjemw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2075605477]
+mesh = SubResource("SphereMesh_jjemw")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1521772580]
+replication_config = SubResource("SceneReplicationConfig_ldssh")

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://mv0jnr5gkful"]
+
+[ext_resource type="Script" uid="uid://dbsjox1ie0oau" path="res://assets/TEMP/Scenes/mainMenu/mainMenuScript.gd" id="1_od37m"]
+
+[node name="root" type="Node3D" unique_id=2142084937]
+
+[node name="Control" type="Control" parent="." unique_id=1771307766]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_od37m")
+
+[node name="Panel" type="Panel" parent="Control" unique_id=163972020]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="START" type="Button" parent="Control/Panel" unique_id=78587848]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 90.0
+offset_right = 425.0
+offset_bottom = 189.0
+text = "START"
+
+[node name="HOST" type="Button" parent="Control/Panel" unique_id=716037472]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 227.0
+offset_right = 422.0
+offset_bottom = 326.0
+text = "HOST"
+
+[node name="JOIN" type="Button" parent="Control/Panel" unique_id=127117507]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 346.0
+offset_right = 427.0
+offset_bottom = 445.0
+text = "JOIN"
+
+[node name="QUIT" type="Button" parent="Control/Panel" unique_id=1378426848]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 481.0
+offset_right = 430.0
+offset_bottom = 580.0
+text = "QUIT"
+
+[connection signal="pressed" from="Control/Panel/START" to="Control" method="_on_start_pressed"]
+[connection signal="pressed" from="Control/Panel/HOST" to="Control" method="_on_host_pressed"]
+[connection signal="pressed" from="Control/Panel/JOIN" to="Control" method="_on_join_pressed"]
+[connection signal="pressed" from="Control/Panel/QUIT" to="Control" method="_on_quit_pressed"]
