@@ -1,1 +1,1 @@
-extends InteractableBase
+extends InteractableDynamic

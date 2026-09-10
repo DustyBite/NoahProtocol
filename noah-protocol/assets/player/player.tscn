@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://cw5n36b3i2pbg"]
+
+[ext_resource type="Script" uid="uid://b7pt8aog87qur" path="res://assets/player/player.gd" id="1_irka0"]
+[ext_resource type="PackedScene" uid="uid://d0b4kwrk0go2i" path="res://assets/player/pauseUi.tscn" id="2_rn675"]
+[ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="3_t8m1s"]
+[ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="4_tdhke"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rn675"]
+radius = 0.25
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u1t7n"]
+radius = 0.25
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fp30"]
+radius = 0.25
+height = 0.75
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rn675"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_862jj"]
+shader = ExtResource("3_t8m1s")
+shader_parameter/curvature = 7.0
+shader_parameter/vignette_strength = 0.15
+shader_parameter/vignette_power = 4.5
+shader_parameter/scanline_intensity = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_shvar"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3tljn"]
+shader = ExtResource("4_tdhke")
+shader_parameter/screen_size = Vector2(16, 9)
+shader_parameter/screenSizeMultiplier = 30.0
+shader_parameter/brightness_boost = 2.5
+shader_parameter/bleed = 0.5
+shader_parameter/effect_strength = 0.25
+shader_parameter/gap_strength = 0.5
+shader_parameter/scanline_strength = 0.50000002375
+
+[sub_resource type="QuadMesh" id="QuadMesh_2r6tq"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
+
+[node name="CharBody3d" type="CharacterBody3D" unique_id=1774373292]
+collision_layer = 2
+collision_mask = 27
+script = ExtResource("1_irka0")
+throwMultiplier = 10.0
+
+[node name="playerMesh" type="MeshInstance3D" parent="." unique_id=300784004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("CapsuleMesh_rn675")
+
+[node name="standingCollisionShape" type="CollisionShape3D" parent="." unique_id=180771926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_u1t7n")
+
+[node name="crouchingCollisionShape" type="CollisionShape3D" parent="." unique_id=1962629597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+shape = SubResource("CapsuleShape3D_3fp30")
+disabled = true
+
+[node name="boxDrop" type="Node3D" parent="." unique_id=1123488327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+
+[node name="boxPos" type="Node3D" parent="." unique_id=374281764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.9, -0.6)
+
+[node name="head" type="Node3D" parent="." unique_id=1022591859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="firstPersonCamera" type="Camera3D" parent="head" unique_id=1166579509]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+cull_mask = 1047583
+current = true
+
+[node name="flashlight" type="SpotLight3D" parent="head" unique_id=1709385113]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+light_energy = 0.0
+
+[node name="interactionRay" type="RayCast3D" parent="head" unique_id=2132453750]
+target_position = Vector3(0, 0, 1.5)
+collision_mask = 128
+
+[node name="crouchRC" type="RayCast3D" parent="." unique_id=172401335]
+target_position = Vector3(0, 1.6, 0)
+
+[node name="jumpRC" type="RayCast3D" parent="." unique_id=1604258229]
+target_position = Vector3(0, 2, 0)
+
+[node name="playerUi" type="Control" parent="." unique_id=989971230]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pauseUi" parent="playerUi" unique_id=179495863 instance=ExtResource("2_rn675")]
+layout_mode = 0
+
+[node name="mainUi" type="Control" parent="playerUi" unique_id=1131172781]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="playerUi/mainUi" unique_id=1104820645]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 700.0
+offset_top = 450.0
+offset_right = 860.0
+offset_bottom = 510.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hungerBar" type="ProgressBar" parent="playerUi/mainUi" unique_id=1864248839]
+layout_mode = 0
+offset_top = 850.0
+offset_right = 450.0
+offset_bottom = 900.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="playerUi/mainUi/hungerBar" unique_id=1254320385]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "HUNGER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exhaustionBar" type="ProgressBar" parent="playerUi/mainUi" unique_id=1423993123]
+layout_mode = 0
+offset_top = 800.0
+offset_right = 450.0
+offset_bottom = 850.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="playerUi/mainUi/exhaustionBar" unique_id=769506039]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "EXHAUSTION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sanityBar" type="ProgressBar" parent="playerUi/mainUi" unique_id=1188949471]
+layout_mode = 0
+offset_top = 750.0
+offset_right = 450.0
+offset_bottom = 800.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="playerUi/mainUi/sanityBar" unique_id=1107686355]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "SANITY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1963837097]
+replication_config = SubResource("SceneReplicationConfig_rn675")
+
+[node name="screenEffects" type="Node2D" parent="." unique_id=1607139290]
+
+[node name="crtEffectLayer" type="CanvasLayer" parent="screenEffects" unique_id=824103503]
+visible = false
+
+[node name="crtShader" type="MeshInstance2D" parent="screenEffects/crtEffectLayer" unique_id=341174175]
+material = SubResource("ShaderMaterial_862jj")
+mesh = SubResource("QuadMesh_shvar")
+
+[node name="rgbSeperatorLayer" type="CanvasLayer" parent="screenEffects" unique_id=2047547672]
+visible = false
+
+[node name="rgbSeperator" type="MeshInstance2D" parent="screenEffects/rgbSeperatorLayer" unique_id=1847146261]
+material = SubResource("ShaderMaterial_3tljn")
+mesh = SubResource("QuadMesh_2r6tq")

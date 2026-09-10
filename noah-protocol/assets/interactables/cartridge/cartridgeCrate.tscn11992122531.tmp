@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bnr2yuqkqlt18"]
+
+[ext_resource type="Script" uid="uid://ct6nitabrohvj" path="res://assets/interactables/cartridge/crateScript.gd" id="1_4mv0m"]
+[ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="2_17dhi"]
+[ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="2_64ph2"]
+[ext_resource type="PackedScene" uid="uid://4ly8b4rvecio" path="res://assets/interactables/Slots/slot.tscn" id="4_plsdc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqlid"]
+size = Vector3(0.45, 0.4, 0.73)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4mv0m"]
+size = Vector3(0.4, 0.3, 0.68)
+
+[sub_resource type="BoxMesh" id="BoxMesh_64ph2"]
+size = Vector3(0.45, 0.3, 0.73)
+
+[sub_resource type="BoxMesh" id="BoxMesh_plsdc"]
+size = Vector3(0.45, 0.1, 0.73)
+
+[node name="cartridgeCrate" type="RigidBody3D" unique_id=1567765031 node_paths=PackedStringArray("mesh")]
+collision_layer = 131
+collision_mask = 3
+script = ExtResource("1_4mv0m")
+mesh = NodePath("caseMesh")
+chargeThrow = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1568991768]
+shape = SubResource("BoxShape3D_kqlid")
+
+[node name="linerMesh" type="MeshInstance3D" parent="." unique_id=429684031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+material_override = ExtResource("2_64ph2")
+mesh = SubResource("BoxMesh_4mv0m")
+surface_material_override/0 = ExtResource("2_17dhi")
+
+[node name="caseMesh" type="MeshInstance3D" parent="." unique_id=1462173595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_64ph2")
+surface_material_override/0 = ExtResource("2_17dhi")
+
+[node name="lidRotate" type="Node3D" parent="." unique_id=1819605276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215, 0.1, 0)
+
+[node name="lidMesh" type="MeshInstance3D" parent="lidRotate" unique_id=105323220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.215, 0.050000004, 0)
+mesh = SubResource("BoxMesh_plsdc")
+surface_material_override/0 = ExtResource("2_17dhi")
+
+[node name="slotMarkers" type="Node3D" parent="." unique_id=1259772579]
+
+[node name="slot1" parent="slotMarkers" unique_id=1451234101 instance=ExtResource("4_plsdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, -0.165)
+
+[node name="slot2" parent="slotMarkers" unique_id=1062284371 instance=ExtResource("4_plsdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.165)
+
+[node name="slot3" parent="slotMarkers" unique_id=867590294 instance=ExtResource("4_plsdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, -0.165)
+
+[node name="slot4" parent="slotMarkers" unique_id=1717799792 instance=ExtResource("4_plsdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 0.165)
+
+[node name="slot5" parent="slotMarkers" unique_id=1717901330 instance=ExtResource("4_plsdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.165)
+
+[node name="slot6" parent="slotMarkers" unique_id=865597916 instance=ExtResource("4_plsdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0.165)

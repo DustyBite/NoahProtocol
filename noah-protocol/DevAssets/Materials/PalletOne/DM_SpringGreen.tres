@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://g8ws6q1uumt8"]
+
+[ext_resource type="Texture2D" uid="uid://djatjge132da" path="res://DevAssets/Materials/PalletOne/Textures/DT_SpringGreen.png" id="1_uvrcf"]
+
+[resource]
+albedo_texture = ExtResource("1_uvrcf")
+uv1_triplanar = true
+texture_filter = 0

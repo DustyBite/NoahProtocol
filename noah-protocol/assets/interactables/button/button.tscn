@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bh8ed2i5b7ewc"]
+
+[ext_resource type="Script" uid="uid://8ooe2de0mf1w" path="res://assets/interactables/button/buttonScript.gd" id="1_r2o56"]
+[ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="2_vrmkq"]
+[ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="3_ktq1g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tjbmk"]
+size = Vector3(0.2, 0.3, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mrnq2"]
+size = Vector3(0.15, 0.25, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcbon"]
+size = Vector3(0.2, 0.3, 0.15)
+
+[node name="button" type="Node3D" unique_id=695884298 node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_r2o56")
+mesh = NodePath("plate")
+interactButton = "[ E ]"
+
+[node name="plate" type="MeshInstance3D" parent="." unique_id=1947430281]
+material_override = ExtResource("2_vrmkq")
+mesh = SubResource("BoxMesh_tjbmk")
+surface_material_override/0 = ExtResource("2_vrmkq")
+
+[node name="switch" type="MeshInstance3D" parent="." unique_id=452707111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+material_override = ExtResource("3_ktq1g")
+mesh = SubResource("BoxMesh_mrnq2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2143713517]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1663796268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.025)
+shape = SubResource("BoxShape3D_wcbon")

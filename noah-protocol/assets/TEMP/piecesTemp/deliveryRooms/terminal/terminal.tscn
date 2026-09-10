@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://b11yjjc3j62m4"]
+
+[ext_resource type="Script" uid="uid://br8t4gvxndyte" path="res://assets/TEMP/piecesTemp/deliveryRooms/terminal/terminalScript.gd" id="1_gimvl"]
+[ext_resource type="Material" uid="uid://g8ws6q1uumt8" path="res://DevAssets/Materials/PalletOne/DM_SpringGreen.tres" id="1_jb6o7"]
+[ext_resource type="PackedScene" uid="uid://bh8ed2i5b7ewc" path="res://assets/interactables/button/button.tscn" id="3_rb1yf"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gimvl"]
+viewport_path = NodePath("computer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb1yf"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_gimvl")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yuxw2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_rb1yf")
+size = Vector2(1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7rf1u"]
+size = Vector3(1, 2, 0.1)
+
+[node name="Terminal" type="Node3D" unique_id=933974093]
+script = ExtResource("1_gimvl")
+
+[node name="computer" type="Node3D" parent="." unique_id=303138345]
+
+[node name="SubViewport" type="SubViewport" parent="computer" unique_id=161928525]
+gui_embed_subwindows = true
+size = Vector2i(800, 400)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="computer/SubViewport" unique_id=1710911098]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="computer/SubViewport/Control" unique_id=1439712789]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -800.0
+offset_bottom = -500.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="computer/SubViewport/Control/Panel" unique_id=1515569349]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 286.0
+offset_right = 644.0
+offset_bottom = 349.0
+theme_override_font_sizes/font_size = 32
+text = "Press button to swap container"
+
+[node name="Quad" type="MeshInstance3D" parent="computer" unique_id=1053470025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4594717, 0.06750197)
+mesh = SubResource("QuadMesh_yuxw2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1928908179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("1_jb6o7")
+mesh = SubResource("BoxMesh_7rf1u")
+
+[node name="button" parent="MeshInstance3D" unique_id=695884298 node_paths=PackedStringArray("interactItem") instance=ExtResource("3_rb1yf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019835174, -0.037651896, 0.05)
+interactItem = NodePath("../..")

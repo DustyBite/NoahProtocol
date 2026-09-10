@@ -1,7 +1,7 @@
 extends Node3D
 class_name WorldScript
 
-const PLAYER_SCENE := preload("res://assets/TEMP/player/player.tscn")
+const PLAYER_SCENE := preload("res://assets/player/player.tscn")
 const PORT := 7000
 const MAX_CLIENTS := 3
 

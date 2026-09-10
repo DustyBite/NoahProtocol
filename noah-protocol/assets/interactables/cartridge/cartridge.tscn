@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://chou1w36bc2i7"]
+
+[ext_resource type="Script" uid="uid://qqqdeyf6nbs8" path="res://assets/interactables/cartridge/cartridgeScript.gd" id="1_jgjjf"]
+[ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="2_1drf0"]
+[ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="3_cx5xx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_60eil"]
+size = Vector3(0.1, 0.3, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jgjjf"]
+size = Vector3(0.1, 0.3, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1drf0"]
+size = Vector3(0.05, 0.025, 0.05)
+
+[node name="cartridge" type="RigidBody3D" unique_id=556392304 node_paths=PackedStringArray("mesh")]
+collision_layer = 195
+collision_mask = 3
+script = ExtResource("1_jgjjf")
+mesh = NodePath("MeshInstance3D")
+type = "card"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1706606752]
+shape = SubResource("BoxShape3D_60eil")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1286142279]
+mesh = SubResource("BoxMesh_jgjjf")
+surface_material_override/0 = ExtResource("2_1drf0")
+
+[node name="statusLight" type="MeshInstance3D" parent="." unique_id=440606394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.1)
+material_override = ExtResource("3_cx5xx")
+mesh = SubResource("BoxMesh_1drf0")
+surface_material_override/0 = ExtResource("3_cx5xx")
+
+[node name="indicatorLight" type="MeshInstance3D" parent="." unique_id=196865985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.025)
+material_override = ExtResource("3_cx5xx")
+mesh = SubResource("BoxMesh_1drf0")
+surface_material_override/0 = ExtResource("3_cx5xx")

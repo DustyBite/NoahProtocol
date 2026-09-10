@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d0b4kwrk0go2i"]
+
+[ext_resource type="Script" uid="uid://bqgufvduppbmd" path="res://assets/player/pauseUiScript.gd" id="1_p6hx7"]
+
+[node name="pauseUi" type="Control" unique_id=179495863]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_p6hx7")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=2134111105]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="RETURN" type="Button" parent="Panel" unique_id=1928962391]
+process_mode = 3
+layout_mode = 0
+offset_left = 162.0
+offset_top = 108.0
+offset_right = 499.0
+offset_bottom = 257.0
+text = "RETURN"
+
+[node name="MAINMENU" type="Button" parent="Panel" unique_id=1333164205]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 490.0
+offset_right = 503.0
+offset_bottom = 639.0
+text = "MAIN MENU"
+
+[node name="QUITGAME" type="Button" parent="Panel" unique_id=306728647]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 672.0
+offset_right = 509.0
+offset_bottom = 821.0
+text = "QUIT GAME"
+
+[connection signal="pressed" from="Panel/RETURN" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Panel/MAINMENU" to="." method="_on_mainmenu_pressed"]
+[connection signal="pressed" from="Panel/QUITGAME" to="." method="_on_quitgame_pressed"]

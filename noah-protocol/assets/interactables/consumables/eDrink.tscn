@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dbcutms64howc"]
+
+[ext_resource type="Material" uid="uid://d10377nrajy1" path="res://DevAssets/Materials/PalletOne/DM_Rose.tres" id="1_4lbof"]
+[ext_resource type="Script" uid="uid://dp6yhprsxepts" path="res://assets/interactables/consumables/eDrinkScript.gd" id="1_m1fin"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2be2i"]
+height = 0.4
+radius = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nlwy6"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.4
+
+[node name="eDrink" type="RigidBody3D" unique_id=590814685 node_paths=PackedStringArray("mesh")]
+collision_layer = 131
+collision_mask = 131
+script = ExtResource("1_m1fin")
+mesh = NodePath("MeshInstance3D")
+type = "drink"
+interactButton = "[ E ]"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1000699989]
+shape = SubResource("CylinderShape3D_2be2i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=813887584]
+mesh = SubResource("CylinderMesh_nlwy6")
+surface_material_override/0 = ExtResource("1_4lbof")

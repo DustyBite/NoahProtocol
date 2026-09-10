@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ca448i586dvem"]
+
+[ext_resource type="Script" uid="uid://c2fsgxps8osf1" path="res://assets/interactables/Slots/slotScript.gd" id="1_n1o2g"]
+[ext_resource type="Material" uid="uid://c2fjbptveu302" path="res://assets/interactables/Slots/ghostMat.tres" id="2_byvl5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iggj7"]
+size = Vector3(0.425, 0.375, 0.705)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qsifu"]
+size = Vector3(0.45, 0.4, 0.73)
+
+[node name="slot" type="Node3D" unique_id=1451234101]
+script = ExtResource("1_n1o2g")
+slotType = "crate"
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1803217197]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=57437683]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1911407989]
+shape = SubResource("BoxShape3D_iggj7")
+
+[node name="meshGhost" type="MeshInstance3D" parent="." unique_id=716322433]
+visible = false
+material_override = ExtResource("2_byvl5")
+mesh = SubResource("BoxMesh_qsifu")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

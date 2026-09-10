@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bo2nmrxaxn5nn"]
+
+[ext_resource type="Material" uid="uid://t37piib6f0vd" path="res://DevAssets/Materials/PalletOne/DM_Brown.tres" id="1_uqipl"]
+[ext_resource type="Script" uid="uid://m50s5xjengly" path="res://assets/TEMP/pallet/palletScript.gd" id="1_uyt37"]
+[ext_resource type="PackedScene" uid="uid://ca448i586dvem" path="res://assets/interactables/Slots/crateSlot.tscn" id="3_rmd4y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_se3ur"]
+size = Vector3(0.2, 0.1, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7rf1u"]
+size = Vector3(1.2, 0.2, 1.2)
+
+[node name="pallet" type="RigidBody3D" unique_id=1923136724 node_paths=PackedStringArray("mesh")]
+collision_layer = 19
+collision_mask = 19
+script = ExtResource("1_uyt37")
+mesh = NodePath("MeshInstance3D")
+canDrag = false
+chargeThrow = false
+removeCol = false
+placable = false
+type = "pallet"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=508925940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_se3ur")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=434570479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.05, -0.5)
+shape = SubResource("BoxShape3D_se3ur")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1752625355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.05, 0.5)
+shape = SubResource("BoxShape3D_se3ur")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=1762738165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.05, -0.5)
+shape = SubResource("BoxShape3D_se3ur")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." unique_id=309080917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.05, 0.5)
+shape = SubResource("BoxShape3D_se3ur")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=549204079]
+mesh = SubResource("BoxMesh_7rf1u")
+surface_material_override/0 = ExtResource("1_uqipl")
+
+[node name="crateSlots" type="Node3D" parent="." unique_id=1905218162]
+
+[node name="slot" parent="crateSlots" unique_id=1451234101 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.3, 0.235)
+
+[node name="slot2" parent="crateSlots" unique_id=1327095355 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 0.3, 0.235)
+
+[node name="slot3" parent="crateSlots" unique_id=973421046 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.3, -0.36)
+
+[node name="slot4" parent="crateSlots" unique_id=1664443675 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.7, 0.235)
+
+[node name="slot5" parent="crateSlots" unique_id=1777357419 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 0.7, 0.235)
+
+[node name="slot6" parent="crateSlots" unique_id=2095466780 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.7, -0.36)
+
+[node name="slot7" parent="crateSlots" unique_id=38407485 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 1.1, 0.235)
+
+[node name="slot8" parent="crateSlots" unique_id=2119079025 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 1.1, 0.235)
+
+[node name="slot9" parent="crateSlots" unique_id=1743959972 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.1, -0.36)
+
+[node name="slot10" parent="crateSlots" unique_id=963321560 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 1.5, 0.235)
+
+[node name="slot11" parent="crateSlots" unique_id=2054149125 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 1.5, 0.235)
+
+[node name="slot12" parent="crateSlots" unique_id=1995346214 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.5, -0.36)
+
+[node name="slot13" parent="crateSlots" unique_id=1281514969 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 1.9, 0.235)
+
+[node name="slot14" parent="crateSlots" unique_id=205199779 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 1.9, 0.235)
+
+[node name="slot15" parent="crateSlots" unique_id=1001651477 instance=ExtResource("3_rmd4y")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.9, -0.36)

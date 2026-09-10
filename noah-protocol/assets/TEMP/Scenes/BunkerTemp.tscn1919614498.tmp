@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cmk6dcsy3cmll"]
+
+[ext_resource type="Script" uid="uid://bgnbl47a05wp6" path="res://Globals/worldScript.gd" id="1_p316p"]
+[ext_resource type="PackedScene" uid="uid://bktlwjjutfwu" path="res://assets/TEMP/piecesTemp/hallways/hallways.tscn" id="2_gabhk"]
+[ext_resource type="PackedScene" uid="uid://d2p77i1tnc5if" path="res://assets/TEMP/piecesTemp/bathroom/bathroom.tscn" id="2_srs0q"]
+[ext_resource type="PackedScene" uid="uid://ck0t8pxqgjh4o" path="res://assets/TEMP/piecesTemp/processingRoom/processingRoom.tscn" id="3_1pu4b"]
+[ext_resource type="PackedScene" uid="uid://ev02axdxv4pm" path="res://assets/TEMP/piecesTemp/dorms/dorms.tscn" id="3_ohcng"]
+[ext_resource type="PackedScene" uid="uid://b1x5b3t5gj5u4" path="res://assets/TEMP/piecesTemp/mainOffice/mainOffice.tscn" id="4_latbq"]
+[ext_resource type="PackedScene" uid="uid://dwi0fks74ukrk" path="res://assets/TEMP/piecesTemp/meetingRoom/meetingRoom.tscn" id="5_7dvjo"]
+[ext_resource type="PackedScene" uid="uid://rsp3tayrk0ke" path="res://assets/TEMP/piecesTemp/serverRoom/serverRoom.tscn" id="6_r2wft"]
+[ext_resource type="PackedScene" uid="uid://bg762ac083bck" path="res://assets/TEMP/piecesTemp/offices/offices.tscn" id="7_p316p"]
+[ext_resource type="PackedScene" uid="uid://cefxbaqoyxb1w" path="res://assets/TEMP/piecesTemp/deliveryRooms/deliveryRoom.tscn" id="8_ejmga"]
+[ext_resource type="PackedScene" uid="uid://y60pelv4gfcb" path="res://assets/TEMP/piecesTemp/powerRoom/powerRoom.tscn" id="9_0hwfx"]
+[ext_resource type="PackedScene" uid="uid://v2c6him0f01j" path="res://assets/TEMP/piecesTemp/networkArray/networkArray.tscn" id="10_s5w1j"]
+[ext_resource type="PackedScene" uid="uid://rlthnmplr6h3" path="res://assets/TEMP/piecesTemp/entertainment/entertainment.tscn" id="11_a5mh1"]
+[ext_resource type="PackedScene" uid="uid://c5nfu3ih1whdv" path="res://assets/TEMP/piecesTemp/enterance/entrance.tscn" id="12_j2rpf"]
+
+[node name="root" type="Node3D" unique_id=1108410745]
+script = ExtResource("1_p316p")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1205161630]
+spawn_path = NodePath("..")
+
+[node name="spawnPoints" type="Node3D" parent="." unique_id=502608711]
+
+[node name="Marker3D" type="Marker3D" parent="spawnPoints" unique_id=33406403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.051607132, 7.0941625, -10.165548)
+
+[node name="Marker3D2" type="Marker3D" parent="spawnPoints" unique_id=665277592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.051607132, 7.0941625, -11.843586)
+
+[node name="bunkerPieces" type="Node3D" parent="." unique_id=912366108]
+
+[node name="hallways" parent="bunkerPieces" unique_id=1171067628 instance=ExtResource("2_gabhk")]
+
+[node name="processingRoom" parent="bunkerPieces" unique_id=1226795734 instance=ExtResource("3_1pu4b")]
+
+[node name="mainOffice" parent="bunkerPieces" unique_id=82763826 instance=ExtResource("4_latbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -11)
+
+[node name="meetingRoom" parent="bunkerPieces" unique_id=666352722 instance=ExtResource("5_7dvjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 11)
+
+[node name="serverRoom" parent="bunkerPieces" unique_id=2115879579 instance=ExtResource("6_r2wft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+
+[node name="offices" parent="bunkerPieces" unique_id=1463966116 instance=ExtResource("7_p316p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 7, -4.25)
+
+[node name="deliveryRoom" parent="bunkerPieces" unique_id=1821046668 instance=ExtResource("8_ejmga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3.5, -4.25)
+
+[node name="powerRoom" parent="bunkerPieces" unique_id=212054074 instance=ExtResource("9_0hwfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -4.25)
+
+[node name="networkArray" parent="bunkerPieces" unique_id=1690674515 instance=ExtResource("10_s5w1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 13)
+
+[node name="entertainment" parent="bunkerPieces" unique_id=216178145 instance=ExtResource("11_a5mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 3.5, -21)
+
+[node name="entrance" parent="bunkerPieces" unique_id=1616848324 instance=ExtResource("12_j2rpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -16)
+
+[node name="bathroomF2" parent="bunkerPieces" unique_id=1163555259 instance=ExtResource("2_srs0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 3.5, -16.5)
+
+[node name="bathroomF3" parent="bunkerPieces" unique_id=335314501 instance=ExtResource("2_srs0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 7, -21.5)
+
+[node name="dormsF2" parent="bunkerPieces" unique_id=507246850 instance=ExtResource("3_ohcng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 3.5, 2.5)
+
+[node name="dormsF3" parent="bunkerPieces" unique_id=1830232609 instance=ExtResource("3_ohcng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 7, 2.5)

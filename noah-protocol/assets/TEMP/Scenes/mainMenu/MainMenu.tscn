@@ -27,6 +27,7 @@ offset_bottom = 189.0
 text = "START"
 
 [node name="HOST" type="Button" parent="Control/Panel" unique_id=716037472]
+visible = false
 layout_mode = 0
 offset_left = 74.0
 offset_top = 227.0
@@ -35,6 +36,7 @@ offset_bottom = 326.0
 text = "HOST"
 
 [node name="JOIN" type="Button" parent="Control/Panel" unique_id=127117507]
+visible = false
 layout_mode = 0
 offset_left = 79.0
 offset_top = 346.0
