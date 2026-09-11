@@ -7,6 +7,8 @@ const MAX_CLIENTS := 3
 
 @export var multiplayerModeOverride := false
 
+@export var devMode := false
+
 @onready var spawner: MultiplayerSpawner = $MultiplayerSpawner
 
 var spawn_points: Array[Vector3] = []
@@ -16,6 +18,8 @@ var next_spawn_index := 0
 
 func _ready():
 	spawn_points = get_spawn_points()
+	
+	Globals.devMode = devMode
 	
 	if multiplayerModeOverride:
 		Globals.singleplayerMode = false

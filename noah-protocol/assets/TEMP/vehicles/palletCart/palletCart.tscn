@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cfr6037dw38lg"]
+
+[ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="1_gfh8h"]
+[ext_resource type="Script" uid="uid://d4ar2yyviyvfp" path="res://assets/TEMP/vehicles/palletCart/palletCartScript.gd" id="1_tmoy2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0bc61"]
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gf6sq"]
+height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.1, 0.09, 0.1)
+
+[node name="palletCart" type="RigidBody3D" unique_id=702302899]
+center_of_mass_mode = 1
+script = ExtResource("1_tmoy2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639908087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_0bc61")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1005057545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = ExtResource("1_gfh8h")
+mesh = SubResource("CylinderMesh_gf6sq")
+
+[node name="frontRaycast" type="RayCast3D" parent="." unique_id=443954343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, 0, 0.75)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1741231737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.05, 0.5)
+mesh = SubResource("BoxMesh_g4v7s")

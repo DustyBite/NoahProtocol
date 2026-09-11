@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c1bj5yuaf23c7"]
+
+[ext_resource type="Texture2D" uid="uid://c4imsyhekq724" path="res://devAssets/materials/OldPallet/Textures/DTPO_Tex_SageGreen.png" id="1_qpbu1"]
+
+[resource]
+albedo_texture = ExtResource("1_qpbu1")
+uv1_triplanar = true
+texture_filter = 0

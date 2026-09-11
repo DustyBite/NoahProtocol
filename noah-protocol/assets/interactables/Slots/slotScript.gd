@@ -10,7 +10,7 @@ class_name ItemSlot
 
 var slottedItem = null
 
-func spawnItem(item):
+func loadItem(item, _bool):
 	var I = item.instantiate()
 	slotItem(I)
 

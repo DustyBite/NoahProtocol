@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7pt8aog87qur" path="res://assets/player/player.gd" id="1_irka0"]
 [ext_resource type="PackedScene" uid="uid://d0b4kwrk0go2i" path="res://assets/player/pauseUi.tscn" id="2_rn675"]
+[ext_resource type="Script" uid="uid://2us806sde5ga" path="res://Globals/debugScripts/playerUiPanelScript.gd" id="3_d5dr7"]
 [ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="3_t8m1s"]
 [ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="4_tdhke"]
 
@@ -169,6 +170,24 @@ offset_bottom = 50.0
 text = "SANITY"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="debugUI" type="Control" parent="playerUi/mainUi" unique_id=599374440]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="playerUi/mainUi/debugUI" unique_id=1255041979]
+layout_mode = 0
+offset_left = 1100.0
+offset_right = 1600.0
+offset_bottom = 600.0
+script = ExtResource("3_d5dr7")
+
+[node name="Label" type="Label" parent="playerUi/mainUi/debugUI/Panel" unique_id=77913586]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 600.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1963837097]
 replication_config = SubResource("SceneReplicationConfig_rn675")

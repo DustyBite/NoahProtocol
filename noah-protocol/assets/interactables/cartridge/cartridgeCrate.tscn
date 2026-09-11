@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="2_17dhi"]
 [ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="2_64ph2"]
 [ext_resource type="PackedScene" uid="uid://4ly8b4rvecio" path="res://assets/interactables/Slots/cardSlot.tscn" id="4_plsdc"]
+[ext_resource type="Script" uid="uid://d3jn3av1qgfhr" path="res://assets/interactables/cartridge/cardSlotScript.gd" id="5_sitlc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kqlid"]
 size = Vector3(0.45, 0.4, 0.73)
@@ -53,18 +54,24 @@ surface_material_override/0 = ExtResource("2_17dhi")
 
 [node name="slot1" parent="slotMarkers" unique_id=1451234101 instance=ExtResource("4_plsdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, -0.165)
+script = ExtResource("5_sitlc")
 
 [node name="slot2" parent="slotMarkers" unique_id=1062284371 instance=ExtResource("4_plsdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.165)
+script = ExtResource("5_sitlc")
 
 [node name="slot3" parent="slotMarkers" unique_id=867590294 instance=ExtResource("4_plsdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, -0.165)
+script = ExtResource("5_sitlc")
 
 [node name="slot4" parent="slotMarkers" unique_id=1717799792 instance=ExtResource("4_plsdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 0.165)
+script = ExtResource("5_sitlc")
 
 [node name="slot5" parent="slotMarkers" unique_id=1717901330 instance=ExtResource("4_plsdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.165)
+script = ExtResource("5_sitlc")
 
 [node name="slot6" parent="slotMarkers" unique_id=865597916 instance=ExtResource("4_plsdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0.165)
+script = ExtResource("5_sitlc")

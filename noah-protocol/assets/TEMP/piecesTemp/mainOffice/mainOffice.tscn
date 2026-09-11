@@ -2,25 +2,11 @@
 
 [ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="1_gaeed"]
 [ext_resource type="Script" uid="uid://cdakw7g5ihve0" path="res://assets/TEMP/piecesTemp/roomScriptBase.gd" id="1_iywoc"]
-[ext_resource type="Material" uid="uid://r6cd4bcr7v5j" path="res://DevAssets/Materials/PalletOne/DM_Black.tres" id="2_6xosp"]
+[ext_resource type="Material" uid="uid://crrwcv7gwxlpf" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_LightGrey.tres" id="2_dbomc"]
 [ext_resource type="Material" uid="uid://pvedlhfunyar" path="res://DevAssets/Materials/PalletOne/DM_White.tres" id="2_tufam"]
 [ext_resource type="Material" uid="uid://tebjnvitwiq4" path="res://DevAssets/Materials/glassFog.tres" id="4_oax27"]
 [ext_resource type="PackedScene" uid="uid://bfeec5u1qryt6" path="res://assets/TEMP/doors/door.tscn" id="5_1co1u"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_m6rl1"]
-size = Vector3(8.1, 0.1, 6.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_gaeed"]
-size = Vector3(1.1, 3.1, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_oax27"]
-size = Vector3(5.9, 0.5, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tufam"]
-size = Vector3(0.1, 3.1, 6.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6xosp"]
-size = Vector3(3.1, 3.1, 0.1)
+[ext_resource type="Material" uid="uid://b7jy5p2q5f35p" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_DarkGrey.tres" id="6_nwerd"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6xosp"]
 data = PackedVector3Array(-4.0499997, 0.049999997, 3.05, 4.0499997, 0.049999997, 3.05, -4.0499997, -0.049999997, 3.05, 4.0499997, 0.049999997, 3.05, 4.0499997, -0.049999997, 3.05, -4.0499997, -0.049999997, 3.05, 4.0499997, 0.049999997, -3.05, -4.0499997, 0.049999997, -3.05, 4.0499997, -0.049999997, -3.05, -4.0499997, 0.049999997, -3.05, -4.0499997, -0.049999997, -3.05, 4.0499997, -0.049999997, -3.05, 4.0499997, 0.049999997, 3.05, 4.0499997, 0.049999997, -3.05, 4.0499997, -0.049999997, 3.05, 4.0499997, 0.049999997, -3.05, 4.0499997, -0.049999997, -3.05, 4.0499997, -0.049999997, 3.05, -4.0499997, 0.049999997, -3.05, -4.0499997, 0.049999997, 3.05, -4.0499997, -0.049999997, -3.05, -4.0499997, 0.049999997, 3.05, -4.0499997, -0.049999997, 3.05, -4.0499997, -0.049999997, -3.05, 4.0499997, 0.049999997, 3.05, -4.0499997, 0.049999997, 3.05, 4.0499997, 0.049999997, -3.05, -4.0499997, 0.049999997, 3.05, -4.0499997, 0.049999997, -3.05, 4.0499997, 0.049999997, -3.05, -4.0499997, -0.049999997, 3.05, 4.0499997, -0.049999997, 3.05, -4.0499997, -0.049999997, -3.05, 4.0499997, -0.049999997, 3.05, 4.0499997, -0.049999997, -3.05, -4.0499997, -0.049999997, -3.05)
@@ -444,58 +430,6 @@ script = ExtResource("1_iywoc")
 mLight = NodePath("mainLights")
 eLight = NodePath("eLights")
 
-[node name="Meshes" type="Node3D" parent="." unique_id=1010302193]
-visible = false
-
-[node name="floorM" type="MeshInstance3D" parent="Meshes" unique_id=1793815137]
-material_override = ExtResource("1_gaeed")
-mesh = SubResource("BoxMesh_m6rl1")
-
-[node name="ceilingM" type="MeshInstance3D" parent="Meshes" unique_id=905040363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-material_override = ExtResource("2_6xosp")
-mesh = SubResource("BoxMesh_m6rl1")
-
-[node name="sWall1M" type="MeshInstance3D" parent="Meshes" unique_id=955446265]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.5, 3)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_gaeed")
-
-[node name="sWall2M" type="MeshInstance3D" parent="Meshes" unique_id=102976188]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.5, 3)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_gaeed")
-
-[node name="sWall3M" type="MeshInstance3D" parent="Meshes" unique_id=2032782099]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_oax27")
-
-[node name="sWall4M" type="MeshInstance3D" parent="Meshes" unique_id=1344177924]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 3)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_oax27")
-
-[node name="wWallM" type="MeshInstance3D" parent="Meshes" unique_id=1055554040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.5, 0)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_tufam")
-
-[node name="eWallM" type="MeshInstance3D" parent="Meshes" unique_id=128096481]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_tufam")
-
-[node name="nWall2M" type="MeshInstance3D" parent="Meshes" unique_id=1045267316]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.5, -3)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_6xosp")
-
-[node name="nWall1M" type="MeshInstance3D" parent="Meshes" unique_id=528467658]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1.5, -3)
-material_override = ExtResource("2_tufam")
-mesh = SubResource("BoxMesh_6xosp")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=34429392]
 visible = false
 
@@ -667,34 +601,34 @@ omni_attenuation = 2.0
 [node name="blankRoom" type="Node3D" parent="." unique_id=253716109]
 
 [node name="brCeiling" type="MeshInstance3D" parent="blankRoom" unique_id=1391735800]
-material_override = ExtResource("2_tufam")
+material_override = ExtResource("2_dbomc")
 mesh = SubResource("ArrayMesh_wi4ub")
 
 [node name="brLights" type="MeshInstance3D" parent="blankRoom" unique_id=343733752]
 mesh = SubResource("ArrayMesh_tf8nv")
 
 [node name="brFloor" type="MeshInstance3D" parent="blankRoom" unique_id=1275938234]
-material_override = ExtResource("2_6xosp")
+material_override = ExtResource("6_nwerd")
 mesh = SubResource("ArrayMesh_vn04n")
 
 [node name="brSWall" type="MeshInstance3D" parent="blankRoom" unique_id=1639918745]
-material_override = ExtResource("2_tufam")
+material_override = ExtResource("2_dbomc")
 mesh = SubResource("ArrayMesh_u1kqe")
 
 [node name="brDoorway" type="MeshInstance3D" parent="blankRoom" unique_id=1092741630]
-material_override = ExtResource("2_tufam")
+material_override = ExtResource("2_dbomc")
 mesh = SubResource("ArrayMesh_g0mn5")
 
 [node name="brNWall" type="MeshInstance3D" parent="blankRoom" unique_id=148548981]
-material_override = ExtResource("2_tufam")
+material_override = ExtResource("2_dbomc")
 mesh = SubResource("ArrayMesh_m0n3f")
 
 [node name="brEWall" type="MeshInstance3D" parent="blankRoom" unique_id=1201541430]
-material_override = ExtResource("2_tufam")
+material_override = ExtResource("2_dbomc")
 mesh = SubResource("ArrayMesh_tj2i4")
 
 [node name="brWWall" type="MeshInstance3D" parent="blankRoom" unique_id=439460679]
-material_override = ExtResource("2_tufam")
+material_override = ExtResource("2_dbomc")
 mesh = SubResource("ArrayMesh_0qxou")
 
 [node name="brWindow" type="MeshInstance3D" parent="blankRoom" unique_id=839357665]

@@ -49,5 +49,5 @@ func getSlots():
 	for crateSlot in $crateSlots.get_children():
 		crateSlots.append(crateSlot)
 		
-		if crateSlot.has_method("spawnItem"):
-			crateSlot.spawnItem(crate)
+		if crateSlot.has_method("loadItem"):
+			crateSlot.loadItem(crate,null)

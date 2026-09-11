@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://873nptvltcdk"]
+
+[ext_resource type="Texture2D" uid="uid://dri0jokepfooc" path="res://devAssets/materials/OldPallet/Textures/DTPO_Tex_SoftOrange.png" id="1_sa2i4"]
+
+[resource]
+albedo_texture = ExtResource("1_sa2i4")
+uv1_triplanar = true
+texture_filter = 0
