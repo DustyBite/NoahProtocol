@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 NetworkManager="*uid://v42kvmrokdr8"
 Globals="*uid://bura8v2x0631g"
+SaveLoadSystem="*uid://c4ropdk5klsyh"
 
 [display]
 
@@ -86,7 +87,11 @@ interact={
 
 [layer_names]
 
-3d_physics/layer_8="InteractionLayer"
+3d_physics/layer_1="Enviroment"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Objects"
+3d_physics/layer_4="Bots"
+3d_physics/layer_8="Interactable"
 
 [physics]
 

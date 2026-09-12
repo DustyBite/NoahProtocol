@@ -10,3 +10,9 @@ func _on_mainmenu_pressed() -> void:
 
 func _on_quitgame_pressed() -> void:
 	get_tree().quit()
+
+func _on_load_pressed() -> void:
+	SaveLoadSystem.load()
+
+func _on_save_pressed() -> void:
+	SaveLoadSystem.save()

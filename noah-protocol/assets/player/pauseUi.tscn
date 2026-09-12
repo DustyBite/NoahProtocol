@@ -32,6 +32,22 @@ offset_right = 503.0
 offset_bottom = 639.0
 text = "MAIN MENU"
 
+[node name="SAVE" type="Button" parent="Panel" unique_id=1842125378]
+layout_mode = 0
+offset_left = 802.0
+offset_top = 259.0
+offset_right = 1139.0
+offset_bottom = 408.0
+text = "SAVE"
+
+[node name="LOAD" type="Button" parent="Panel" unique_id=1136300773]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 460.0
+offset_right = 1120.0
+offset_bottom = 609.0
+text = "LOAD"
+
 [node name="QUITGAME" type="Button" parent="Panel" unique_id=306728647]
 layout_mode = 0
 offset_left = 172.0
@@ -42,4 +58,6 @@ text = "QUIT GAME"
 
 [connection signal="pressed" from="Panel/RETURN" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="Panel/MAINMENU" to="." method="_on_mainmenu_pressed"]
+[connection signal="pressed" from="Panel/SAVE" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Panel/LOAD" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="Panel/QUITGAME" to="." method="_on_quitgame_pressed"]

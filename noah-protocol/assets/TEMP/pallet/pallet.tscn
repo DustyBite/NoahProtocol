@@ -11,8 +11,8 @@ size = Vector3(1.2, 0.2, 1.2)
 size = Vector3(1.2, 0.1, 1.2)
 
 [node name="pallet" type="RigidBody3D" unique_id=1923136724 node_paths=PackedStringArray("mesh")]
-collision_layer = 19
-collision_mask = 19
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_uyt37")
 mesh = NodePath("MeshInstance3D")
 canDrag = false
@@ -22,14 +22,16 @@ placable = false
 type = "pallet"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=508925940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_se3ur")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=549204079]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 mesh = SubResource("BoxMesh_7rf1u")
 surface_material_override/0 = ExtResource("1_uqipl")
 
 [node name="crateSlots" type="Node3D" parent="." unique_id=1905218162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="slot" parent="crateSlots" unique_id=1451234101 instance=ExtResource("3_rmd4y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.3, 0.235)

@@ -5,6 +5,12 @@ const PLAYER_SCENE := preload("res://assets/player/player.tscn")
 const PORT := 7000
 const MAX_CLIENTS := 3
 
+# TEMP RSA ENCRYPTION
+var crypto := Crypto.new()
+var rsaKey: CryptoKey
+var sessionKeys := {}
+var mySessionKey: PackedByteArray
+
 @export var multiplayerModeOverride := false
 
 @export var devMode := false
@@ -72,6 +78,7 @@ func host_game():
 		return
 
 	multiplayer.multiplayer_peer = peer
+	rsaKey = crypto.generate_rsa(2048)
 	print("✓ Server started on port ", PORT)
 
 	# Spawn server player
@@ -140,7 +147,35 @@ func _on_peer_disconnected(id: int):
 func _on_connected_to_server():
 	print("✓ Connected to server")
 	print("My peer ID: ", multiplayer.get_unique_id())
+	requestPublicKey.rpc_id(1)
 
 
 func _on_connection_failed():
 	print("✗ Connection failed")
+
+# -------------------------
+# ENCRYPTION HANDSHAKE
+# -------------------------
+
+@rpc("any_peer", "reliable")
+func requestPublicKey():
+	if !multiplayer.is_Server():
+		return
+	var senderId = multiplayer.get_remote_sender_id()
+	receivePublicKey.rpc_id(senderId, rsaKey.save_to_string(true))
+
+@rpc("authority", "reliable")
+func receivePublicKey(pem: String):
+	mySessionKey = crypto.generate_random_bytes(32)
+	var pubKey := CryptoKey.new()
+	pubKey.load_from_string(pem, true)
+	var encrypted := crypto.encrypt(pubKey, mySessionKey)
+	submitSessionKey.rpc_id(1, encrypted)
+
+@rpc("any_peer", "reliable")
+func submitSessionKey(encryptedKey: PackedByteArray):
+	if !multiplayer.is_server():
+		return
+	var senderId = multiplayer.get_remote_sender_id()
+	sessionKeys[senderId] = crypto.decrypt(rsaKey, encryptedKey)
+	print("Got session key for peer ", senderId)

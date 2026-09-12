@@ -39,6 +39,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9985014, 1.3565614, -1.3003
 [node name="pallet" parent="." unique_id=1923136724 instance=ExtResource("6_fmvhc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1756968, 0.14999959, 0.6680589)
 
-[node name="palletCart" parent="." unique_id=702302899 node_paths=PackedStringArray("TEMPTARGET") instance=ExtResource("7_gf6sq")]
+[node name="palletCart" parent="." unique_id=702302899 node_paths=PackedStringArray("nodes", "chargePos", "palletGrabTEMP") instance=ExtResource("7_gf6sq")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2.8129153, 0.2469086, 1.5607176)
-TEMPTARGET = NodePath("../pallet")
+nodes = [NodePath("../movementMarkers/MarkerA"), NodePath("../movementMarkers/MarkerB"), NodePath("../movementMarkers/MarkerC"), NodePath("../movementMarkers/MarkerD")]
+chargePos = NodePath("../CHARGEPOS")
+palletGrabTEMP = NodePath("../pallet")
+
+[node name="CHARGEPOS" type="Marker3D" parent="." unique_id=1994335116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.3212733)
+
+[node name="movementMarkers" type="Node3D" parent="." unique_id=1356329290]
+
+[node name="MarkerA" type="Marker3D" parent="movementMarkers" unique_id=1994103291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8623011, 0, 7.3634744)
+
+[node name="MarkerB" type="Marker3D" parent="movementMarkers" unique_id=988194689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86913586, 0, 7.25547)
+
+[node name="MarkerC" type="Marker3D" parent="movementMarkers" unique_id=1129060003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3869106, 0, 4.378124)
+
+[node name="MarkerD" type="Marker3D" parent="movementMarkers" unique_id=17120833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6865408, 0, 3.8233895)
