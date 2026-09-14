@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cartridge/cartridgeCrate.tscn" id="5_02xml"]
 [ext_resource type="PackedScene" uid="uid://bo2nmrxaxn5nn" path="res://assets/TEMP/pallet/pallet.tscn" id="6_fmvhc"]
 [ext_resource type="PackedScene" uid="uid://cfr6037dw38lg" path="res://assets/TEMP/vehicles/palletCart/palletCart.tscn" id="7_gf6sq"]
+[ext_resource type="PackedScene" uid="uid://bjak7yqob2gwm" path="res://assets/TEMP/vehicles/pathMarkers/pathMarker.tscn" id="8_0bc61"]
+[ext_resource type="Script" uid="uid://3fip1xunc5pm" path="res://assets/TEMP/vehicles/pathMarkers/pathManager.gd" id="8_4lmr3"]
 [ext_resource type="Environment" uid="uid://6vloryp1odkx" path="res://assets/TEMP/Environment.tres" id="15_eumgo"]
 
 [node name="root" type="Node3D" unique_id=1108410745]
@@ -39,25 +41,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9985014, 1.3565614, -1.3003
 [node name="pallet" parent="." unique_id=1923136724 instance=ExtResource("6_fmvhc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1756968, 0.14999959, 0.6680589)
 
-[node name="palletCart" parent="." unique_id=702302899 node_paths=PackedStringArray("nodes", "chargePos", "palletGrabTEMP") instance=ExtResource("7_gf6sq")]
+[node name="palletCart" parent="." unique_id=702302899 node_paths=PackedStringArray("chargePos", "palletGrabTEMP") instance=ExtResource("7_gf6sq")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2.8129153, 0.2469086, 1.5607176)
-nodes = [NodePath("../movementMarkers/MarkerA"), NodePath("../movementMarkers/MarkerB"), NodePath("../movementMarkers/MarkerC"), NodePath("../movementMarkers/MarkerD")]
 chargePos = NodePath("../CHARGEPOS")
 palletGrabTEMP = NodePath("../pallet")
 
 [node name="CHARGEPOS" type="Marker3D" parent="." unique_id=1994335116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.3212733)
 
-[node name="movementMarkers" type="Node3D" parent="." unique_id=1356329290]
+[node name="botPathMarkers" type="Node3D" parent="." unique_id=1356329290]
+script = ExtResource("8_4lmr3")
 
-[node name="MarkerA" type="Marker3D" parent="movementMarkers" unique_id=1994103291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8623011, 0, 7.3634744)
+[node name="MarkerA" parent="botPathMarkers" unique_id=1273002714 node_paths=PackedStringArray("neighbors") instance=ExtResource("8_0bc61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7735595, -1.1920929e-07, 6.3794193)
+neighbors = [NodePath("../MarkerB"), NodePath("../MarkerD")]
 
-[node name="MarkerB" type="Marker3D" parent="movementMarkers" unique_id=988194689]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86913586, 0, 7.25547)
+[node name="MarkerB" parent="botPathMarkers" unique_id=1614690176 node_paths=PackedStringArray("neighbors") instance=ExtResource("8_0bc61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42163908, -2.3841858e-07, 6.747345)
+neighbors = [NodePath("../MarkerA"), NodePath("../MarkerC")]
 
-[node name="MarkerC" type="Marker3D" parent="movementMarkers" unique_id=1129060003]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3869106, 0, 4.378124)
+[node name="MarkerC" parent="botPathMarkers" unique_id=355448631 node_paths=PackedStringArray("neighbors") instance=ExtResource("8_0bc61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0428298, -3.5762787e-07, 5.6570406)
+neighbors = [NodePath("../MarkerB"), NodePath("../MarkerD"), NodePath("../MarkerE")]
 
-[node name="MarkerD" type="Marker3D" parent="movementMarkers" unique_id=17120833]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6865408, 0, 3.8233895)
+[node name="MarkerD" parent="botPathMarkers" unique_id=2102942211 node_paths=PackedStringArray("neighbors") instance=ExtResource("8_0bc61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9687474, -3.5762787e-07, 4.577503)
+neighbors = [NodePath("../MarkerC"), NodePath("../MarkerA")]
+
+[node name="MarkerE" parent="botPathMarkers" unique_id=1325421880 node_paths=PackedStringArray("neighbors") instance=ExtResource("8_0bc61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8611047, -1.1920929e-07, 6.736345)
+neighbors = [NodePath("../MarkerC")]

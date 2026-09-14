@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dwcpfmc7sdei5"]
+
+[ext_resource type="Texture2D" uid="uid://dic4238k2ngg4" path="res://DevAssets/Materials/PalletOne/Textures/DT_Yellow.png" id="1_bhtg4"]
+
+[resource]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.39215687)
+albedo_texture = ExtResource("1_bhtg4")
+uv1_triplanar = true
+texture_filter = 0

@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 NetworkManager="*uid://v42kvmrokdr8"
-Globals="*uid://bura8v2x0631g"
 SaveLoadSystem="*uid://c4ropdk5klsyh"
+Globals="*uid://cgbaa0uypgufa"
 
 [display]
 

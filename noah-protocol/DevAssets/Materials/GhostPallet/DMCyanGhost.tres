@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://df48sqyrojpkb"]
+
+[ext_resource type="Texture2D" uid="uid://dqexjcodao2xd" path="res://DevAssets/Materials/PalletOne/Textures/DT_Cyan.png" id="1_fnglu"]
+
+[resource]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.39215687)
+albedo_texture = ExtResource("1_fnglu")
+uv1_triplanar = true
+texture_filter = 0

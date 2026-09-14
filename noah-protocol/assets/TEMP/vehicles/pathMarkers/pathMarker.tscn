@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bjak7yqob2gwm"]
+
+[ext_resource type="Script" uid="uid://dcyle8p4bo8p6" path="res://assets/TEMP/vehicles/pathMarkers/pathMarkerScript.gd" id="1_3nfku"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.1, 0.5, 0.1)
+
+[node name="pathMarker" type="Marker3D" unique_id=1273002714]
+script = ExtResource("1_3nfku")
+
+[node name="ghostMarker" type="MeshInstance3D" parent="." unique_id=1131770878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_g4v7s")
