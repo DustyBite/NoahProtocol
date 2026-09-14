@@ -2,15 +2,17 @@ extends RigidBody3D
 
 # Exports
 
-@export var nodes: Array[Marker3D]
+@export var pathNodes: Array
 @export var angelWindow: float = .5
 @export var rotationSpeed: float = 1.0
 @export var moveSpeed: float = 3.0
+@export var pathManager: Node3D
+@export var locationTolerance: float = .05
 
 @export_group("Battery")
 @export var batActiveDrainRate : float = 1.0
 @export var batPassiveDrainRate : float = 0.5
-@export var chargePos : Node
+@export var chargeObj : Node
 
 @export_group("TEMP")
 @export var palletGrabTEMP: Node
@@ -29,6 +31,7 @@ var currentTarget : Node
 var savedTarget : Node
 
 var batLevel : float = 100
+var batDrainRate : float = 1.0
 var batDead : bool = false
 var batNeedCharge: bool = false
 
@@ -37,26 +40,18 @@ var grabbingTarget: bool = false
 var palletGrabbed: bool = false
 
 var hasTask: bool = false
+var currentTask: String = "idle"
 
-func _ready() -> void:
-	if palletGrabTEMP != null:
-		arrived = false
-		currentTarget = palletGrabTEMP
-		targetPallet = true
-
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if batDead:
 		return
+	
+	checkTask()
 	
 	if arrived and !batNeedCharge:
 		getNextPoint()
 	
-	if moving or rotating:
-		batLevel -= delta * batActiveDrainRate
-	else:
-		batLevel -= delta * batPassiveDrainRate
-	
-	#print(batLevel)
+	#batLevel -= delta * batDrainRate
 	
 	if batLevel < 50:
 		batNeedCharge = true
@@ -67,11 +62,21 @@ func _physics_process(delta: float) -> void:
 	if batDead:
 		return
 	
-	if !batNeedCharge:
-		botMovement(currentTarget,delta)
-	else:
-		savedTarget = currentTarget
-		chargeBot(chargePos,delta)
+	botMovement(currentTarget,delta)
+
+func checkTask():
+	match currentTask:
+		"idle":
+			var botPos = global_position
+			botPos.y = 0
+			var chargerPos = chargeObj.global_position
+			chargerPos.y = 0
+			if botPos.distance_to(chargerPos) < locationTolerance:
+				return
+			else:
+				var markA = pathManager.findClosest(self)
+				var markB = pathManager.findClosest(chargeObj)
+				pathNodes = pathManager.getPath(markA, markB)
 
 func botMovement(target, delta):
 	if target == null:
@@ -96,7 +101,6 @@ func botMovement(target, delta):
 		arrived = true
 
 func moveToTarget(target, delta):
-	var locationTolerance = .05
 	var targetPos = target.global_position
 	targetPos.y = global_position.y
 	
@@ -123,20 +127,20 @@ func rotateToTarget(target, delta):
 		rotating = false
 
 func getNextPoint():
-	if nodes == null:
+	if pathNodes == null:
 		return
 	
 	if !hasTask:
-		currentTarget = chargePos
+		currentTarget = chargeObj
 		return
 	
-	if targetCount < nodes.size():
-		currentTarget = nodes[targetCount]
+	if targetCount < pathNodes.size():
+		currentTarget = pathNodes[targetCount]
 		targetCount += 1
 		arrived = false
 	else:
 		targetCount = 0
-		currentTarget = nodes[targetCount]
+		currentTarget = pathNodes[targetCount]
 		arrived = false
 
 func chargeBot(target, delta):

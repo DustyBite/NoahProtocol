@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjak7yqob2gwm"]
 
-[ext_resource type="Script" uid="uid://dcyle8p4bo8p6" path="res://assets/TEMP/vehicles/pathMarkers/pathMarkerScript.gd" id="1_3nfku"]
+[ext_resource type="Script" uid="uid://dcyle8p4bo8p6" path="res://assets/bots/pathMarkers/pathMarkerScript.gd" id="1_3nfku"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(0.1, 0.5, 0.1)

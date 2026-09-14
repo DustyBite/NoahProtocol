@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfr6037dw38lg"]
 
 [ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="1_gfh8h"]
-[ext_resource type="Script" uid="uid://d4ar2yyviyvfp" path="res://assets/TEMP/vehicles/palletCart/palletCartScript.gd" id="1_tmoy2"]
+[ext_resource type="Script" uid="uid://ch01pk16d2t8m" path="res://assets/bots/palletbot/palletBotScript.gd" id="1_k3lcn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0bc61"]
 height = 0.1
@@ -12,11 +12,11 @@ height = 0.1
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(0.1, 0.09, 0.1)
 
-[node name="palletCart" type="RigidBody3D" unique_id=702302899]
+[node name="palletBot" type="RigidBody3D" unique_id=702302899]
 collision_layer = 8
 collision_mask = 9
 center_of_mass_mode = 1
-script = ExtResource("1_tmoy2")
+script = ExtResource("1_k3lcn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639908087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

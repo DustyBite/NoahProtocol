@@ -44,4 +44,5 @@ func getPath(fromMarker, toMarker):
 
 func clearPath(nodePath):
 	for marker in nodePath:
-		marker.indicator = "plain"
+		if "indicator" in marker:
+			marker.indicator = "plain"
