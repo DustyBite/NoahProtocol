@@ -430,6 +430,7 @@ autoClose = false
 
 [node name="doorLong2" parent="." unique_id=2034275144 instance=ExtResource("5_iioyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.119594e-07, 0, -2.75)
+doorOpen = false
 autoClose = false
 
 [node name="Terminal" parent="." unique_id=933974093 node_paths=PackedStringArray("container") instance=ExtResource("12_g0tj4")]

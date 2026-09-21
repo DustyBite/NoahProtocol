@@ -1,6 +1,7 @@
 extends InteractableDynamic
 
 var crateSlots: Array
+var crateState: String = "unprocessed"
 
 @onready var crate := preload("res://assets/interactables/cartridge/cartridgeCrate.tscn")
 

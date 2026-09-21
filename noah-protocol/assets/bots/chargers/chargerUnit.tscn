@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cwq1ome0gf6e"]
+
+[ext_resource type="Script" uid="uid://n2fw2o4se3n7" path="res://assets/bots/chargers/chargerUnitScript.gd" id="1_55rw4"]
+[ext_resource type="Material" uid="uid://c1bj5yuaf23c7" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SageGreen.tres" id="1_dnctw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1, 1, 0.2)
+
+[node name="chargerUnit" type="Node3D" unique_id=923556343]
+script = ExtResource("1_55rw4")
+
+[node name="chargerPosition" type="Marker3D" parent="." unique_id=707462112]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1887786761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.6)
+material_override = ExtResource("1_dnctw")
+mesh = SubResource("BoxMesh_g4v7s")
