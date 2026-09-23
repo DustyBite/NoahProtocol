@@ -6,6 +6,11 @@
 [ext_resource type="Material" uid="uid://pvedlhfunyar" path="res://DevAssets/Materials/PalletOne/DM_White.tres" id="2_fxbys"]
 [ext_resource type="PackedScene" uid="uid://bfeec5u1qryt6" path="res://assets/TEMP/doors/door.tscn" id="4_8t214"]
 [ext_resource type="PackedScene" uid="uid://cjbefy4j4kw8s" path="res://assets/TEMP/doors/doorBig.tscn" id="5_iioyo"]
+[ext_resource type="Script" uid="uid://bavb4od4b323l" path="res://assets/bots/chargers/storageSlotScript.gd" id="8_g0tj4"]
+[ext_resource type="PackedScene" uid="uid://cfr6037dw38lg" path="res://assets/bots/palletbot/palletBot.tscn" id="9_tvhj3"]
+[ext_resource type="PackedScene" uid="uid://cwq1ome0gf6e" path="res://assets/bots/chargers/chargerUnit.tscn" id="10_fnc6d"]
+[ext_resource type="Script" uid="uid://3fip1xunc5pm" path="res://assets/bots/pathMarkers/pathManager.gd" id="11_8pstc"]
+[ext_resource type="PackedScene" uid="uid://bjak7yqob2gwm" path="res://assets/bots/pathMarkers/pathMarker.tscn" id="12_7rf1u"]
 [ext_resource type="PackedScene" uid="uid://b11yjjc3j62m4" path="res://assets/TEMP/piecesTemp/deliveryRooms/terminal/terminal.tscn" id="12_g0tj4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgvcm"]
@@ -146,6 +151,13 @@ data = PackedVector3Array(-5.0499997, 0.049999997, 4.0499997, 5.0499997, 0.04999
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tvhj3"]
 data = PackedVector3Array(-5.0499997, 0.049999997, 6.7999997, 5.0499997, 0.049999997, 6.7999997, -5.0499997, -0.049999997, 6.7999997, 5.0499997, 0.049999997, 6.7999997, 5.0499997, -0.049999997, 6.7999997, -5.0499997, -0.049999997, 6.7999997, 5.0499997, 0.049999997, -6.7999997, -5.0499997, 0.049999997, -6.7999997, 5.0499997, -0.049999997, -6.7999997, -5.0499997, 0.049999997, -6.7999997, -5.0499997, -0.049999997, -6.7999997, 5.0499997, -0.049999997, -6.7999997, 5.0499997, 0.049999997, 6.7999997, 5.0499997, 0.049999997, -6.7999997, 5.0499997, -0.049999997, 6.7999997, 5.0499997, 0.049999997, -6.7999997, 5.0499997, -0.049999997, -6.7999997, 5.0499997, -0.049999997, 6.7999997, -5.0499997, 0.049999997, -6.7999997, -5.0499997, 0.049999997, 6.7999997, -5.0499997, -0.049999997, -6.7999997, -5.0499997, 0.049999997, 6.7999997, -5.0499997, -0.049999997, 6.7999997, -5.0499997, -0.049999997, -6.7999997, 5.0499997, 0.049999997, 6.7999997, -5.0499997, 0.049999997, 6.7999997, 5.0499997, 0.049999997, -6.7999997, -5.0499997, 0.049999997, 6.7999997, -5.0499997, 0.049999997, -6.7999997, 5.0499997, 0.049999997, -6.7999997, -5.0499997, -0.049999997, 6.7999997, 5.0499997, -0.049999997, 6.7999997, -5.0499997, -0.049999997, -6.7999997, 5.0499997, -0.049999997, 6.7999997, 5.0499997, -0.049999997, -6.7999997, -5.0499997, -0.049999997, -6.7999997)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j74of"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ks1ac"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1jse"]
+size = Vector3(3, 3, 7.5)
 
 [node name="deliveryRoom" type="Node3D" unique_id=1821046668]
 
@@ -430,9 +442,303 @@ autoClose = false
 
 [node name="doorLong2" parent="." unique_id=2034275144 instance=ExtResource("5_iioyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.119594e-07, 0, -2.75)
-doorOpen = false
 autoClose = false
 
 [node name="Terminal" parent="." unique_id=933974093 node_paths=PackedStringArray("container") instance=ExtResource("12_g0tj4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.167991)
 container = NodePath("../Container")
+
+[node name="AreaScanners" type="Node3D" parent="." unique_id=1469582202]
+
+[node name="storageRoomA3D" type="Area3D" parent="AreaScanners" unique_id=1328002717]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaScanners/storageRoomA3D" unique_id=1852623507]
+shape = SubResource("BoxShape3D_j74of")
+
+[node name="transitionRoomA3D" type="Area3D" parent="AreaScanners" unique_id=1406609321]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaScanners/transitionRoomA3D" unique_id=408232464]
+shape = SubResource("BoxShape3D_ks1ac")
+
+[node name="containerA3D" type="Area3D" parent="AreaScanners" unique_id=1496834719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -15.5)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaScanners/containerA3D" unique_id=1536910384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_w1jse")
+
+[node name="storageMarkers" type="Node3D" parent="." unique_id=1387710006]
+
+[node name="Aslots" type="Node3D" parent="storageMarkers" unique_id=322222059]
+
+[node name="A1" type="Marker3D" parent="storageMarkers/Aslots" unique_id=494336778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, -1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A2" type="Marker3D" parent="storageMarkers/Aslots" unique_id=1121911352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 0)
+script = ExtResource("8_g0tj4")
+
+[node name="A3" type="Marker3D" parent="storageMarkers/Aslots" unique_id=1911980347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A4" type="Marker3D" parent="storageMarkers/Aslots" unique_id=484323375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 3)
+script = ExtResource("8_g0tj4")
+
+[node name="A5" type="Marker3D" parent="storageMarkers/Aslots" unique_id=1290856158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 4.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A6" type="Marker3D" parent="storageMarkers/Aslots" unique_id=1326243789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 6)
+script = ExtResource("8_g0tj4")
+
+[node name="A7" type="Marker3D" parent="storageMarkers/Aslots" unique_id=283772111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 7.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A8" type="Marker3D" parent="storageMarkers/Aslots" unique_id=2052116537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 9)
+script = ExtResource("8_g0tj4")
+
+[node name="A9" type="Marker3D" parent="storageMarkers/Aslots" unique_id=1336101715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 10.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A10" type="Marker3D" parent="storageMarkers/Aslots" unique_id=708129006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, -1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A11" type="Marker3D" parent="storageMarkers/Aslots" unique_id=84049449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, 0)
+script = ExtResource("8_g0tj4")
+
+[node name="A12" type="Marker3D" parent="storageMarkers/Aslots" unique_id=1253527570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, 1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A13" type="Marker3D" parent="storageMarkers/Aslots" unique_id=1634097004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, 7.5)
+script = ExtResource("8_g0tj4")
+
+[node name="A14" type="Marker3D" parent="storageMarkers/Aslots" unique_id=650443331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, 9)
+script = ExtResource("8_g0tj4")
+
+[node name="A15" type="Marker3D" parent="storageMarkers/Aslots" unique_id=156742218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, 10.5)
+script = ExtResource("8_g0tj4")
+
+[node name="Bslots" type="Node3D" parent="storageMarkers" unique_id=1215211672]
+
+[node name="B1" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1117200008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B2" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1306376592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 0)
+script = ExtResource("8_g0tj4")
+
+[node name="B3" type="Marker3D" parent="storageMarkers/Bslots" unique_id=575499809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B4" type="Marker3D" parent="storageMarkers/Bslots" unique_id=469362745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 3)
+script = ExtResource("8_g0tj4")
+
+[node name="B5" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1412635933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 4.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B6" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1784223154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 6)
+script = ExtResource("8_g0tj4")
+
+[node name="B7" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1192401571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 7.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B8" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1904901247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 9)
+script = ExtResource("8_g0tj4")
+
+[node name="B9" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1944984051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 10.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B10" type="Marker3D" parent="storageMarkers/Bslots" unique_id=241359442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, -1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B11" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1073768448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, 0)
+script = ExtResource("8_g0tj4")
+
+[node name="B12" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1337976523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, 1.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B13" type="Marker3D" parent="storageMarkers/Bslots" unique_id=811621781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, 7.5)
+script = ExtResource("8_g0tj4")
+
+[node name="B14" type="Marker3D" parent="storageMarkers/Bslots" unique_id=2106819507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, 9)
+script = ExtResource("8_g0tj4")
+
+[node name="B15" type="Marker3D" parent="storageMarkers/Bslots" unique_id=1778527671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, 10.5)
+script = ExtResource("8_g0tj4")
+
+[node name="unpackingStations" type="Node3D" parent="." unique_id=1359535485]
+
+[node name="unpack1" type="Marker3D" parent="unpackingStations" unique_id=342017294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, -4)
+script = ExtResource("8_g0tj4")
+
+[node name="unpack2" type="Marker3D" parent="unpackingStations" unique_id=94848293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, -5.5)
+script = ExtResource("8_g0tj4")
+
+[node name="chargerUnit" parent="." unique_id=923556343 node_paths=PackedStringArray("assignedBot", "containerArea", "unpackStations", "storagePosA", "storagePosB") instance=ExtResource("10_fnc6d")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.25, 0.05, -4)
+assignedBot = NodePath("../bots/palletBot")
+containerArea = NodePath("../AreaScanners/containerA3D")
+unpackStations = NodePath("../unpackingStations")
+storagePosA = NodePath("../storageMarkers/Aslots")
+storagePosB = NodePath("../storageMarkers/Bslots")
+
+[node name="botPathMarkers" type="Node3D" parent="." unique_id=1131308526]
+script = ExtResource("11_8pstc")
+
+[node name="MarkerCharge" parent="botPathMarkers" unique_id=1273002714 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -4)
+neighbors = [NodePath("../MarkerA5")]
+
+[node name="unpack1" parent="botPathMarkers" unique_id=536193985 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, -5.5)
+neighbors = [NodePath("../MarkerB4")]
+
+[node name="unpack2" parent="botPathMarkers" unique_id=1576116500 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, -4)
+neighbors = [NodePath("../MarkerB5")]
+
+[node name="MarkerA1" parent="botPathMarkers" unique_id=1933531816 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -10)
+neighbors = [NodePath("../MarkerA2"), NodePath("../MarkerB1")]
+
+[node name="MarkerA2" parent="botPathMarkers" unique_id=1754018492 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -7.5)
+neighbors = [NodePath("../MarkerA1"), NodePath("../MarkerA3")]
+
+[node name="MarkerA3" parent="botPathMarkers" unique_id=37149952 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -7.5)
+neighbors = [NodePath("../MarkerA2"), NodePath("../MarkerA4")]
+
+[node name="MarkerA4" parent="botPathMarkers" unique_id=228763865 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -5.5)
+neighbors = [NodePath("../MarkerA3"), NodePath("../MarkerA5"), NodePath("../MarkerB4")]
+
+[node name="MarkerA5" parent="botPathMarkers" unique_id=1559769317 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -4)
+neighbors = [NodePath("../MarkerA4"), NodePath("../MarkerA6"), NodePath("../MarkerB5"), NodePath("../MarkerCharge")]
+
+[node name="MarkerA6" parent="botPathMarkers" unique_id=138528462 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -1.5)
+neighbors = [NodePath("../MarkerA5"), NodePath("../MarkerA7"), NodePath("../storage1")]
+
+[node name="MarkerA7" parent="botPathMarkers" unique_id=1070118787 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
+neighbors = [NodePath("../MarkerA6"), NodePath("../MarkerA8"), NodePath("../storage2")]
+
+[node name="MarkerA8" parent="botPathMarkers" unique_id=1009564175 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 1.5)
+neighbors = [NodePath("../MarkerA7"), NodePath("../MarkerA9"), NodePath("../storage3")]
+
+[node name="MarkerA9" parent="botPathMarkers" unique_id=648010282 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 3)
+neighbors = [NodePath("../MarkerA8"), NodePath("../MarkerA10"), NodePath("../storage4")]
+
+[node name="MarkerA10" parent="botPathMarkers" unique_id=246173812 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 4.5)
+neighbors = [NodePath("../MarkerA9"), NodePath("../MarkerA11"), NodePath("../storage5")]
+
+[node name="MarkerA11" parent="botPathMarkers" unique_id=204524271 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 6)
+neighbors = [NodePath("../MarkerA10"), NodePath("../MarkerA12"), NodePath("../storage6")]
+
+[node name="MarkerA12" parent="botPathMarkers" unique_id=59182254 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 7.5)
+neighbors = [NodePath("../MarkerA11"), NodePath("../MarkerA13"), NodePath("../storage7")]
+
+[node name="MarkerA13" parent="botPathMarkers" unique_id=1083309954 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 9)
+neighbors = [NodePath("../MarkerA12"), NodePath("../MarkerA14"), NodePath("../storage8")]
+
+[node name="MarkerA14" parent="botPathMarkers" unique_id=2117050627 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 10.5)
+neighbors = [NodePath("../MarkerA13"), NodePath("../storage9")]
+
+[node name="storage1" parent="botPathMarkers" unique_id=116202401 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -1.5)
+neighbors = [NodePath("../MarkerA6")]
+
+[node name="storage2" parent="botPathMarkers" unique_id=164983847 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+neighbors = [NodePath("../MarkerA7")]
+
+[node name="storage3" parent="botPathMarkers" unique_id=510716551 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.5)
+neighbors = [NodePath("../MarkerA8")]
+
+[node name="storage4" parent="botPathMarkers" unique_id=955889741 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 3)
+neighbors = [NodePath("../MarkerA9")]
+
+[node name="storage5" parent="botPathMarkers" unique_id=858396070 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 4.5)
+neighbors = [NodePath("../MarkerA10")]
+
+[node name="storage6" parent="botPathMarkers" unique_id=805835463 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 6)
+neighbors = [NodePath("../MarkerA11")]
+
+[node name="storage7" parent="botPathMarkers" unique_id=227064210 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 7.5)
+neighbors = [NodePath("../MarkerA12")]
+
+[node name="storage8" parent="botPathMarkers" unique_id=1251481287 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 9)
+neighbors = [NodePath("../MarkerA13")]
+
+[node name="storage9" parent="botPathMarkers" unique_id=257083497 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 10.5)
+neighbors = [NodePath("../MarkerA14")]
+
+[node name="MarkerB1" parent="botPathMarkers" unique_id=1573411559 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -10)
+neighbors = [NodePath("../MarkerA1")]
+
+[node name="MarkerB4" parent="botPathMarkers" unique_id=71432700 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -5.5)
+neighbors = [NodePath("../MarkerB5"), NodePath("../MarkerA4"), NodePath("../unpack1")]
+
+[node name="MarkerB5" parent="botPathMarkers" unique_id=1809234127 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_7rf1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -4)
+neighbors = [NodePath("../MarkerB4"), NodePath("../MarkerA5"), NodePath("../unpack2")]
+
+[node name="bots" type="Node3D" parent="." unique_id=1769543251]
+
+[node name="palletBot" parent="bots" unique_id=702302899 node_paths=PackedStringArray("pathManager", "chargerObj") instance=ExtResource("9_tvhj3")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.25, 0.05, -4)
+pathManager = NodePath("../../botPathMarkers")
+chargerObj = NodePath("../../chargerUnit")

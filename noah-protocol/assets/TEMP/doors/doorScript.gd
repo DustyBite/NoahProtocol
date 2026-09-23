@@ -6,7 +6,7 @@ extends Node
 var closePos = 0.0
 var targetPos = 0.0
 
-@export var doorOpen: bool = true
+var doorOpen: bool = false
 var doorBlocked: bool = false
 
 @export var autoClose: bool = true
@@ -17,8 +17,6 @@ var doorBlocked: bool = false
 
 func _ready() -> void:
 	acTimer.wait_time = closeDelay
-	if doorOpen == false:
-		openClose()
 
 func _process(_delta: float) -> void:
 	leftDoor.position.x = lerp(leftDoor.position.x, targetPos, doorSpeed)
