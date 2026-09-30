@@ -16,7 +16,7 @@ var activeTerminal = null
 
 #misc
 var enviorLocal = 0
-var worldRoot: Node3D
+@export var worldRoot: Node3D
 var playerCash = 100
 var driving = false
 var gasAmount = 0

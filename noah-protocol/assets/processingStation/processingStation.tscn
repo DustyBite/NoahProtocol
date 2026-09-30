@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://c6hgq84ngi0ss"]
 
-[ext_resource type="Script" uid="uid://cypwmtv8ychlm" path="res://assets/TEMP/piecesTemp/processingRoom/processingStation/processingStationScript.gd" id="1_dtx7r"]
+[ext_resource type="Script" uid="uid://cypwmtv8ychlm" path="res://assets/processingStation/processingStationScript.gd" id="1_dtx7r"]
 [ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="2_7lslj"]
 [ext_resource type="PackedScene" uid="uid://bh8ed2i5b7ewc" path="res://assets/interactables/button/button.tscn" id="3_7lslj"]
 [ext_resource type="Material" uid="uid://dj8ihtqtxulp4" path="res://DevAssets/Materials/PalletOne/DM_BrightRed.tres" id="3_72rar"]
+[ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="5_61ja3"]
 [ext_resource type="PackedScene" uid="uid://4ly8b4rvecio" path="res://assets/interactables/Slots/cardSlot.tscn" id="5_rsec3"]
+[ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="6_irey2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wbrba"]
-size = Vector3(3, 0.9, 1.1)
+size = Vector3(3, 1, 1.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2jh8"]
 size = Vector3(3, 0.6, 0.3)
@@ -18,14 +20,44 @@ size = Vector3(0.2, 0.25, 0.4)
 [sub_resource type="ViewportTexture" id="ViewportTexture_dtx7r"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_61ja3"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lslj"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_dtx7r")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_61ja3")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dtx7r"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_7lslj")
 size = Vector2(1.1, 0.55)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aqsll"]
+shader = ExtResource("5_61ja3")
+shader_parameter/curvature = 7.0
+shader_parameter/vignette_strength = 0.15
+shader_parameter/vignette_power = 4.5
+shader_parameter/scanline_intensity = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ah3di"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qx73w"]
+shader = ExtResource("6_irey2")
+shader_parameter/screen_size = Vector2(16, 9)
+shader_parameter/screenSizeMultiplier = 30.0
+shader_parameter/brightness_boost = 2.5
+shader_parameter/bleed = 0.5
+shader_parameter/effect_strength = 0.25
+shader_parameter/gap_strength = 0.5
+shader_parameter/scanline_strength = 0.50000002375
+
+[sub_resource type="QuadMesh" id="QuadMesh_b7el3"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7lslj"]
 data = PackedVector3Array(-1.5, 0.45, 0.55, 1.5, 0.45, 0.55, -1.5, -0.45, 0.55, 1.5, 0.45, 0.55, 1.5, -0.45, 0.55, -1.5, -0.45, 0.55, 1.5, 0.45, -0.55, -1.5, 0.45, -0.55, 1.5, -0.45, -0.55, -1.5, 0.45, -0.55, -1.5, -0.45, -0.55, 1.5, -0.45, -0.55, 1.5, 0.45, 0.55, 1.5, 0.45, -0.55, 1.5, -0.45, 0.55, 1.5, 0.45, -0.55, 1.5, -0.45, -0.55, 1.5, -0.45, 0.55, -1.5, 0.45, -0.55, -1.5, 0.45, 0.55, -1.5, -0.45, -0.55, -1.5, 0.45, 0.55, -1.5, -0.45, 0.55, -1.5, -0.45, -0.55, 1.5, 0.45, 0.55, -1.5, 0.45, 0.55, 1.5, 0.45, -0.55, -1.5, 0.45, 0.55, -1.5, 0.45, -0.55, 1.5, 0.45, -0.55, -1.5, -0.45, 0.55, 1.5, -0.45, 0.55, -1.5, -0.45, -0.55, 1.5, -0.45, 0.55, 1.5, -0.45, -0.55, -1.5, -0.45, -0.55)
@@ -40,7 +72,7 @@ data = PackedVector3Array(-1.5, 0.29999998, 0.14999999, 1.5, 0.29999998, 0.14999
 script = ExtResource("1_dtx7r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=868014054]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 material_override = ExtResource("2_7lslj")
 mesh = SubResource("BoxMesh_wbrba")
 
@@ -96,6 +128,20 @@ offset_left = 25.0
 offset_top = 200.0
 offset_right = 775.0
 offset_bottom = 300.0
+
+[node name="screenEffects" type="Node2D" parent="SubViewport" unique_id=57772320]
+
+[node name="crtEffectLayer" type="CanvasLayer" parent="SubViewport/screenEffects" unique_id=1336545696]
+
+[node name="crtShader" type="MeshInstance2D" parent="SubViewport/screenEffects/crtEffectLayer" unique_id=1811832971]
+material = SubResource("ShaderMaterial_aqsll")
+mesh = SubResource("QuadMesh_ah3di")
+
+[node name="rgbSeperatorLayer" type="CanvasLayer" parent="SubViewport/screenEffects" unique_id=2036000447]
+
+[node name="rgbSeperator" type="MeshInstance2D" parent="SubViewport/screenEffects/rgbSeperatorLayer" unique_id=97737489]
+material = SubResource("ShaderMaterial_qx73w")
+mesh = SubResource("QuadMesh_b7el3")
 
 [node name="button" parent="." unique_id=695884298 node_paths=PackedStringArray("interactItem") instance=ExtResource("3_7lslj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.3, 0.95, -0.25)

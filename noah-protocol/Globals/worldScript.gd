@@ -1,181 +1,137 @@
 extends Node3D
 class_name WorldScript
 
-const PLAYER_SCENE := preload("res://assets/player/player.tscn")
-const PORT := 7000
-const MAX_CLIENTS := 3
-
-# TEMP RSA ENCRYPTION
-var crypto := Crypto.new()
-var rsaKey: CryptoKey
-var sessionKeys := {}
-var mySessionKey: PackedByteArray
-
-@export var multiplayerModeOverride := false
-
-@export var devMode := false
-
-@onready var spawner: MultiplayerSpawner = $MultiplayerSpawner
-
-var spawn_points: Array[Vector3] = []
-var next_spawn_index := 0
-@onready var spContainer = $spawnPoints
-@onready var world = self
-
-func _ready():
-	spawn_points = get_spawn_points()
-	
-	Globals.devMode = devMode
-	
-	if multiplayerModeOverride:
-		Globals.singleplayerMode = false
-	
-	if Globals.singleplayerMode:
-		print("SINGLEPLAYER MODE")
-		var player := PLAYER_SCENE.instantiate()
-		player.name = "1"
-		world.add_child(player)
-		player.global_position = spawn_points[0]
-		player.worldRoot = self
-		return
-
-	# MultiplayerSpawner setup (Godot 4.6)
-	spawner.add_spawnable_scene(PLAYER_SCENE.resource_path)
-	spawner.spawn_function = _spawn_player
-
-	# Multiplayer signals
-	multiplayer.peer_connected.connect(_on_peer_connected)
-	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-	multiplayer.connected_to_server.connect(_on_connected_to_server)
-	multiplayer.connection_failed.connect(_on_connection_failed)
-
-	# Launch mode
-	if "--client" in OS.get_cmdline_args() or Globals.launchMode == "client":
-		print("Starting as CLIENT")
-		await get_tree().create_timer(0.5).timeout
-		join_game("127.0.0.1")
-	else:
-		print("Starting as SERVER")
-		host_game()
-
-func get_spawn_points() -> Array[Vector3]:
-	var points: Array[Vector3] = []
-	for child in spContainer.get_children():
-		if child is Marker3D:
-			points.append(child.global_position)
-	return points
+# Const var
 
 
-# -------------------------
-# NETWORK SETUP
-# -------------------------
+# Export var
 
-func host_game():
-	var peer := ENetMultiplayerPeer.new()
-	var err := peer.create_server(PORT, MAX_CLIENTS)
-	if err != OK:
-		push_error("Failed to start server: %s" % err)
-		return
+@export var devMode: bool = false
 
-	multiplayer.multiplayer_peer = peer
-	rsaKey = crypto.generate_rsa(2048)
-	print("✓ Server started on port ", PORT)
+# Onready var
 
-	# Spawn server player
-	spawn_player(multiplayer.get_unique_id())
+@onready var player = $player
 
+# basic Var
 
-func join_game(address: String):
-	var peer := ENetMultiplayerPeer.new()
-	var err := peer.create_client(address, PORT)
-	if err != OK:
-		push_error("Failed to connect: %s" % err)
-		return
+var saveDirectory = "My Games/Dead Frequency/NOAHProtocol/"
+var SavePassword = "ALANALAMB"
+var saveFile = "NoahProtocol_PreAlpha"
 
-	multiplayer.multiplayer_peer = peer
-	print("→ Connecting to ", address, ":", PORT)
+var palletArray: Array
+var crateArray: Array
+var cassetteArray: Array
 
 
-# -------------------------
-# PLAYER SPAWNING
-# -------------------------
-
-# This runs on ALL peers
-func _spawn_player(peer_id: int) -> Node:
-	var player := PLAYER_SCENE.instantiate()
-	player.name = str(peer_id)
-
-	var spawn_pos := spawn_points[next_spawn_index % spawn_points.size()]
-	next_spawn_index += 1
-	player.position = spawn_pos
-
-	player.set_multiplayer_authority(peer_id)
-	
+func _onready():
 	player.worldRoot = self
+	
+	if devMode:
+		saveDirectory = "My Games/Dead Frequency/NOAHProtocol/Dev/"
+		saveFile = "devSave1"
 
-	print("Spawned player node for peer ", peer_id)
-	return player
+func getSaveDrectory() -> String:
+	var userProfile = OS.get_environment("USERPROFILE")
+	return userProfile + "/Documents/" + saveDirectory
 
 
-# This runs ONLY on the server
-func spawn_player(peer_id: int):
-	if not multiplayer.is_server():
+func ensureSaveDirectory() -> void:
+	var directory = getSaveDrectory()
+
+	if not DirAccess.dir_exists_absolute(directory):
+		DirAccess.make_dir_recursive_absolute(directory)
+
+
+func save():
+	ensureSaveDirectory()
+
+	var savePath = getSaveDrectory() + saveFile
+	
+	updateWorldObjects()
+
+	var saveData = {
+		#GameData
+		"gameVersion": "0.1",
+		
+		#GlobalsData
+		"pointTotal": Globals.pointTotal,
+		"cardsProcessed": Globals.cardsProcessed,
+		
+		#PlayerData
+		"playerPos": [player.global_position.x, player.global_position.y ,player.global_position.z],
+		"playerRot": [player.global_rotation.x, player.global_rotation.y, player.global_rotation.z],
+		
+		#palletData
+		"totalPallets": palletArray.size(),
+		
+		#crateData
+		"totalCrates": crateArray.size(),
+		
+		#cassetteData
+		"totalCassettes": cassetteArray.size(),
+	}
+
+	var file = FileAccess.open_encrypted_with_pass(savePath, FileAccess.WRITE, SavePassword)
+
+	if file:
+		file.store_string(JSON.stringify(saveData))
+		file.close()
+		print("Game saved to: ", savePath)
+
+func load():
+	var savePath = getSaveDrectory() + saveFile
+
+	if not FileAccess.file_exists(savePath):
+		print("No save file found.")
 		return
 
-	print("Requesting spawn for peer ", peer_id)
-	spawner.spawn(peer_id)
+	var file = FileAccess.open_encrypted_with_pass(savePath, FileAccess.READ, SavePassword)
+	var saveData = JSON.parse_string(file.get_as_text())
+	file.close()
 
-
-func _on_peer_connected(id: int):
-	print("Peer connected: ", id)
-
-	if multiplayer.is_server():
-		spawn_player(id)
-
-
-func _on_peer_disconnected(id: int):
-	print("Peer disconnected: ", id)
-
-	if world.has_node(str(id)):
-		world.get_node(str(id)).queue_free()
-
-
-# -------------------------
-# CLIENT EVENTS
-# -------------------------
-
-func _on_connected_to_server():
-	print("✓ Connected to server")
-	print("My peer ID: ", multiplayer.get_unique_id())
-	requestPublicKey.rpc_id(1)
-
-
-func _on_connection_failed():
-	print("✗ Connection failed")
-
-# -------------------------
-# ENCRYPTION HANDSHAKE
-# -------------------------
-
-@rpc("any_peer", "reliable")
-func requestPublicKey():
-	if !multiplayer.is_Server():
+	if saveData == null:
+		print("Failed to read save file.")
 		return
-	var senderId = multiplayer.get_remote_sender_id()
-	receivePublicKey.rpc_id(senderId, rsaKey.save_to_string(true))
+	
+	var appliers = {
+		#loading World Data
+		"pointTotal": func(v) : Globals.pointTotal = v,
+		"cardsProcessed": func(v) : Globals.cardsProcessed = v,
+		
+		#loading Player Data
+		"playerPos": func(v) : player.global_position = Vector3(v[0],v[1],v[2]),
+		"playerRot": func(v) : player.global_rotation = Vector3(v[0],v[1],v[2]),
+		
+		#load Object Data
+		"totalPallets": func(v) : print("total Pallets = ", v),
+		"totalCrates": func(v) : print("total Crates = ", v),
+		"totalCassettes": func(v) : print("total Cassettes = ", v),
+	}
+	
+	for key in appliers.keys():
+		if saveData.has(key):
+			appliers[key].call(saveData[key])
+		else:
+			print("missing save data for ", key)
+	
+	#print("Loaded save data: ", saveData)
 
-@rpc("authority", "reliable")
-func receivePublicKey(pem: String):
-	mySessionKey = crypto.generate_random_bytes(32)
-	var pubKey := CryptoKey.new()
-	pubKey.load_from_string(pem, true)
-	var encrypted := crypto.encrypt(pubKey, mySessionKey)
-	submitSessionKey.rpc_id(1, encrypted)
-
-@rpc("any_peer", "reliable")
-func submitSessionKey(encryptedKey: PackedByteArray):
-	if !multiplayer.is_server():
-		return
-	var senderId = multiplayer.get_remote_sender_id()
-	sessionKeys[senderId] = crypto.decrypt(rsaKey, encryptedKey)
-	print("Got session key for peer ", senderId)
+func updateWorldObjects():
+	
+	palletArray.clear()
+	var pallets = get_tree().get_nodes_in_group("pallet")
+	for pallet in pallets:
+		if pallet.get_parent() == self:
+			palletArray.append(pallet)
+	
+	crateArray.clear()
+	var crates = get_tree().get_nodes_in_group("crate")
+	for crate in crates:
+		if crate.get_parent() == self:
+			crateArray.append(crate)
+	
+	cassetteArray.clear()
+	var cassettes = get_tree().get_nodes_in_group("cassette")
+	for cassette in cassettes:
+		if cassette.get_parent() == self:
+			cassetteArray.append(cassette)

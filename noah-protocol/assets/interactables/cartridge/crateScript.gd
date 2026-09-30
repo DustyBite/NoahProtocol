@@ -96,6 +96,8 @@ func closeLid():
 	
 	crateColBox.shape.size.y = .4
 	crateColBox.position.y = 0
-	deloadCassettes()
 	
 	self.canDrag = true
+	
+	await get_tree().create_timer(0.5).timeout
+	deloadCassettes()

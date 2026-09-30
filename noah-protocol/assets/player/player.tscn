@@ -51,7 +51,7 @@ shader_parameter/scanline_strength = 0.50000002375
 size = Vector2(1600, 900)
 center_offset = Vector3(800, 450, 0)
 
-[node name="CharBody3d" type="CharacterBody3D" unique_id=1774373292]
+[node name="player" type="CharacterBody3D" unique_id=1774373292]
 collision_layer = 2
 collision_mask = 27
 script = ExtResource("1_irka0")

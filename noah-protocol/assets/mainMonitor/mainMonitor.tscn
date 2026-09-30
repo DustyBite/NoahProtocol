@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://hcfdh453gt1c"]
 
 [ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="1_7r5s1"]
-[ext_resource type="Script" uid="uid://0bjw28gcfmr0" path="res://assets/TEMP/piecesTemp/processingRoom/mainMonitor/mainMonitorScript.gd" id="1_qjf7g"]
+[ext_resource type="Script" uid="uid://0bjw28gcfmr0" path="res://assets/mainMonitor/mainMonitorScript.gd" id="1_qjf7g"]
+[ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="3_1t170"]
+[ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="4_hnmdr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_syqes"]
 size = Vector3(6, 3, 0.2)
@@ -9,14 +11,44 @@ size = Vector3(6, 3, 0.2)
 [sub_resource type="ViewportTexture" id="ViewportTexture_7r5s1"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_61ja3"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qjf7g"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_7r5s1")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_61ja3")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_syqes"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_qjf7g")
 size = Vector2(5.8, 2.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf434"]
+shader = ExtResource("3_1t170")
+shader_parameter/curvature = 7.0
+shader_parameter/vignette_strength = 0.15
+shader_parameter/vignette_power = 4.5
+shader_parameter/scanline_intensity = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_awvy0"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5fuq"]
+shader = ExtResource("4_hnmdr")
+shader_parameter/screen_size = Vector2(16, 9)
+shader_parameter/screenSizeMultiplier = 30.0
+shader_parameter/brightness_boost = 2.5
+shader_parameter/bleed = 0.5
+shader_parameter/effect_strength = 0.25
+shader_parameter/gap_strength = 0.5
+shader_parameter/scanline_strength = 0.50000002375
+
+[sub_resource type="QuadMesh" id="QuadMesh_pvxgt"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
 
 [node name="mainMonitor" type="Node3D" unique_id=949887311]
 script = ExtResource("1_qjf7g")
@@ -82,3 +114,17 @@ theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="screenEffects" type="Node2D" parent="SubViewport" unique_id=202295706]
+
+[node name="crtEffectLayer" type="CanvasLayer" parent="SubViewport/screenEffects" unique_id=1138630483]
+
+[node name="crtShader" type="MeshInstance2D" parent="SubViewport/screenEffects/crtEffectLayer" unique_id=2086057263]
+material = SubResource("ShaderMaterial_lf434")
+mesh = SubResource("QuadMesh_awvy0")
+
+[node name="rgbSeperatorLayer" type="CanvasLayer" parent="SubViewport/screenEffects" unique_id=539016102]
+
+[node name="rgbSeperator" type="MeshInstance2D" parent="SubViewport/screenEffects/rgbSeperatorLayer" unique_id=1721410992]
+material = SubResource("ShaderMaterial_a5fuq")
+mesh = SubResource("QuadMesh_pvxgt")

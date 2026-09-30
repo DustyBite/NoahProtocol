@@ -8,8 +8,7 @@
 [ext_resource type="VoxelGIData" uid="uid://c5m4laxg6vmvb" path="res://assets/TEMP/Scenes/Pre-AlphaTestWorld/Pre-Alpha Test.VoxelGI_data.res" id="5_epc50"]
 [ext_resource type="PackedScene" uid="uid://c6hgq84ngi0ss" path="res://assets/processingStation/processingStation.tscn" id="6_c5wij"]
 [ext_resource type="PackedScene" uid="uid://hcfdh453gt1c" path="res://assets/mainMonitor/mainMonitor.tscn" id="6_pwkhq"]
-[ext_resource type="PackedScene" uid="uid://bh8ed2i5b7ewc" path="res://assets/interactables/button/button.tscn" id="8_jfim8"]
-[ext_resource type="Script" uid="uid://juuoowoqksm3" path="res://assets/TEMP/Scenes/Pre-AlphaTestWorld/TempShit/spawnerTemp.gd" id="8_usvf2"]
+[ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cartridge/cartridgeCrate.tscn" id="8_objod"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 size = Vector2(6, 10)
@@ -43,8 +42,7 @@ sdfgi_read_sky_light = false
 script = ExtResource("1_jfim8")
 devMode = true
 
-[node name="player" parent="." unique_id=1774373292 node_paths=PackedStringArray("worldRoot") instance=ExtResource("2_dgj22")]
-worldRoot = NodePath("..")
+[node name="player" parent="." unique_id=1774373292 instance=ExtResource("2_dgj22")]
 
 [node name="room" type="Node3D" parent="." unique_id=1620108555]
 
@@ -122,19 +120,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2)
 [node name="mainMonitor" parent="room" unique_id=949887311 instance=ExtResource("6_pwkhq")]
 transform = Transform3D(-0.75, -9.870114e-09, -1.1281591e-07, 0, 0.747146, -0.065366805, 1.13246855e-07, -0.065366805, -0.747146, 0, 3.8522058, 5)
 
-[node name="spawning" type="Node3D" parent="room" unique_id=537585541]
-script = ExtResource("8_usvf2")
-
-[node name="palletSpawner" type="Marker3D" parent="room/spawning" unique_id=1556592587]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
-
-[node name="cargoSpawner" type="Marker3D" parent="room/spawning" unique_id=299457044]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
-
-[node name="button" parent="room/spawning" unique_id=695884298 node_paths=PackedStringArray("interactItem") instance=ExtResource("8_jfim8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
-interactItem = NodePath("..")
-
 [node name="enviroment" type="Node3D" parent="." unique_id=1903319439]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="enviroment" unique_id=452040538]
@@ -144,3 +129,6 @@ environment = SubResource("Environment_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 size = Vector3(6.5, 5.5, 10.5)
 data = ExtResource("5_epc50")
+
+[node name="cartridgeCrate" parent="." unique_id=1567765031 instance=ExtResource("8_objod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.107530355, 0.2, -1.6329448)
