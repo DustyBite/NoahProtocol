@@ -1,28 +1,49 @@
 [gd_scene format=3 uid="uid://dbcutms64howc"]
 
-[ext_resource type="Material" uid="uid://d10377nrajy1" path="res://DevAssets/Materials/PalletOne/DM_Rose.tres" id="1_4lbof"]
 [ext_resource type="Script" uid="uid://dp6yhprsxepts" path="res://assets/interactables/consumables/eDrinkScript.gd" id="1_m1fin"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2be2i"]
-height = 0.4
-radius = 0.1
+[ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="2_5lfof"]
+[ext_resource type="Material" uid="uid://pyghfh85nb12" path="res://DevAssets/Materials/PalletOne/DM_Green.tres" id="2_m1fin"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nlwy6"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.4
+top_radius = 0.075
+bottom_radius = 0.075
+height = 0.05
 
-[node name="eDrink" type="RigidBody3D" unique_id=590814685 node_paths=PackedStringArray("mesh")]
-collision_layer = 131
+[sub_resource type="CylinderMesh" id="CylinderMesh_5lfof"]
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2be2i"]
+height = 0.3
+radius = 0.075
+
+[node name="eDrink" type="RigidBody3D" unique_id=590814685 node_paths=PackedStringArray("IndicatorMesh", "hoverMesh") groups=["drink"]]
+collision_layer = 129
 collision_mask = 131
 script = ExtResource("1_m1fin")
-mesh = NodePath("MeshInstance3D")
+IndicatorMesh = NodePath("MeshInstance3D2")
+hoverMesh = NodePath("mesh")
 type = "drink"
 interactButton = "[ E ]"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1000699989]
-shape = SubResource("CylinderShape3D_2be2i")
+[node name="mesh" type="Node3D" parent="." unique_id=511502476]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=813887584]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh" unique_id=813887584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
 mesh = SubResource("CylinderMesh_nlwy6")
-surface_material_override/0 = ExtResource("1_4lbof")
+surface_material_override/0 = ExtResource("2_5lfof")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesh" unique_id=42484902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+mesh = SubResource("CylinderMesh_nlwy6")
+surface_material_override/0 = ExtResource("2_5lfof")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1674363813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("CylinderMesh_5lfof")
+surface_material_override/0 = ExtResource("2_m1fin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1000699989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+shape = SubResource("CylinderShape3D_2be2i")

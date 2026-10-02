@@ -21,12 +21,17 @@ var cratecolClosed := .4
 var cratecolOpen := .3
 
 var cassettesSlots: Array
-var cassetteArray: Array
+var cardData: Array = []
 
 func _ready() -> void:
 	super._ready()
-	
+
 	getSlots()
+
+	if cardData.is_empty():
+		for i in cassettesSlots.size():
+			cardData.append({"card": 1 if spawnCassettes else 0, "status": null})
+
 	loadCassettes()
 	spawnCassettes = false
 	closeLid()
@@ -37,18 +42,37 @@ func getSlots():
 	return
 
 func loadCassettes():
-	for cardSlot in cassettesSlots:
+	for i in range(cassettesSlots.size()):
+		var cardSlot = cassettesSlots[i]
+		if cardSlot.slottedItem != null:
+			continue  # already occupied, don't double-spawn
+		var data = cardData[i]
 		if cardSlot.has_method("loadItem"):
-			cardSlot.loadItem(cassettes,spawnCassettes)
-	
+			cardSlot.loadItem(cassettes, data.card == 1, data.status)
 	return
 
 func deloadCassettes():
-	for cardSlot in cassettesSlots:
+	for i in range(cassettesSlots.size()):
+		var cardSlot = cassettesSlots[i]
+		var card = cardSlot.slottedItem
+		if card != null:
+			cardData[i] = {"card": 1, "status": card.status}
+		else:
+			cardData[i] = {"card": 0, "status": null}
 		if cardSlot.has_method("deloadItem"):
 			cardSlot.deloadItem()
-	
 	return
+
+func get_save_data() -> Array:
+	for i in range(cassettesSlots.size()):
+		var card = cassettesSlots[i].slottedItem
+		if card != null:
+			cardData[i] = {"card": 1, "status": card.status}
+		# else: leave cardData[i] untouched — deloadCassettes() already recorded this slot correctly
+	return cardData.duplicate(true)
+
+func apply_save_data(data: Array) -> void:
+	cardData = data.duplicate(true)
 
 func _process(_delta: float) -> void:
 	lidRotate.rotation.z = lerp(lidRotate.rotation.z, lidTargetRot, .1)

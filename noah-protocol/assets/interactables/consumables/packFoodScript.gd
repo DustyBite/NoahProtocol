@@ -9,7 +9,7 @@ extends InteractableDynamic
 
 var full : bool = true
 var consumeType = "A"
-var consumeValue: int = 4
+var consumeValue: int = 25
 
 func _ready() -> void:
 	super._ready()
@@ -19,7 +19,7 @@ func _ready() -> void:
 func interact(body):
 	if full:
 		if body.has_method("consume"):
-			body.consume("eDrink", consumeValue)
+			body.consume("packFood", consumeValue)
 			full = false
 			
 			IndicatorMesh.material_override = emptyMat
@@ -28,7 +28,7 @@ func updateConsumeType():
 	match consumeType:
 		"A":
 			IndicatorMesh.material_override = typeAMat
-			consumeValue = 4
+			consumeValue = 25
 		"B":
 			IndicatorMesh.material_override = typeBMat
-			consumeValue = 2
+			consumeValue = 50

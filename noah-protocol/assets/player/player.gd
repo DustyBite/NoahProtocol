@@ -255,16 +255,19 @@ func updateStats():
 #var exhaustionMod: float = 0.0
 #var maxExhaRegen: float = 50.0
 
-func consume(type):
+func consume(type, amount):
 	match type:
 		"eDrink":
 			if exhaustion + maxExhaRegen > 100:
 				exhaustion = 100
 			else:
 				exhaustion = exhaustion + maxExhaRegen
-			maxExhaRegen = maxExhaRegen/2
-		"FOOD":
-			pass
+			maxExhaRegen = maxExhaRegen/amount
+		"packFood":
+			if hunger + amount > 100:
+				hunger = 100
+			else:
+				hunger += amount
 
 func chargeThrow(value):
 	chargedThrow = value
@@ -332,6 +335,9 @@ func checkRayCol():
 	var newItem
 	if intRay.is_colliding():
 		newItem = getInteractable(intRay.get_collider())
+		
+		if newItem == null:
+			return
 		
 		if newItem != interItem:
 			# Turn off the OLD item before switching

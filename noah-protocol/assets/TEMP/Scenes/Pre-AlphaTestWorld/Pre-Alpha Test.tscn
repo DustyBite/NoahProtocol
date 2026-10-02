@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://hcfdh453gt1c" path="res://assets/mainMonitor/mainMonitor.tscn" id="6_pwkhq"]
 [ext_resource type="PackedScene" uid="uid://bh8ed2i5b7ewc" path="res://assets/interactables/button/button.tscn" id="8_jfim8"]
 [ext_resource type="Script" uid="uid://juuoowoqksm3" path="res://assets/TEMP/Scenes/Pre-AlphaTestWorld/TempShit/spawnerTemp.gd" id="8_usvf2"]
+[ext_resource type="PackedScene" uid="uid://boj12aj5kcwk5" path="res://assets/interactables/vendingMachines/vendingMachine.tscn" id="10_te081"]
+[ext_resource type="PackedScene" uid="uid://dbcutms64howc" path="res://assets/interactables/consumables/eDrink.tscn" id="11_dj8e6"]
+[ext_resource type="PackedScene" uid="uid://bni75vkdf1c86" path="res://assets/interactables/consumables/packFood.tscn" id="12_ufcqu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 size = Vector2(6, 10)
@@ -134,6 +137,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 [node name="button" parent="room/spawning" unique_id=695884298 node_paths=PackedStringArray("interactItem") instance=ExtResource("8_jfim8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
 interactItem = NodePath("..")
+
+[node name="drinkVM" parent="room" unique_id=2074133122 instance=ExtResource("10_te081")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.65, 0, 2)
+consumableScene = ExtResource("11_dj8e6")
+mainText = "DRINK MACHINE"
+typeALabel1 = "BLAND E-DRINK"
+typeALabel2 = "FREE"
+typeBLabel1 = "PREMIUM E-DRINK"
+typeBLabel2 = "10 Points"
+
+[node name="foodVM" parent="room" unique_id=1786360286 instance=ExtResource("10_te081")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.65, 0, 0)
+consumableScene = ExtResource("12_ufcqu")
+mainText = "FOOD MACHINE"
+typeALabel1 = "BLAND FOOD-PACK"
+typeALabel2 = "FREE"
+typeBLabel1 = "PREMIUM FOOD-PACK"
+typeBLabel2 = "10 Points"
 
 [node name="enviroment" type="Node3D" parent="." unique_id=1903319439]
 

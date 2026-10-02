@@ -9,3 +9,5 @@ var pointTotal: float = 0
 var cardsProcessed: float = 0
 
 var powerOn: bool = true
+
+var type2Consumables: bool = false

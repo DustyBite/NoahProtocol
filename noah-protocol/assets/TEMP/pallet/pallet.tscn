@@ -10,11 +10,10 @@ size = Vector3(1.2, 0.2, 1.2)
 [sub_resource type="BoxMesh" id="BoxMesh_7rf1u"]
 size = Vector3(1.2, 0.1, 1.2)
 
-[node name="pallet" type="RigidBody3D" unique_id=1923136724 node_paths=PackedStringArray("mesh") groups=["pallet"]]
+[node name="pallet" type="RigidBody3D" unique_id=1923136724 groups=["pallet"]]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_uyt37")
-mesh = NodePath("MeshInstance3D")
 canDrag = false
 chargeThrow = false
 removeCol = false

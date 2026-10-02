@@ -1,0 +1,356 @@
+[gd_scene format=3 uid="uid://boj12aj5kcwk5"]
+
+[ext_resource type="Material" uid="uid://873nptvltcdk" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SoftOrange.tres" id="1_lwenv"]
+[ext_resource type="Script" uid="uid://dnv4udvfjvviu" path="res://assets/interactables/vendingMachines/vendingMachineScript.gd" id="1_piql2"]
+[ext_resource type="PackedScene" uid="uid://bh8ed2i5b7ewc" path="res://assets/interactables/button/button.tscn" id="2_hdwwe"]
+[ext_resource type="Script" uid="uid://dfpqqkhetg5wv" path="res://assets/interactables/vendingMachines/vendingButtonScript.gd" id="4_piql2"]
+[ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="5_prhh1"]
+[ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="6_ofids"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lwenv"]
+size = Vector3(0.4, 1, 1.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_piql2"]
+size = Vector3(0.3, 0.1, 1.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yte6h"]
+size = Vector3(0.3, 2, 1.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hdwwe"]
+size = Vector3(0.4, 0.1, 1.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+size = Vector3(0.7, 2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1.5, 2, 0.7)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_piql2"]
+viewport_path = NodePath("SubViewportA")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_prhh1"]
+viewport_path = NodePath("SubViewportA")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iy27v"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_piql2")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_prhh1")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_iy27v")
+size = Vector2(0.7, 0.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iy27v"]
+viewport_path = NodePath("SubViewportB")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ofids"]
+viewport_path = NodePath("SubViewportB")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piql2"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_iy27v")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_ofids")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iy27v"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_piql2")
+size = Vector2(0.7, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1.5, 0.5, 0.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7i5s0"]
+viewport_path = NodePath("SubViewportMain")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eu7rm"]
+viewport_path = NodePath("SubViewportMain")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prhh1"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_7i5s0")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_eu7rm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_piql2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_prhh1")
+size = Vector2(1.4, 0.4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu7rm"]
+shader = ExtResource("5_prhh1")
+shader_parameter/curvature = 7.0
+shader_parameter/vignette_strength = 0.15
+shader_parameter/vignette_power = 4.5
+shader_parameter/scanline_intensity = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_7i5s0"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mbln"]
+shader = ExtResource("6_ofids")
+shader_parameter/screen_size = Vector2(16, 9)
+shader_parameter/screenSizeMultiplier = 30.0
+shader_parameter/brightness_boost = 2.5
+shader_parameter/bleed = 0.5
+shader_parameter/effect_strength = 0.25
+shader_parameter/gap_strength = 0.5
+shader_parameter/scanline_strength = 0.50000002375
+
+[sub_resource type="QuadMesh" id="QuadMesh_fpyu4"]
+size = Vector2(1600, 900)
+center_offset = Vector3(800, 450, 0)
+
+[node name="vendingMachine" type="Node3D" unique_id=2074133122]
+script = ExtResource("1_piql2")
+
+[node name="Meshes" type="Node3D" parent="." unique_id=531902691]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes" unique_id=1988283752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.5, 0)
+material_override = ExtResource("1_lwenv")
+mesh = SubResource("BoxMesh_lwenv")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Meshes" unique_id=1742174569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.45, 0)
+material_override = ExtResource("1_lwenv")
+mesh = SubResource("BoxMesh_piql2")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Meshes" unique_id=1142708475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1, 0)
+material_override = ExtResource("1_lwenv")
+mesh = SubResource("BoxMesh_yte6h")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Meshes" unique_id=1830275514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 1.95, 0)
+material_override = ExtResource("1_lwenv")
+mesh = SubResource("BoxMesh_hdwwe")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Meshes" unique_id=1789349985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.65)
+material_override = ExtResource("1_lwenv")
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Meshes" unique_id=1591521762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.65)
+material_override = ExtResource("1_lwenv")
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1053520045]
+collision_layer = 129
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1962107914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="displaySpotsA" type="Node3D" parent="." unique_id=1769153404]
+
+[node name="A1" type="Marker3D" parent="displaySpotsA" unique_id=1354745307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.5, 0.06)
+
+[node name="A2" type="Marker3D" parent="displaySpotsA" unique_id=8766157]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, 1.5, 0.06)
+
+[node name="A3" type="Marker3D" parent="displaySpotsA" unique_id=1103636990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.06)
+
+[node name="A4" type="Marker3D" parent="displaySpotsA" unique_id=726013598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 1.5, 0.06)
+
+[node name="A5" type="Marker3D" parent="displaySpotsA" unique_id=1006218723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.5, 0.06)
+
+[node name="displaySpotsB" type="Node3D" parent="." unique_id=1919087472]
+
+[node name="B1" type="Marker3D" parent="displaySpotsB" unique_id=182274047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1, 0.06)
+
+[node name="B2" type="Marker3D" parent="displaySpotsB" unique_id=1870024956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, 1, 0.06)
+
+[node name="B3" type="Marker3D" parent="displaySpotsB" unique_id=1813632983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.06)
+
+[node name="B4" type="Marker3D" parent="displaySpotsB" unique_id=1106056146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 1, 0.06)
+
+[node name="B5" type="Marker3D" parent="displaySpotsB" unique_id=1260917457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1, 0.06)
+
+[node name="buttonA" parent="." unique_id=695884298 node_paths=PackedStringArray("interactItem") instance=ExtResource("2_hdwwe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.75, 0.35)
+script = ExtResource("4_piql2")
+interactItem = NodePath("..")
+buttonB = false
+
+[node name="buttonB" parent="." unique_id=1587036666 node_paths=PackedStringArray("interactItem") instance=ExtResource("2_hdwwe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.3, 0.35)
+script = ExtResource("4_piql2")
+interactItem = NodePath("..")
+buttonB = true
+
+[node name="spawnSpot" type="Marker3D" parent="." unique_id=955531099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.6)
+
+[node name="screens" type="Node3D" parent="." unique_id=1658806269]
+
+[node name="type1ScreenMesh" type="MeshInstance3D" parent="screens" unique_id=967953181]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.2, 0.75, 0.355)
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="type2ScreenMesh" type="MeshInstance3D" parent="screens" unique_id=1963028473]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.2, 0.3, 0.355)
+mesh = SubResource("PlaneMesh_iy27v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="screens" unique_id=1326257100]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 2.2137797, 0.3283049)
+material_override = ExtResource("1_lwenv")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="mainScreen" type="MeshInstance3D" parent="screens/MeshInstance3D" unique_id=2078370678]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.10499999)
+mesh = SubResource("PlaneMesh_piql2")
+
+[node name="SubViewportA" type="SubViewport" parent="." unique_id=779408802]
+size = Vector2i(700, 200)
+
+[node name="screenEffects" type="Node2D" parent="SubViewportA" unique_id=1464439628]
+
+[node name="crtEffectLayer" type="CanvasLayer" parent="SubViewportA/screenEffects" unique_id=1414504554]
+
+[node name="crtShader" type="MeshInstance2D" parent="SubViewportA/screenEffects/crtEffectLayer" unique_id=1722747967]
+material = SubResource("ShaderMaterial_eu7rm")
+mesh = SubResource("QuadMesh_7i5s0")
+
+[node name="rgbSeperatorLayer" type="CanvasLayer" parent="SubViewportA/screenEffects" unique_id=698237619]
+
+[node name="rgbSeperator" type="MeshInstance2D" parent="SubViewportA/screenEffects/rgbSeperatorLayer" unique_id=1100992160]
+material = SubResource("ShaderMaterial_4mbln")
+mesh = SubResource("QuadMesh_fpyu4")
+
+[node name="Control" type="Control" parent="SubViewportA" unique_id=1216690931]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="SubViewportA/Control" unique_id=1586313592]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+
+[node name="typeALabel1" type="Label" parent="SubViewportA/Control/Panel" unique_id=247307304]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 675.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 50
+text = "TESTA TESTA TESTA"
+vertical_alignment = 1
+
+[node name="typeALabel2" type="Label" parent="SubViewportA/Control/Panel" unique_id=1805350616]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 100.0
+offset_right = 675.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 50
+text = "TESTA TESTA TESTA"
+vertical_alignment = 1
+
+[node name="SubViewportB" type="SubViewport" parent="." unique_id=479172459]
+size = Vector2i(700, 200)
+
+[node name="Control" type="Control" parent="SubViewportB" unique_id=726224834]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="SubViewportB/Control" unique_id=1104843570]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+
+[node name="typeBLabel1" type="Label" parent="SubViewportB/Control/Panel" unique_id=1033789548]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 675.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 50
+text = "TESTB TESTB TESTB"
+vertical_alignment = 1
+
+[node name="typeBLabel2" type="Label" parent="SubViewportB/Control/Panel" unique_id=90041993]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 100.0
+offset_right = 675.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 50
+text = "TESTB TESTB TESTB"
+vertical_alignment = 1
+
+[node name="screenEffects" type="Node2D" parent="SubViewportB" unique_id=497868358]
+
+[node name="crtEffectLayer" type="CanvasLayer" parent="SubViewportB/screenEffects" unique_id=1235499281]
+
+[node name="crtShader" type="MeshInstance2D" parent="SubViewportB/screenEffects/crtEffectLayer" unique_id=258260581]
+material = SubResource("ShaderMaterial_eu7rm")
+mesh = SubResource("QuadMesh_7i5s0")
+
+[node name="rgbSeperatorLayer" type="CanvasLayer" parent="SubViewportB/screenEffects" unique_id=1974412315]
+
+[node name="rgbSeperator" type="MeshInstance2D" parent="SubViewportB/screenEffects/rgbSeperatorLayer" unique_id=1517107616]
+material = SubResource("ShaderMaterial_4mbln")
+mesh = SubResource("QuadMesh_fpyu4")
+
+[node name="SubViewportMain" type="SubViewport" parent="." unique_id=1029187970]
+size = Vector2i(1400, 400)
+
+[node name="Control" type="Control" parent="SubViewportMain" unique_id=1277357390]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="SubViewportMain/Control" unique_id=1139887835]
+layout_mode = 0
+offset_right = 1400.0
+offset_bottom = 400.0
+
+[node name="mainScreenLabel" type="Label" parent="SubViewportMain/Control/Panel" unique_id=1330457250]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1350.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 100
+text = "TESTB TESTB TESTB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="screenEffects" type="Node2D" parent="SubViewportMain" unique_id=95840240]
+
+[node name="crtEffectLayer" type="CanvasLayer" parent="SubViewportMain/screenEffects" unique_id=956807947]
+
+[node name="crtShader" type="MeshInstance2D" parent="SubViewportMain/screenEffects/crtEffectLayer" unique_id=2135621075]
+material = SubResource("ShaderMaterial_eu7rm")
+mesh = SubResource("QuadMesh_7i5s0")
+
+[node name="rgbSeperatorLayer" type="CanvasLayer" parent="SubViewportMain/screenEffects" unique_id=894971655]
+
+[node name="rgbSeperator" type="MeshInstance2D" parent="SubViewportMain/screenEffects/rgbSeperatorLayer" unique_id=1593456960]
+material = SubResource("ShaderMaterial_4mbln")
+mesh = SubResource("QuadMesh_fpyu4")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=2130941149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0.35)
+shadow_enabled = true
+area_range = 0.5
+area_attenuation = 2.0
+area_size = Vector2(1.1, 0.9)

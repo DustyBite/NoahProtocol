@@ -9,8 +9,11 @@ extends Node
 
 # Basic var
 
+var pallet = null
+
 func interact():
-	if checkPallet():
+	checkPallet()
+	if pallet == null:
 		spawnPallet()
 	else:
 		swapPallet()
@@ -25,4 +28,4 @@ func swapPallet():
 	print("swap")
 
 func checkPallet():
-	var pallet = get_tree().get_node_in_group("pallet")
+	pallet = get_tree().get_first_node_in_group("pallet")
