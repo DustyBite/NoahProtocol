@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c0x6xtnr1kbt4"]
+
+[ext_resource type="Script" uid="uid://o7n6d81u0wol" path="res://assets/TEMP/bed/bedScript.gd" id="1_osgmn"]
+[ext_resource type="Material" uid="uid://873nptvltcdk" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SoftOrange.tres" id="2_o2rw5"]
+[ext_resource type="Material" uid="uid://pyghfh85nb12" path="res://DevAssets/Materials/PalletOne/DM_Green.tres" id="3_td051"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(2, 0.6, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o2rw5"]
+size = Vector3(1.6, 0.65, 1.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(2, 0.6, 1)
+
+[node name="bed" type="Node3D" unique_id=1722128145 node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_osgmn")
+mesh = NodePath("MeshInstance3D2")
+interactButton = "[ E ]"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=464466973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+material_override = ExtResource("2_o2rw5")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=499500476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.3, 0)
+mesh = SubResource("BoxMesh_o2rw5")
+surface_material_override/0 = ExtResource("3_td051")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=422966611]
+collision_layer = 129
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1361806410]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_g4v7s")

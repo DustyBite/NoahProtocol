@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://hcfdh453gt1c"]
 
-[ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="1_7r5s1"]
 [ext_resource type="Script" uid="uid://0bjw28gcfmr0" path="res://assets/mainMonitor/mainMonitorScript.gd" id="1_qjf7g"]
+[ext_resource type="Material" uid="uid://873nptvltcdk" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SoftOrange.tres" id="2_1t170"]
 [ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="3_1t170"]
 [ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="4_hnmdr"]
 
@@ -55,7 +55,7 @@ script = ExtResource("1_qjf7g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=632822808]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
-material_override = ExtResource("1_7r5s1")
+material_override = ExtResource("2_1t170")
 mesh = SubResource("BoxMesh_syqes")
 
 [node name="screen" type="MeshInstance3D" parent="." unique_id=1445413994]

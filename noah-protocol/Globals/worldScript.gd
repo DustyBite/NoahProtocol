@@ -65,10 +65,14 @@ func save():
 		"pointTotal": Globals.pointTotal,
 		"cardsProcessed": Globals.cardsProcessed,
 		"type2Consumables": Globals.type2Consumables,
+		"emails": Globals.avalibleEmail,
 		
 		#PlayerData
 		"playerPos": [player.global_position.x, player.global_position.y ,player.global_position.z],
 		"playerRot": [player.global_rotation.x, player.global_rotation.y, player.global_rotation.z],
+		"playerHunger": player.hunger,
+		"playerEnergy": player.exhaustion,
+		"playerSanity": player.sanity,
 		
 		#objectData
 		"palletData": saveObjectData(palletArray, "pallet"),
@@ -86,6 +90,8 @@ func save():
 		print("Game saved to: ", savePath)
 
 func load():
+	updateWorldObjects()
+	
 	var savePath = getSaveDrectory() + saveFile
 
 	if not FileAccess.file_exists(savePath):
@@ -105,10 +111,14 @@ func load():
 		"pointTotal": func(v) : Globals.pointTotal = v,
 		"cardsProcessed": func(v) : Globals.cardsProcessed = v,
 		"type2Consumables": func(v) : Globals.type2Consumables = v,
+		"emails": func(v) : Globals.avalibleEmail = v,
 		
 		#loading Player Data
 		"playerPos": func(v) : player.global_position = Vector3(v[0],v[1],v[2]),
 		"playerRot": func(v) : player.global_rotation = Vector3(v[0],v[1],v[2]),
+		"playerHunger": func(v) : player.hunger = v,
+		"playerEnergy": func(v) : player.exhaustion = v,
+		"playerSanity": func(v) : player.sanity = v,
 		
 		#load Object Data
 		"palletData": func(v): spawnFromData(v, palletScene, palletArray, "pallet"),
@@ -139,6 +149,8 @@ func saveObjectData(objArray, objType):
 			entry["status"] = obj.status
 		elif objType == "crate":
 			entry["cardDataArray"] = obj.get_save_data()
+		elif objType == "drink" or objType == "food" :
+			entry["full"] = obj.full
 
 		data.append(entry)
 
@@ -169,6 +181,8 @@ func spawnFromData(v, objScene, objArray, objType):
 
 		if objType == "cassette":
 			obj.status = entity.get("status", null)
+		elif objType == "drink" or objType == "food" :
+			obj.full = entity.get("full", null)
 
 		objArray.append(obj)
 

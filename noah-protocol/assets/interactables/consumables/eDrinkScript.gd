@@ -16,13 +16,15 @@ func _ready() -> void:
 	
 	updateConsumeType()
 
+func _process(_delta: float) -> void:
+	if !full:
+		IndicatorMesh.material_override = emptyMat
+
 func interact(body):
 	if full:
 		if body.has_method("consume"):
 			body.consume("eDrink", consumeValue)
 			full = false
-			
-			IndicatorMesh.material_override = emptyMat
 
 func updateConsumeType():
 	match consumeType:

@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://boj12aj5kcwk5" path="res://assets/interactables/vendingMachines/vendingMachine.tscn" id="10_te081"]
 [ext_resource type="PackedScene" uid="uid://dbcutms64howc" path="res://assets/interactables/consumables/eDrink.tscn" id="11_dj8e6"]
 [ext_resource type="PackedScene" uid="uid://bni75vkdf1c86" path="res://assets/interactables/consumables/packFood.tscn" id="12_ufcqu"]
+[ext_resource type="PackedScene" uid="uid://c2ehxgywv6fp1" path="res://assets/TEMP/trashCan/trashCan.tscn" id="13_errtw"]
+[ext_resource type="PackedScene" uid="uid://c0x6xtnr1kbt4" path="res://assets/TEMP/bed/bed.tscn" id="14_3vp2f"]
+[ext_resource type="PackedScene" uid="uid://4p2fvjs4q43o" path="res://assets/TEMP/mainTerminal/mainTerminal.tscn" id="15_bmyng"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 size = Vector2(6, 10)
@@ -155,6 +158,15 @@ typeALabel1 = "BLAND FOOD-PACK"
 typeALabel2 = "FREE"
 typeBLabel1 = "PREMIUM FOOD-PACK"
 typeBLabel2 = "10 Points"
+
+[node name="trashCan" parent="room" unique_id=467985966 instance=ExtResource("13_errtw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 4)
+
+[node name="bed" parent="room" unique_id=1722128145 instance=ExtResource("14_3vp2f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0, 4.5)
+
+[node name="MainTerminal" parent="room" unique_id=105346542 instance=ExtResource("15_bmyng")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5, 0, -1)
 
 [node name="enviroment" type="Node3D" parent="." unique_id=1903319439]
 

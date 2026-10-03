@@ -18,11 +18,11 @@ size = Vector3(0.45, 0.3, 0.73)
 [sub_resource type="BoxMesh" id="BoxMesh_plsdc"]
 size = Vector3(0.45, 0.1, 0.73)
 
-[node name="cartridgeCrate" type="RigidBody3D" unique_id=1567765031 node_paths=PackedStringArray("mesh") groups=["crate"]]
+[node name="cartridgeCrate" type="RigidBody3D" unique_id=1567765031 node_paths=PackedStringArray("hoverMesh") groups=["crate"]]
 collision_layer = 195
 collision_mask = 3
 script = ExtResource("1_4mv0m")
-mesh = NodePath("caseMesh")
+hoverMesh = NodePath("caseMesh")
 chargeThrow = false
 removeCol = false
 type = "crate"

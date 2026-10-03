@@ -1,14 +1,26 @@
 extends Node
 
-@onready var cardSlot := $slot
-var slottedCard: bool = false
-var validCard: bool = true
-var activeProcess: bool = false
-var card
+# Onready vars
+
+@onready var cardSlotA := $processingSlots/processingSlotA
+@onready var cardSlotB := $processingSlots/processingSlotB
+@onready var cardSlotC := $processingSlots/processingSlotC
+
+@onready var processUpgrade := $upgradeSlots/processSlot
+@onready var uploadUpgrade := $upgradeSlots/uploadSlot
+@onready var wipeUpgrade := $upgradeSlots/wipeSlot
 
 @onready var screenLabel := $SubViewport/Control/Panel/Label
 @onready var progressBar := $SubViewport/Control/Panel/ProgressBar
 
+# Basic vars
+
+var slottedCard: bool = false
+var validCard: bool = true
+var activeProcess: bool = false
+var cardA
+var cardB
+var cardC
 
 var currentTxt: String
 var defaultTxt: String = "INPUT CASSETTE . . ."
@@ -19,17 +31,37 @@ var uploadigTxt: String = "UPLOADING DATA . . ."
 var wipingTxt: String = "WIPING CASSETTE . . ."
 var finishedTxt: String = "CASSETTE PROCESSED. PLEASE REMOVE"
 
+var processSpeed: int = 1
+var uploadSpeed: int = 1
+var wipeSpeed: int = 1
+var processUpgradeCard
+var uploadUpgradeCard
+var wipeUpgradeCard
+
 func _ready() -> void:
 	currentTxt = defaultTxt
 
 func _process(_delta: float) -> void:
-	checkSlot()
-	
 	screenLabel.text = currentTxt
+	
+	checkUpgrades()
 
-func checkSlot():
-	if cardSlot.slottedItem != null and card != cardSlot.slottedItem:
-		card = cardSlot.slottedItem
+func checkUpgrades():
+	if processUpgrade.slottedItem != null and processUpgradeCard != processUpgrade.slottedItem:
+		processUpgradeCard = processUpgrade.slottedItem
+		processSpeed = processUpgradeCard.speedModifer
+	
+	if uploadUpgrade.slottedItem != null and uploadUpgradeCard != uploadUpgrade.slottedItem:
+		uploadUpgradeCard = uploadUpgrade.slottedItem
+		uploadSpeed = uploadUpgradeCard.speedModifer
+	
+	if wipeUpgrade.slottedItem != null and wipeUpgradeCard != wipeUpgrade.slottedItem:
+		wipeUpgradeCard = wipeUpgrade.slottedItem
+		wipeSpeed = wipeUpgradeCard.speedModifer
+
+func checkSlots(slot, card):
+	if slot.slottedItem != null and card != slot.slottedItem:
+		card = slot.slottedItem
 		slottedCard = true
 		
 		match card.status:
@@ -41,7 +73,14 @@ func checkSlot():
 				currentTxt = finishedTxt
 			"corrupted":
 				currentTxt = invalidTxt
-	elif cardSlot.slottedItem == null:
+		
+		slot.InteractOff()
+		await processCard(card)
+		await uploadData()
+		await wipeCard(card)
+		slot.InteractOn()
+		
+	elif slot.slottedItem == null:
 		currentTxt = defaultTxt
 		progressBar.value = 0
 		card = null
@@ -49,21 +88,15 @@ func checkSlot():
 		validCard = true
 
 func interact():
-	if !slottedCard or !validCard or activeProcess:
-		return
-	activeProcess = true
-	cardSlot.InteractOff()
-	await processCard()
-	await uploadData()
-	await wipeCard()
-	cardSlot.InteractOn()
-	activeProcess = false
+	checkSlots(cardSlotA, cardA)
+	checkSlots(cardSlotB, cardB)
+	checkSlots(cardSlotC, cardC)
 
-func processCard():
+func processCard(card):
 	card.status = "processing"
 	currentTxt = processingTxt
 	var elapsed = 0.0
-	var duration = randf_range(4.5,5.5)
+	var duration = randf_range(4.5,5.5) / processSpeed
 	while elapsed < duration:
 		elapsed += get_process_delta_time()
 		var progress = clamp((elapsed / duration) * 100.0, 0.0, 100.0)
@@ -77,7 +110,7 @@ func processCard():
 func uploadData():
 	currentTxt = uploadigTxt
 	var elapsed = 0.0
-	var duration = randf_range(4.5,5.5)
+	var duration = randf_range(4.5,5.5) / uploadSpeed
 	while elapsed < duration:
 		elapsed += get_process_delta_time()
 		var progress = clamp((elapsed / duration) * 100.0, 0.0, 100.0)
@@ -86,10 +119,10 @@ func uploadData():
 	progressBar.value = 100.0
 	Globals.pointTotal += 25
 
-func wipeCard():
+func wipeCard(card):
 	currentTxt = wipingTxt
 	var elapsed = 0.0
-	var duration = randf_range(4.5,5.5)
+	var duration = randf_range(4.5,5.5) / wipeSpeed
 	while elapsed < duration:
 		elapsed += get_process_delta_time()
 		var progress = clamp((elapsed / duration) * 100.0, 0.0, 100.0)

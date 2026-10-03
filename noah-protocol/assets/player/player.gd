@@ -8,18 +8,13 @@ extends CharacterBody3D
 @onready var playerHeightRC := $crouchRC
 @onready var jumpHeightRC := $jumpRC
 @onready var flashlight := $head/flashlight
-var currentVehicle: VehicleBody3D = null
 
 var masterBusIndex = AudioServer.get_bus_index("Master")
 
 var activeTerminal = null
 
 #misc
-var enviorLocal = 0
 @export var worldRoot: Node3D
-var playerCash = 100
-var driving = false
-var gasAmount = 0
 var inTerminal = false
 var inPauseMenu = false
 
@@ -104,13 +99,7 @@ func _post_ready():
 		print("✗ Remote player")
 
 func _unhandled_input(event):
-	if not multiplayer or not multiplayer.multiplayer_peer:
-		return
-	
-	if not is_multiplayer_authority():
-		return
-	
-	if isPaused:
+	if isPaused or inTerminal:
 		return
 	
 	# Mouse look
@@ -124,16 +113,12 @@ func _unhandled_input(event):
 		toggleFlashlight()
 
 func _process(delta: float) -> void:
-	if not multiplayer or not multiplayer.multiplayer_peer:
-		return
-	
-	if not is_multiplayer_authority():
-		return
-	
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and inTerminal:
+		exitTerminal()
+	elif Input.is_action_just_pressed("pause"):
 		togglePause()
 	
-	if isPaused:
+	if isPaused or inTerminal:
 		return
 	
 	checkRayCol()
@@ -145,6 +130,12 @@ func _process(delta: float) -> void:
 	updateStats()
 
 func _input(event: InputEvent) -> void:
+	if isPaused:
+		return
+	
+	if inTerminal and activeTerminal != null:
+		activeTerminal.get_viewport().push_input(event)
+	
 	if event.is_action_pressed("leftClick"):
 		if interItem != null and interItem.has_method("receiveRayInput"):
 			interItem.receiveRayInput(intRay.get_collision_point(), true)
@@ -153,19 +144,8 @@ func _input(event: InputEvent) -> void:
 		if interItem != null and interItem.has_method("interact"):
 				interItem.interact(self)
 
-
-
 func _physics_process(delta: float) -> void:
-	if not multiplayer or not multiplayer.multiplayer_peer:
-		return
-		
-	if not is_multiplayer_authority():
-		# Prevent drift on remote players (but still update dragged items!)
-		if not draggedItem:
-			velocity = Vector3.ZERO
-			return
-	
-	if get_tree().paused:
+	if isPaused or inTerminal:
 		return
 	
 	# ALWAYS update dragged items, regardless of player authority
@@ -235,6 +215,20 @@ func _physics_process(delta: float) -> void:
 			
 				var push_direction = -collision.get_normal()
 				collider.apply_force(push_direction * push_force * currentSpeed, collision_point - collider.global_position)
+
+func enterTerminal(terminal):
+	#print("enter Terminal")
+	activeTerminal = terminal
+	intRay.enabled = false
+	await get_tree().create_timer(0.1).timeout
+	
+	inTerminal = true
+
+func exitTerminal():
+	#print("exit Terminal")
+	activeTerminal = null
+	intRay.enabled = true
+	inTerminal = false
 
 func updateStats():
 	hStatUI.value = hunger

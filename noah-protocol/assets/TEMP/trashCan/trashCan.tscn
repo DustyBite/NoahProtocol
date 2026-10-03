@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c2ehxgywv6fp1"]
+
+[ext_resource type="Script" uid="uid://33dymssh2lem" path="res://assets/TEMP/trashCan/trashCanScript.gd" id="1_efvse"]
+[ext_resource type="Material" uid="uid://873nptvltcdk" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SoftOrange.tres" id="1_igeff"]
+[ext_resource type="Material" uid="uid://cgjk75ltym2hg" path="res://DevAssets/Materials/PalletOne/DM_Violet.tres" id="2_etj41"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_igeff"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g4v7s"]
+height = 0.8
+radius = 0.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_etj41"]
+height = 0.1
+radius = 0.25
+
+[node name="trashCan" type="Node3D" unique_id=467985966]
+script = ExtResource("1_efvse")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=870761616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+material_override = ExtResource("1_igeff")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1603793226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+material_override = ExtResource("2_etj41")
+mesh = SubResource("CylinderMesh_igeff")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1253714394]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2126575655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("CylinderShape3D_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1508784401]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=502283173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CylinderShape3D_etj41")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

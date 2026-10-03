@@ -1,0 +1,239 @@
+[gd_scene format=3 uid="uid://dktlowpmjjmnr"]
+
+[ext_resource type="Script" uid="uid://cs32a8koxtjc2" path="res://assets/TEMP/mainTerminal/mtScreenScript.gd" id="1_4iut3"]
+
+[node name="mainTerminalScreen" type="Control" unique_id=2037854877]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4iut3")
+
+[node name="Panel" type="Panel" parent="." unique_id=454290730]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="mainNavigationTerminal" type="Panel" parent="Panel" unique_id=1685044395]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 300.0
+
+[node name="emailTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=1578554865]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 30.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 8
+text = "EMAIL"
+
+[node name="upgradeTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=258152741]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 90.0
+offset_bottom = 60.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 8
+text = "UPGRADE"
+
+[node name="achivementTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=1668701562]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 70.0
+offset_right = 90.0
+offset_bottom = 90.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 8
+text = "ACHIVEMENT"
+
+[node name="saveTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=2145458344]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 100.0
+offset_right = 90.0
+offset_bottom = 120.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 8
+text = "SAVE"
+
+[node name="emailTerminal" type="Panel" parent="Panel" unique_id=1545717176]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="Label" type="Label" parent="Panel/emailTerminal" unique_id=1076873316]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 295.0
+offset_bottom = 30.0
+text = "EMAIL TAB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="emailTab1" type="Panel" parent="Panel/emailTerminal" unique_id=536938796]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 100.0
+offset_bottom = 65.0
+
+[node name="Label" type="Label" parent="Panel/emailTerminal/emailTab1" unique_id=177575333]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 10
+text = "EMAIL ONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="emailTab2" type="Panel" parent="Panel/emailTerminal" unique_id=300126031]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = 35.0
+offset_right = 200.0
+offset_bottom = 65.0
+
+[node name="Label" type="Label" parent="Panel/emailTerminal/emailTab2" unique_id=2060989853]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 10
+text = "EMAIL TWO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="emailTab3" type="Panel" parent="Panel/emailTerminal" unique_id=1142941806]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 35.0
+offset_right = 300.0
+offset_bottom = 65.0
+
+[node name="Label" type="Label" parent="Panel/emailTerminal/emailTab3" unique_id=1660957841]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 10
+text = "EMAIL THREE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="email1" type="Panel" parent="Panel/emailTerminal" unique_id=1178810732]
+visible = false
+layout_mode = 0
+offset_top = 65.0
+offset_right = 300.0
+offset_bottom = 300.0
+
+[node name="Text" type="Label" parent="Panel/emailTerminal/email1" unique_id=2015984570]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 295.0
+offset_bottom = 230.0
+text = "EMAIL ONE
+DO THE TASK
+GET THE POINTS
+BUY THE UPGRADES
+YADA YADA"
+
+[node name="email2" type="Panel" parent="Panel/emailTerminal" unique_id=1314851870]
+visible = false
+layout_mode = 0
+offset_top = 65.0
+offset_right = 300.0
+offset_bottom = 300.0
+
+[node name="Text" type="Label" parent="Panel/emailTerminal/email2" unique_id=1599476746]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 295.0
+offset_bottom = 230.0
+text = "EMAIL TWO
+DO THE TASK MORE
+GET MORE POINTS
+BUY MORE UPGRADES
+YADA YADA"
+
+[node name="email3" type="Panel" parent="Panel/emailTerminal" unique_id=1079357601]
+visible = false
+layout_mode = 0
+offset_top = 65.0
+offset_right = 300.0
+offset_bottom = 300.0
+
+[node name="Text" type="Label" parent="Panel/emailTerminal/email3" unique_id=880747230]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 295.0
+offset_bottom = 230.0
+text = "THIS IS A HIDDEN EMAIL
+IT HAS MORE LORE
+SOMETHING SOMETHING SPOOKY
+YOUR IN A BUNKER
+THIS IS FAKE"
+
+[node name="upgradeTerminal" type="Panel" parent="Panel" unique_id=1018688962]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="Label" type="Label" parent="Panel/upgradeTerminal" unique_id=339754451]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 10.0
+offset_right = 177.0
+offset_bottom = 33.0
+text = "UPGRADE TAB"
+
+[node name="achivementsTerminal" type="Panel" parent="Panel" unique_id=1059002912]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="Label" type="Label" parent="Panel/achivementsTerminal" unique_id=869160207]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 10.0
+offset_right = 177.0
+offset_bottom = 33.0
+text = "ACHIVEMENT TAB"
+
+[node name="saveTerminal" type="Panel" parent="Panel" unique_id=406858636]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="Label" type="Label" parent="Panel/saveTerminal" unique_id=1783559045]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 10.0
+offset_right = 177.0
+offset_bottom = 33.0
+text = "SAVE TAB"
+
+[connection signal="pressed" from="Panel/mainNavigationTerminal/emailTabButton" to="." method="_on_email_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigationTerminal/upgradeTabButton" to="." method="_on_upgrade_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigationTerminal/achivementTabButton" to="." method="_on_achivement_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigationTerminal/saveTabButton" to="." method="_on_save_tab_button_pressed"]
