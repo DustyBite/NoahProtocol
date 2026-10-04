@@ -14,6 +14,8 @@ var type2Consumables: bool = false
 
 var avalibleEmail: int = 0
 
+var unlockArray = [0,0,0,0,0,0,0,0,0]
+
 func _process(_delta: float) -> void:
 	if cardsProcessed > 10:
 			avalibleEmail = 1

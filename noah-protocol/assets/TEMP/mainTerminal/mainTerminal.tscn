@@ -74,8 +74,9 @@ interactButton = "[ E ]"
 [node name="SubViewport" type="SubViewport" parent="." unique_id=869616436]
 size = Vector2i(800, 600)
 
-[node name="mainTerminalScreen" parent="SubViewport" unique_id=2037854877 instance=ExtResource("1_keuar")]
+[node name="mainTerminalScreen" parent="SubViewport" unique_id=2037854877 node_paths=PackedStringArray("mainTerminal") instance=ExtResource("1_keuar")]
 scale = Vector2(2, 2)
+mainTerminal = NodePath("../..")
 
 [node name="screenEffects" type="Node2D" parent="SubViewport" unique_id=1871725356]
 

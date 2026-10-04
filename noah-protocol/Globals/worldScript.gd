@@ -39,6 +39,12 @@ func _onready():
 		saveDirectory = "My Games/Dead Frequency/NOAHProtocol/Dev/"
 		saveFile = "devSave1"
 
+func _process(_delta: float) -> void:
+	if Globals.unlockArray[8] == 1:
+		$room/pingMachine.global_position = Vector3(-1,0,4.5)
+	else:
+		$room/pingMachine.global_position = Vector3(-1,-10,4.5)
+
 func getSaveDrectory() -> String:
 	var userProfile = OS.get_environment("USERPROFILE")
 	return userProfile + "/Documents/" + saveDirectory
@@ -66,6 +72,7 @@ func save():
 		"cardsProcessed": Globals.cardsProcessed,
 		"type2Consumables": Globals.type2Consumables,
 		"emails": Globals.avalibleEmail,
+		"unlockArray": Globals.unlockArray,
 		
 		#PlayerData
 		"playerPos": [player.global_position.x, player.global_position.y ,player.global_position.z],
@@ -112,6 +119,7 @@ func load():
 		"cardsProcessed": func(v) : Globals.cardsProcessed = v,
 		"type2Consumables": func(v) : Globals.type2Consumables = v,
 		"emails": func(v) : Globals.avalibleEmail = v,
+		"unlockArray": func(v) : Globals.unlockArray = v,
 		
 		#loading Player Data
 		"playerPos": func(v) : player.global_position = Vector3(v[0],v[1],v[2]),

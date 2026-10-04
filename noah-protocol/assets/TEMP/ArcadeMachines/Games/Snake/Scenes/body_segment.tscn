@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ct68g4eg0eyqq"]
+
+[ext_resource type="Script" uid="uid://dt6ccscbqclhn" path="res://Snake/Scripts/body_segment.gd" id="1_q2ier"]
+
+[node name="BodySegment" type="Node2D" unique_id=549923673]
+script = ExtResource("1_q2ier")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=572792198]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2

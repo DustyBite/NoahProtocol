@@ -33,6 +33,7 @@ offset_bottom = 639.0
 text = "MAIN MENU"
 
 [node name="SAVE" type="Button" parent="Panel" unique_id=1842125378]
+visible = false
 layout_mode = 0
 offset_left = 802.0
 offset_top = 259.0
@@ -41,6 +42,7 @@ offset_bottom = 408.0
 text = "SAVE"
 
 [node name="LOAD" type="Button" parent="Panel" unique_id=1136300773]
+visible = false
 layout_mode = 0
 offset_left = 783.0
 offset_top = 460.0

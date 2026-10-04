@@ -74,6 +74,7 @@ var maxExhaRegen: float = 50.0
 
 var sanity: float = 100.0
 var sanityMod: float = 0.0
+var inGame: bool = false
 
 var drainRate: float = 0.5
 
@@ -118,14 +119,17 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("pause"):
 		togglePause()
 	
-	if isPaused or inTerminal:
+	if isPaused:
 		return
 	
 	checkRayCol()
 	
 	hunger = hunger - delta * drainRate
 	exhaustion = exhaustion - delta * (drainRate + hungerMod)
-	sanity = sanity - delta * (drainRate + (hungerMod / 2) + exhaustionMod)
+	if inGame:
+		sanity = sanity + delta * drainRate
+	else:
+		sanity = sanity - delta * (drainRate + (hungerMod / 2) + exhaustionMod)
 	
 	updateStats()
 
@@ -216,19 +220,23 @@ func _physics_process(delta: float) -> void:
 				var push_direction = -collision.get_normal()
 				collider.apply_force(push_direction * push_force * currentSpeed, collision_point - collider.global_position)
 
-func enterTerminal(terminal):
+func enterTerminal(terminal, isGame):
 	#print("enter Terminal")
 	activeTerminal = terminal
 	intRay.enabled = false
 	await get_tree().create_timer(0.1).timeout
 	
 	inTerminal = true
+	if isGame:
+		inGame = true
+	
 
 func exitTerminal():
 	#print("exit Terminal")
 	activeTerminal = null
 	intRay.enabled = true
 	inTerminal = false
+	inGame = false
 
 func updateStats():
 	hStatUI.value = hunger

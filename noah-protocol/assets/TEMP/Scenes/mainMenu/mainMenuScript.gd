@@ -1,6 +1,6 @@
 extends Control
 
-var gameScene = preload("res://assets/TEMP/Scenes/BunkerTemp.tscn")
+var gameScene = preload("res://assets/TEMP/Scenes/Pre-AlphaTestWorld/Pre-Alpha Test.tscn")
 
 func _on_start_pressed() -> void:
 	Globals.singleplayerMode = true

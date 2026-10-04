@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://c2ehxgywv6fp1" path="res://assets/TEMP/trashCan/trashCan.tscn" id="13_errtw"]
 [ext_resource type="PackedScene" uid="uid://c0x6xtnr1kbt4" path="res://assets/TEMP/bed/bed.tscn" id="14_3vp2f"]
 [ext_resource type="PackedScene" uid="uid://4p2fvjs4q43o" path="res://assets/TEMP/mainTerminal/mainTerminal.tscn" id="15_bmyng"]
+[ext_resource type="PackedScene" uid="uid://bgfk47tea34py" path="res://assets/TEMP/ArcadeMachines/arcadeMachine.tscn" id="16_tq6an"]
+[ext_resource type="PackedScene" uid="uid://ddn2vmru6xuh8" path="res://assets/TEMP/ArcadeMachines/Games/Snake/Scenes/board.tscn" id="17_7eint"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 size = Vector2(6, 10)
@@ -165,8 +167,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 4)
 [node name="bed" parent="room" unique_id=1722128145 instance=ExtResource("14_3vp2f")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0, 4.5)
 
-[node name="MainTerminal" parent="room" unique_id=105346542 instance=ExtResource("15_bmyng")]
+[node name="MainTerminal" parent="room" unique_id=105346542 node_paths=PackedStringArray("deliverySpawner") instance=ExtResource("15_bmyng")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5, 0, -1)
+deliverySpawner = NodePath("../spawning/cargoSpawner")
+
+[node name="pingMachine" parent="room" unique_id=1902991594 instance=ExtResource("16_tq6an")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, 4.5)
+gameLabel = "PING"
+
+[node name="snekMachine" parent="room" unique_id=1830079195 instance=ExtResource("16_tq6an")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4.5)
+gameLabel = "SNEK"
+gameScene = ExtResource("17_7eint")
 
 [node name="enviroment" type="Node3D" parent="." unique_id=1903319439]
 
