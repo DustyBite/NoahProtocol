@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qyx5sjms8d7y"
-path.s3tc="res://.godot/imported/ProcessingRoomMesh_RammedEarth018_ROUGHNESS_1K_METALNESS.png-3242ead74fb9f2b3fd4ad7ad4b04c94e.s3tc.ctex"
+uid="uid://cqajv7jhkctrl"
+path.s3tc="res://.godot/imported/psuTexture.png-aab316ede340d7358d73b75383920214.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "7624ef815bb7926f506755d0451d9bf0"
-}
 
 [deps]
 
-source_file="res://assets/imports/ProcessingRoomMesh_RammedEarth018_ROUGHNESS_1K_METALNESS.png"
-dest_files=["res://.godot/imported/ProcessingRoomMesh_RammedEarth018_ROUGHNESS_1K_METALNESS.png-3242ead74fb9f2b3fd4ad7ad4b04c94e.s3tc.ctex"]
+source_file="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuTexture.png"
+dest_files=["res://.godot/imported/psuTexture.png-aab316ede340d7358d73b75383920214.s3tc.ctex"]
 
 [params]
 
