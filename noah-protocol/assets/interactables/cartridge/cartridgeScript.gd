@@ -1,14 +1,13 @@
 extends InteractableDynamic
 
-@onready var statusLight: MeshInstance3D = $statusLight
-@onready var indicLight: MeshInstance3D = $indicatorLight
+# Export vars
 
-#Colors
-@onready var greyMat := preload("res://DevAssets/Materials/PalletOne/DM_Grey.tres")
-@onready var greenMat := preload("res://DevAssets/Materials/PalletOne/DM_Green.tres")
-@onready var redMat := preload("res://DevAssets/Materials/PalletOne/DM_BrightRed.tres")
-@onready var orangeMat := preload("res://DevAssets/Materials/PalletOne/DM_Orange.tres")
-@onready var blueMat := preload("res://DevAssets/Materials/PalletOne/DM_Blue.tres")
+@export var caseColorNew := Color(1.0, 1.0, 1.0, 1.0)
+@export var caseColorAged := Color(.78, 0.65, 0.25, 1.0)
+
+# Basic vars
+
+var cardAge: float = 0
 
 var status: String = "upload"
 
@@ -21,9 +20,10 @@ var wipeProgress: float = 0
 
 func _ready() -> void:
 	super._ready()
+	cardAge = getRandomAge()
+	applyCardVisuals()
 	
 	TEMPrandStatus()
-	
 	blinkTimer = randf() * blinkInterval
 
 func _process(delta: float) -> void:
@@ -33,6 +33,22 @@ func _process(delta: float) -> void:
 		blinkIndicLight()
 	
 	updateStatus()
+
+func getRandomAge():
+	var roll = randf()
+	if roll < 0.6:
+		return randf_range(0.0, 0.2)
+	if roll < 0.9:
+		return randf_range(0.2, 0.6)
+	else:
+		return randf_range(0.6, 1.0)
+
+func applyCardVisuals():
+	var caseColor = caseColorNew.lerp(caseColorAged, cardAge)
+	baseMaterial.set_shader_parameter("caseColor", caseColor)
+	var handleColorBase = Color(randf_range(0.5, 1.0), randf_range(0.5, 1.0), randf_range(0.5, 1.0))
+	var handleColorAged = handleColorBase.lerp(Color(0.6, 0.5, 0.2), cardAge * 0.6)
+	baseMaterial.set_shader_parameter("handleColor", handleColorAged)
 
 func getPoints() -> int:
 	match status:
@@ -45,21 +61,21 @@ func getPoints() -> int:
 func updateStatus():
 	match status:
 		"loaded":
-			statusLight.material_override = greenMat
+			baseMaterial.set_shader_parameter("indicBColor", Color(0,1,0,1))
 		"processing":
-			statusLight.material_override = orangeMat
+			baseMaterial.set_shader_parameter("indicBColor", Color(1,.5,0,1))
 		"clear":
-			statusLight.material_override = blueMat
+			baseMaterial.set_shader_parameter("indicBColor", Color(0,0,1,1))
 		"corrupted":
-			statusLight.material_override = redMat
+			baseMaterial.set_shader_parameter("indicBColor", Color(1,0,0,1))
 
 func blinkIndicLight():
 	blinkFlip = !blinkFlip
 	
 	if blinkFlip:
-		indicLight.material_override = greyMat
+		baseMaterial.set_shader_parameter("indicAColor", Color(0,0,0,1))
 	else:
-		indicLight.material_override = greenMat
+		baseMaterial.set_shader_parameter("indicAColor", Color(0,1,0,1))
 
 func TEMPrandStatus():
 	if randf() < 0.05:

@@ -301,7 +301,7 @@ func releaseObject():
 				var throwDirection = -camera.global_transform.basis.z
 				relVelo = throwDirection * throwMultiplier
 			
-			draggedItem.release.rpc(relVelo)
+			draggedItem.release(relVelo)
 			draggedItem.onRelease()
 			intRay.remove_exception(draggedItem)
 		
@@ -311,7 +311,7 @@ func releaseObject():
 func updateDraggedItem(delta):
 	#print(camera, " | ", dragOffset)
 	var targetPosition = getDragTargetPosition()
-	draggedItem.moveTo.rpc(targetPosition, delta, camera.global_position)
+	draggedItem.moveTo(targetPosition, delta, camera.global_position)
 	if chargedThrow:
 		draggedItem.resetRotation(true)
 	else:

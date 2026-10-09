@@ -1,4 +1,4 @@
-extends InteractableDynamic
+extends InteractableDynamicOld
 
 @export var IndicatorMesh : Node
 

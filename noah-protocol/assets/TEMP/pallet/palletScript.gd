@@ -1,4 +1,4 @@
-extends InteractableDynamic
+extends InteractableDynamicOld
 
 var crateSlots: Array
 var crateState: String = "unprocessed"

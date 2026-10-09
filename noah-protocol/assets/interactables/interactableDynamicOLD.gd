@@ -1,7 +1,5 @@
 extends RigidBody3D
-class_name InteractableDynamic
-
-# Export vars
+class_name InteractableDynamicOld
 
 @export var hoverMesh: Node
 @export var canDrag: bool = true
@@ -14,37 +12,46 @@ class_name InteractableDynamic
 
 @export var interactButton: String = ""
 
-# Onready vars
-
-# Basic Vars
-
 var placed: bool = false
 
 var fixRot: = false
 
 var slot
 
-var baseMaterial
+var baseMat : Material
+var hoverMat : Material
+
+var baseMatArray : Array[Material]
+var hoverMatArray : Array[Material]
 
 func _ready() -> void:
 	add_to_group("interactable")
 	
-	baseMaterial = hoverMesh.get_active_material(0).duplicate()
-	baseMaterial.next_pass = baseMaterial.next_pass.duplicate()
-	hoverMesh.set_surface_override_material(0, baseMaterial)
+	updateHoverMat()
+
+
+func updateHoverMat():
+	baseMatArray.clear()
+	hoverMatArray.clear()
+
+	if hoverMesh is MeshInstance3D:
+		baseMat = hoverMesh.get_surface_override_material(0)
+		hoverMat = hoverMesh.get_active_material(0).duplicate()
+		hoverMat.stencil_mode = 1
+	else:
+		for mesh in hoverMesh.get_children():
+			baseMatArray.append(mesh.get_surface_override_material(0))
+			var dupMat = mesh.get_active_material(0).duplicate()
+			dupMat.stencil_mode = 1
+			hoverMatArray.append(dupMat)
 
 func hover(value):
-	print("hover")
-	if baseMaterial == null:
-		return
-	
-	var outlineMat = baseMaterial.next_pass
-	
-	print(value)
-	if value:
-		outlineMat.set_shader_parameter("outlineToggle", true)
+	if hoverMesh is MeshInstance3D:
+		hoverMesh.material_override = hoverMat if value else baseMat
 	else:
-		outlineMat.set_shader_parameter("outlineToggle", false)
+		var children = hoverMesh.get_children()
+		for i in range(children.size()):
+			children[i].material_override = hoverMatArray[i] if value else baseMatArray[i]
 
 func place() -> void:
 	freeze = true
