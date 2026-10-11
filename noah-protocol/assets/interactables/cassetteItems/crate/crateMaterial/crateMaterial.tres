@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dx8ek5u72sodt"]
+
+[ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="1_sue86"]
+[ext_resource type="Shader" uid="uid://c2ikalqy756sp" path="res://assets/interactables/cassetteItems/crate/crateMaterial/customCrateShader.gdshader" id="2_jevv8"]
+[ext_resource type="Texture2D" uid="uid://d101fyac7mf" path="res://assets/interactables/cassetteItems/crate/crateMaterial/crateTextures/psuCrateTexture.png" id="3_54ywj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7qpck"]
+render_priority = 0
+shader = ExtResource("1_sue86")
+shader_parameter/outlineColor = Color(1, 1, 1, 1)
+shader_parameter/outlineThickness = 0.01
+shader_parameter/outlineToggle = false
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_7qpck")
+shader = ExtResource("2_jevv8")
+shader_parameter/mainTexture = ExtResource("3_54ywj")
+shader_parameter/handleColor = Color(0, 0, 0, 1)
+shader_parameter/caseColor = Color(0, 0, 0, 1)
+shader_parameter/indicAColor = Color(0, 0, 0, 1)
+shader_parameter/indicBColor = Color(0, 0, 0, 1)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dktlowpmjjmnr"]
 
 [ext_resource type="Script" uid="uid://cs32a8koxtjc2" path="res://assets/TEMP/mainTerminal/mtScreenScript.gd" id="1_4iut3"]
+[ext_resource type="PackedScene" uid="uid://bk0ldmgxbaxsn" path="res://assets/TEMP/mainTerminal/tabs/emailTab.tscn" id="2_p3gj0"]
 
 [node name="mainTerminalScreen" type="Control" unique_id=2037854877 node_paths=PackedStringArray("upgrades")]
 layout_mode = 3
@@ -8,346 +9,336 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_4iut3")
-upgrades = [NodePath("Panel/upgradeTerminal/process1"), NodePath("Panel/upgradeTerminal/upload1"), NodePath("Panel/upgradeTerminal/wipe1"), NodePath("Panel/upgradeTerminal/process2"), NodePath("Panel/upgradeTerminal/upload2"), NodePath("Panel/upgradeTerminal/wipe2"), NodePath("Panel/upgradeTerminal/food1"), NodePath("Panel/upgradeTerminal/arcade1"), NodePath("Panel/upgradeTerminal/automation1")]
+upgrades = [NodePath("Panel/upgradeTab/process1"), NodePath("Panel/upgradeTab/upload1"), NodePath("Panel/upgradeTab/wipe1"), NodePath("Panel/upgradeTab/process2"), NodePath("Panel/upgradeTab/upload2"), NodePath("Panel/upgradeTab/wipe2"), NodePath("Panel/upgradeTab/food1"), NodePath("Panel/upgradeTab/arcade1"), NodePath("Panel/upgradeTab/automation1")]
 
 [node name="Panel" type="Panel" parent="." unique_id=454290730]
 layout_mode = 0
 offset_right = 400.0
 offset_bottom = 300.0
 
-[node name="mainNavigationTerminal" type="Panel" parent="Panel" unique_id=1685044395]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 300.0
+[node name="mainNavigation" type="Control" parent="Panel" unique_id=2131022411]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="emailTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=1578554865]
+[node name="lineLabel" type="Label" parent="Panel/mainNavigation" unique_id=1752756550]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 10.0
-offset_right = 90.0
+offset_top = 5.0
+offset_right = 390.0
 offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "___________________________________________________________"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lineLabel2" type="Label" parent="Panel/mainNavigation" unique_id=1263990175]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 250.0
+offset_right = 390.0
+offset_bottom = 274.99994
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "___________________________________________________________"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Panel/mainNavigation" unique_id=220126182]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 310.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "ICARUS CORP / IAP BUNKER TERMINAL"
+vertical_alignment = 1
+
+[node name="pointsLabel" type="Label" parent="Panel/mainNavigation" unique_id=242254828]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 260.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "POINTS : . . . . . . . . . . . . . . . . . 0"
+vertical_alignment = 1
+
+[node name="tabLabel" type="Label" parent="Panel/mainNavigation" unique_id=1651759830]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 270.0
+offset_right = 105.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[<] [>] TAB"
+vertical_alignment = 1
+
+[node name="selectLabel" type="Label" parent="Panel/mainNavigation" unique_id=139394475]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 270.0
+offset_right = 200.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[UP] [DN] SELECT"
+vertical_alignment = 1
+
+[node name="enterLabel" type="Label" parent="Panel/mainNavigation" unique_id=193923256]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 270.0
+offset_right = 295.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[ENTER] CONFIRM"
+vertical_alignment = 1
+
+[node name="logoffLabel" type="Label" parent="Panel/mainNavigation" unique_id=1689350686]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 270.0
+offset_right = 390.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[ESC] LOG OFF"
+vertical_alignment = 1
+
+[node name="cardsLabel" type="Label" parent="Panel/mainNavigation" unique_id=1365658496]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 390.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "CARDS PROCESSED : . . . . . 0"
+vertical_alignment = 1
+
+[node name="SysOk" type="Label" parent="Panel/mainNavigation" unique_id=389088522]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 379.99997
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "SYS OK"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="buttons" type="Control" parent="Panel/mainNavigation" unique_id=1013615576]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="guidesTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=1686697559]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 30.0
+offset_right = 355.00012
+offset_bottom = 50.0
 focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "GUIDES"
+
+[node name="emailTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=1578554865]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 30.0
+offset_right = 285.0
+offset_bottom = 50.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "EMAIL"
 
-[node name="upgradeTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=258152741]
+[node name="upgradeTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=258152741]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 40.0
-offset_right = 90.0
-offset_bottom = 60.0
+offset_left = 150.0
+offset_top = 30.0
+offset_right = 215.0
+offset_bottom = 50.0
 focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "UPGRADE"
 
-[node name="achivementTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=1668701562]
+[node name="achievementTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=1668701562]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 70.0
-offset_right = 90.0
-offset_bottom = 90.0
+offset_left = 80.0
+offset_top = 30.0
+offset_right = 145.0
+offset_bottom = 50.0
 focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
-text = "ACHIVEMENT"
+text = "ACHIEVEMENT"
 
-[node name="saveTabButton" type="Button" parent="Panel/mainNavigationTerminal" unique_id=2145458344]
+[node name="saveTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=2145458344]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 100.0
-offset_right = 90.0
-offset_bottom = 120.0
+offset_top = 30.0
+offset_right = 75.0
+offset_bottom = 50.0
 focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "SAVE"
 
-[node name="emailTerminal" type="Panel" parent="Panel" unique_id=1545717176]
+[node name="emailTab" parent="Panel" unique_id=2050147221 instance=ExtResource("2_p3gj0")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
+
+[node name="saveTab" type="Panel" parent="Panel" unique_id=711371780]
 visible = false
 layout_mode = 0
-offset_left = 100.0
-offset_right = 400.0
-offset_bottom = 300.0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
 
-[node name="Label" type="Label" parent="Panel/emailTerminal" unique_id=1076873316]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 295.0
-offset_bottom = 30.0
-text = "EMAIL TAB"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="emailTab1" type="Panel" parent="Panel/emailTerminal" unique_id=536938796]
-layout_mode = 0
-offset_top = 35.0
-offset_right = 100.0
-offset_bottom = 65.0
-
-[node name="Label" type="Label" parent="Panel/emailTerminal/emailTab1" unique_id=177575333]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 95.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 10
-text = "EMAIL ONE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="emailTab2" type="Panel" parent="Panel/emailTerminal" unique_id=300126031]
+[node name="achivementsTab" type="Panel" parent="Panel" unique_id=109559438]
 visible = false
 layout_mode = 0
-offset_left = 100.0
-offset_top = 35.0
-offset_right = 200.0
-offset_bottom = 65.0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
 
-[node name="Label" type="Label" parent="Panel/emailTerminal/emailTab2" unique_id=2060989853]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 95.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 10
-text = "EMAIL TWO"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="emailTab3" type="Panel" parent="Panel/emailTerminal" unique_id=1142941806]
+[node name="guideTab" type="Panel" parent="Panel" unique_id=1808901789]
 visible = false
 layout_mode = 0
-offset_left = 200.0
-offset_top = 35.0
-offset_right = 300.0
-offset_bottom = 65.0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
 
-[node name="Label" type="Label" parent="Panel/emailTerminal/emailTab3" unique_id=1660957841]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 95.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 10
-text = "EMAIL THREE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="email1" type="Panel" parent="Panel/emailTerminal" unique_id=1178810732]
+[node name="upgradeTab" type="Panel" parent="Panel" unique_id=161258070]
 visible = false
 layout_mode = 0
-offset_top = 65.0
-offset_right = 300.0
-offset_bottom = 300.0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
 
-[node name="Text" type="Label" parent="Panel/emailTerminal/email1" unique_id=2015984570]
+[node name="process1" type="Button" parent="Panel/upgradeTab" unique_id=10461916]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 295.0
-offset_bottom = 230.0
-theme_override_font_sizes/font_size = 13
-text = "Welcome to your new position
-Your job is to process Data cards.
-     Start by pressing the button on the wall to your left to get a pallet.
-     Remove a crate from the pallet, open it, and remove a data card.
-     Insert the card into the processing station, and press the button to start processing.
-     Return here for second email once 10 cards have been processed."
-autowrap_mode = 3
-
-[node name="email2" type="Panel" parent="Panel/emailTerminal" unique_id=1314851870]
-visible = false
-layout_mode = 0
-offset_top = 65.0
-offset_right = 300.0
-offset_bottom = 300.0
-
-[node name="Text" type="Label" parent="Panel/emailTerminal/email2" unique_id=1599476746]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 295.0
-offset_bottom = 230.0
-theme_override_font_sizes/font_size = 13
-text = "Good work.
-     Use the aquired points to purchase upgades.
-     Process, Upload, and Wipe upgrades are cards that are inserted into the top of the processing station that speed up the processing.
-     Consumables unlock better food that provide more nurishment.
-     Arcade buys a second machine."
-autowrap_mode = 3
-
-[node name="email3" type="Panel" parent="Panel/emailTerminal" unique_id=1079357601]
-visible = false
-layout_mode = 0
-offset_top = 65.0
-offset_right = 300.0
-offset_bottom = 300.0
-
-[node name="Text" type="Label" parent="Panel/emailTerminal/email3" unique_id=880747230]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 295.0
-offset_bottom = 230.0
-theme_override_font_sizes/font_size = 13
-text = "Congratulations on processing 100 cards!
-
-     This is the end of the Pre-Alpha/Demo, I hope you enjoyed"
-autowrap_mode = 3
-
-[node name="upgradeTerminal" type="Panel" parent="Panel" unique_id=1018688962]
-visible = false
-layout_mode = 0
-offset_left = 100.0
-offset_right = 400.0
-offset_bottom = 300.0
-
-[node name="process1" type="Button" parent="Panel/upgradeTerminal" unique_id=10461916]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 40.0
-offset_right = 95.0
-offset_bottom = 80.0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 122.0
+offset_bottom = 56.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "PROCESS I
 100 POINTS"
 
-[node name="upload1" type="Button" parent="Panel/upgradeTerminal" unique_id=499212390]
+[node name="upload1" type="Button" parent="Panel/upgradeTab" unique_id=499212390]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 40.0
-offset_right = 195.0
-offset_bottom = 80.0
+offset_left = 132.0
+offset_top = 16.0
+offset_right = 222.0
+offset_bottom = 56.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "UPLOAD I
 100 POINTS"
 
-[node name="wipe1" type="Button" parent="Panel/upgradeTerminal" unique_id=2103621454]
+[node name="wipe1" type="Button" parent="Panel/upgradeTab" unique_id=2103621454]
 layout_mode = 0
-offset_left = 205.0
-offset_top = 40.0
-offset_right = 295.0
-offset_bottom = 80.0
+offset_left = 232.0
+offset_top = 16.0
+offset_right = 322.0
+offset_bottom = 56.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "WIPE I
 100 POINTS"
 
-[node name="process2" type="Button" parent="Panel/upgradeTerminal" unique_id=434034480]
+[node name="process2" type="Button" parent="Panel/upgradeTab" unique_id=434034480]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 90.0
-offset_right = 95.0
-offset_bottom = 130.0
+offset_left = 32.0
+offset_top = 66.0
+offset_right = 122.0
+offset_bottom = 106.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "PROCESS II
 100 POINTS"
 
-[node name="upload2" type="Button" parent="Panel/upgradeTerminal" unique_id=517209876]
+[node name="upload2" type="Button" parent="Panel/upgradeTab" unique_id=517209876]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 90.0
-offset_right = 195.0
-offset_bottom = 130.0
+offset_left = 132.0
+offset_top = 66.0
+offset_right = 222.0
+offset_bottom = 106.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "UPLOAD II
 1000 POINTS"
 
-[node name="wipe2" type="Button" parent="Panel/upgradeTerminal" unique_id=634889502]
+[node name="wipe2" type="Button" parent="Panel/upgradeTab" unique_id=634889502]
 layout_mode = 0
-offset_left = 205.0
-offset_top = 90.0
-offset_right = 295.0
-offset_bottom = 130.0
+offset_left = 232.0
+offset_top = 66.0
+offset_right = 322.0
+offset_bottom = 106.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "WIPE II
 1000 POINTS"
 
-[node name="food1" type="Button" parent="Panel/upgradeTerminal" unique_id=1950907970]
+[node name="food1" type="Button" parent="Panel/upgradeTab" unique_id=1950907970]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 140.0
-offset_right = 95.0
-offset_bottom = 180.0
+offset_left = 32.0
+offset_top = 116.0
+offset_right = 125.0
+offset_bottom = 156.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "TYPE II CONSUME
 500 POINTS"
 
-[node name="arcade1" type="Button" parent="Panel/upgradeTerminal" unique_id=304238668]
+[node name="arcade1" type="Button" parent="Panel/upgradeTab" unique_id=304238668]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 140.0
-offset_right = 195.0
-offset_bottom = 180.0
+offset_left = 132.0
+offset_top = 116.0
+offset_right = 222.0
+offset_bottom = 156.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "ARCADE GAME
 250 POINTS"
 
-[node name="automation1" type="Button" parent="Panel/upgradeTerminal" unique_id=1359504296]
+[node name="automation1" type="Button" parent="Panel/upgradeTab" unique_id=1359504296]
 layout_mode = 0
-offset_left = 205.0
-offset_top = 140.0
-offset_right = 295.0
-offset_bottom = 180.0
+offset_left = 232.0
+offset_top = 116.0
+offset_right = 322.0
+offset_bottom = 156.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 10
 text = "UNLOCKED"
 
-[node name="Label" type="Label" parent="Panel/upgradeTerminal" unique_id=1826722324]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 295.0
-offset_bottom = 30.0
-text = "UPGRADE TAB"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="achivementsTerminal" type="Panel" parent="Panel" unique_id=1059002912]
-visible = false
-layout_mode = 0
-offset_left = 100.0
-offset_right = 400.0
-offset_bottom = 300.0
-
-[node name="Label" type="Label" parent="Panel/achivementsTerminal" unique_id=869160207]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 10.0
-offset_right = 177.0
-offset_bottom = 33.0
-text = "ACHIVEMENT TAB"
-
-[node name="saveTerminal" type="Panel" parent="Panel" unique_id=406858636]
-visible = false
-layout_mode = 0
-offset_left = 100.0
-offset_right = 400.0
-offset_bottom = 300.0
-
-[node name="Label" type="Label" parent="Panel/saveTerminal" unique_id=1783559045]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 10.0
-offset_right = 177.0
-offset_bottom = 33.0
-text = "SAVE TAB"
-
-[connection signal="pressed" from="Panel/mainNavigationTerminal/emailTabButton" to="." method="_on_email_tab_button_pressed"]
-[connection signal="pressed" from="Panel/mainNavigationTerminal/upgradeTabButton" to="." method="_on_upgrade_tab_button_pressed"]
-[connection signal="pressed" from="Panel/mainNavigationTerminal/achivementTabButton" to="." method="_on_achivement_tab_button_pressed"]
-[connection signal="pressed" from="Panel/mainNavigationTerminal/saveTabButton" to="." method="_on_save_tab_button_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/process1" to="." method="_on_process_1_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/upload1" to="." method="_on_upload_1_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/wipe1" to="." method="_on_wipe_1_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/process2" to="." method="_on_process_2_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/upload2" to="." method="_on_upload_2_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/wipe2" to="." method="_on_wipe_2_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/food1" to="." method="_on_food_1_pressed"]
-[connection signal="pressed" from="Panel/upgradeTerminal/arcade1" to="." method="_on_arcade_1_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/guidesTabButton" to="." method="_on_email_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/emailTabButton" to="." method="_on_email_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/upgradeTabButton" to="." method="_on_upgrade_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/achievementTabButton" to="." method="_on_achivement_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/saveTabButton" to="." method="_on_save_tab_button_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/process1" to="." method="_on_process_1_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/upload1" to="." method="_on_upload_1_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/wipe1" to="." method="_on_wipe_1_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/process2" to="." method="_on_process_2_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/upload2" to="." method="_on_upload_2_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/wipe2" to="." method="_on_wipe_2_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/food1" to="." method="_on_food_1_pressed"]
+[connection signal="pressed" from="Panel/upgradeTab/arcade1" to="." method="_on_arcade_1_pressed"]

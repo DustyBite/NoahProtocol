@@ -3,7 +3,7 @@ class_name InteractableDynamic
 
 # Export vars
 
-@export var hoverMesh: Node
+@export var hoverMeshArray: Array[Node]
 @export var canDrag: bool = true
 
 @export var chargeThrow: bool = true
@@ -24,27 +24,32 @@ var fixRot: = false
 
 var slot
 
-var baseMaterial
+var baseMaterial: Array[Material]
 
 func _ready() -> void:
 	add_to_group("interactable")
 	
-	baseMaterial = hoverMesh.get_active_material(0).duplicate()
-	baseMaterial.next_pass = baseMaterial.next_pass.duplicate()
-	hoverMesh.set_surface_override_material(0, baseMaterial)
+	baseMaterial.clear()
+	
+	for mesh in hoverMeshArray:
+		var mat = mesh.get_active_material(0).duplicate()
+		if mat.next_pass != null:
+			mat.next_pass = mat.next_pass.duplicate()
+		mesh.set_surface_override_material(0, mat)
+		baseMaterial.append(mat)
 
 func hover(value):
-	print("hover")
-	if baseMaterial == null:
+	if baseMaterial.is_empty():
 		return
 	
-	var outlineMat = baseMaterial.next_pass
-	
-	print(value)
-	if value:
-		outlineMat.set_shader_parameter("outlineToggle", true)
-	else:
-		outlineMat.set_shader_parameter("outlineToggle", false)
+	for mat in baseMaterial:
+		var outlineMat = mat.next_pass
+		if outlineMat == null:
+			continue
+		
+		outlineMat.set_shader_parameter("outlineToggle", value)
+		if value:
+			outlineMat.set_shader_parameter("outlineColor", Globals.hoverColor)
 
 func place() -> void:
 	freeze = true

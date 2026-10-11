@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cigdojmgtdqxn" path="res://assets/TEMP/lightswitch/lightSwitch.tscn" id="5_po1a7"]
 [ext_resource type="PackedScene" uid="uid://hcfdh453gt1c" path="res://assets/mainMonitor/mainMonitor.tscn" id="7_wkwbp"]
 [ext_resource type="PackedScene" uid="uid://c6hgq84ngi0ss" path="res://assets/processingStation/processingStation.tscn" id="8_gy12x"]
-[ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cartridge/cartridgeCrate.tscn" id="10_y4gyq"]
+[ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cassetteItems/crate/cartridgeCrate.tscn" id="10_y4gyq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6iek"]
 

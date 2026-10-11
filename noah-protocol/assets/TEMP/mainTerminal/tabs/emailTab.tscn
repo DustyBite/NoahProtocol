@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://bk0ldmgxbaxsn"]
+
+[ext_resource type="Script" uid="uid://citcwlq74pbip" path="res://assets/TEMP/mainTerminal/tabs/emailTabScript.gd" id="1_dhrub"]
+
+[node name="emailTab" type="Panel" unique_id=2050147221]
+offset_right = 380.0
+offset_bottom = 180.0
+script = ExtResource("1_dhrub")
+
+[node name="lineLabel" type="Label" parent="." unique_id=220976099]
+layout_mode = 0
+offset_left = 185.0
+offset_right = 195.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "|
+|
+|
+|
+|
+|
+|
+|
+|
+|"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="emails" type="Control" parent="." unique_id=1216877488]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="email1" type="Label" parent="emails" unique_id=296972959]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "FROM: IAP ADMIN
+SUBJ: Welcome
+------------------------------------------------------------------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vestibulum orci id elementum volutpat. Suspendisse vel felis sit amet lectus semper pellentesque ac ut orci. In id luctus neque. Vivamus mollis justo elit, sit amet sollicitudin nunc facilisis vitae. Vivamus ac sem risus."
+autowrap_mode = 2
+
+[node name="email2" type="Label" parent="emails" unique_id=1334437000]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "FROM: IAP ADMIN
+SUBJ: Ducks
+------------------------------------------------------------------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vestibulum orci id elementum volutpat. Suspendisse vel felis sit amet lectus semper pellentesque ac ut orci. In id luctus neque. Vivamus mollis justo elit, sit amet sollicitudin nunc facilisis vitae. Vivamus ac sem risus."
+autowrap_mode = 2
+
+[node name="email3" type="Label" parent="emails" unique_id=423817666]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "FROM: IAP ADMIN
+SUBJ: Quota Notice
+------------------------------------------------------------------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vestibulum orci id elementum volutpat. Suspendisse vel felis sit amet lectus semper pellentesque ac ut orci. In id luctus neque. Vivamus mollis justo elit, sit amet sollicitudin nunc facilisis vitae. Vivamus ac sem risus."
+autowrap_mode = 2
+
+[node name="email4" type="Label" parent="emails" unique_id=1175432005]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "FROM: IAP ADMIN
+SUBJ: Congratulations
+------------------------------------------------------------------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vestibulum orci id elementum volutpat. Suspendisse vel felis sit amet lectus semper pellentesque ac ut orci. In id luctus neque. Vivamus mollis justo elit, sit amet sollicitudin nunc facilisis vitae. Vivamus ac sem risus."
+autowrap_mode = 2
+
+[node name="buttons" type="Control" parent="." unique_id=2120044625]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="email1" type="Button" parent="buttons" unique_id=1484824302]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 35.0
+offset_right = 165.0
+offset_bottom = 55.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 0.8745098, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "IAP ADMIN     WELCOME"
+alignment = 0
+
+[node name="email2" type="Button" parent="buttons" unique_id=1316183078]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 60.0
+offset_right = 165.0
+offset_bottom = 80.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 0.8745098, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "IAP ADMIN     DUCKS"
+alignment = 0
+
+[node name="email3" type="Button" parent="buttons" unique_id=1568880113]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 85.0
+offset_right = 165.0
+offset_bottom = 105.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 0.8745098, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "IAP ADMIN     QUOTA NOTICE"
+alignment = 0
+
+[node name="email4" type="Button" parent="buttons" unique_id=131461822]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 110.0
+offset_right = 165.0
+offset_bottom = 130.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 0.8745098, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "IAP ADMIN     CONGRATULATIONS"
+alignment = 0
+
+[node name="Label" type="Label" parent="." unique_id=1908963196]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 165.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "> INBOX"
+vertical_alignment = 1
+
+[connection signal="pressed" from="buttons/email1" to="." method="_on_email_1_pressed"]
+[connection signal="pressed" from="buttons/email2" to="." method="_on_email_2_pressed"]
+[connection signal="pressed" from="buttons/email3" to="." method="_on_email_3_pressed"]
+[connection signal="pressed" from="buttons/email4" to="." method="_on_email_4_pressed"]

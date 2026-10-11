@@ -1,4 +1,4 @@
-extends InteractableDynamicOld
+extends InteractableDynamic
 
 # EXPORT VAR
 
@@ -6,7 +6,7 @@ extends InteractableDynamicOld
 
 # ONREADY VAR
 
-@onready var cassettes := preload("res://assets/interactables/cartridge/cartridge.tscn")
+@onready var cassettes := preload("res://assets/interactables/cassetteItems/cassette/cartridge.tscn")
 @onready var crateColBox:= $CollisionShape3D
 @onready var lidRotate := $lidRotate
 
@@ -105,7 +105,7 @@ func openLid():
 		cardSlot.InteractOn()
 	
 	crateColBox.shape.size.y = .3
-	crateColBox.position.y = -.05 
+	crateColBox.position.y = -.1
 	
 	self.canDrag = false
 
@@ -118,7 +118,7 @@ func closeLid():
 	for cardSlot in cassettesSlots:
 		cardSlot.InteractOff()
 	
-	crateColBox.shape.size.y = .4
+	crateColBox.shape.size.y = .5
 	crateColBox.position.y = 0
 	
 	self.canDrag = true

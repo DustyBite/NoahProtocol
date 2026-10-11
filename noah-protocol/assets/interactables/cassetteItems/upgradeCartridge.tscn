@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3koatyn4upay"]
 
-[ext_resource type="Script" uid="uid://4bfklkl5n850" path="res://assets/interactables/cartridge/upgradeCartridgeScript.gd" id="1_tgsga"]
+[ext_resource type="Script" uid="uid://4bfklkl5n850" path="res://assets/interactables/cassetteItems/upgradeCartridgeScript.gd" id="1_tgsga"]
 [ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="2_4iqxr"]
 [ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="3_63b5i"]
 

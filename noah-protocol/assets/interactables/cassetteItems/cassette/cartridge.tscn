@@ -1,33 +1,33 @@
 [gd_scene format=4 uid="uid://chou1w36bc2i7"]
 
-[ext_resource type="Script" uid="uid://qqqdeyf6nbs8" path="res://assets/interactables/cartridge/cartridgeScript.gd" id="1_jgjjf"]
-[ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="2_qtnpy"]
-[ext_resource type="Shader" uid="uid://djav1egd1s0oc" path="res://assets/interactables/cartridge/cardMaterial/customCardShader.gdshader" id="4_4u7qc"]
-[ext_resource type="Texture2D" uid="uid://cqajv7jhkctrl" path="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuTexture.png" id="5_d1yvs"]
-[ext_resource type="Texture2D" uid="uid://dnsbcsws4abvr" path="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuCaseIsolator.png" id="5_dvbrj"]
-[ext_resource type="Texture2D" uid="uid://b0cel842456m7" path="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuHandleIsolator.png" id="6_hi0jj"]
-[ext_resource type="Texture2D" uid="uid://do6tmphqroi35" path="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuIndicatorAIsolator.png" id="7_usgx6"]
-[ext_resource type="Texture2D" uid="uid://cpxc0iqkxlya1" path="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuIndicatorBIsolator.png" id="8_41sqn"]
+[ext_resource type="Script" uid="uid://qqqdeyf6nbs8" path="res://assets/interactables/cassetteItems/cassette/cartridgeScript.gd" id="1_q0eip"]
+[ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="2_fjt8e"]
+[ext_resource type="Shader" uid="uid://djav1egd1s0oc" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/customCardShader.gdshader" id="3_q0eip"]
+[ext_resource type="Texture2D" uid="uid://dnsbcsws4abvr" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuCaseIsolator.png" id="4_fjt8e"]
+[ext_resource type="Texture2D" uid="uid://b0cel842456m7" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuHandleIsolator.png" id="5_vi6oi"]
+[ext_resource type="Texture2D" uid="uid://do6tmphqroi35" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuIndicatorAIsolator.png" id="6_xvv1q"]
+[ext_resource type="Texture2D" uid="uid://cpxc0iqkxlya1" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuIndicatorBIsolator.png" id="7_xass4"]
+[ext_resource type="Texture2D" uid="uid://cqajv7jhkctrl" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuTexture.png" id="8_wedrd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_60eil"]
 size = Vector3(0.06, 0.3, 0.3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvbrj"]
 render_priority = 0
-shader = ExtResource("2_qtnpy")
-shader_parameter/outlineColor = Color(0, 0, 0, 1)
+shader = ExtResource("2_fjt8e")
+shader_parameter/outlineColor = Color(1, 1, 1, 1)
 shader_parameter/outlineThickness = 0.01
 shader_parameter/outlineToggle = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dn5i8"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_dvbrj")
-shader = ExtResource("4_4u7qc")
-shader_parameter/mainTexture = ExtResource("5_d1yvs")
-shader_parameter/handleFilter = ExtResource("6_hi0jj")
-shader_parameter/caseFilter = ExtResource("5_dvbrj")
-shader_parameter/indicAFilter = ExtResource("7_usgx6")
-shader_parameter/indicBFilter = ExtResource("8_41sqn")
+shader = ExtResource("3_q0eip")
+shader_parameter/mainTexture = ExtResource("8_wedrd")
+shader_parameter/handleFilter = ExtResource("5_vi6oi")
+shader_parameter/caseFilter = ExtResource("4_fjt8e")
+shader_parameter/indicAFilter = ExtResource("6_xvv1q")
+shader_parameter/indicBFilter = ExtResource("7_xass4")
 shader_parameter/handleColor = Color(1, 1, 1, 1)
 shader_parameter/caseColor = Color(1, 1, 1, 1)
 shader_parameter/indicAColor = Color(0, 0, 0, 1)
@@ -65,11 +65,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_o47kp")
 
-[node name="cartridge" type="RigidBody3D" unique_id=556392304 node_paths=PackedStringArray("hoverMesh") groups=["cassette"]]
+[node name="cartridge" type="RigidBody3D" unique_id=556392304 node_paths=PackedStringArray("hoverMeshArray") groups=["cassette"]]
 collision_layer = 195
 collision_mask = 3
-script = ExtResource("1_jgjjf")
-hoverMesh = NodePath("cardMesh")
+script = ExtResource("1_q0eip")
+hoverMeshArray = [NodePath("cardMesh")]
 type = "card"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1706606752]

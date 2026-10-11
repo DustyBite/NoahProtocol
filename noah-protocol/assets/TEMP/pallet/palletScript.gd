@@ -1,10 +1,17 @@
 extends InteractableDynamicOld
 
+# Export vars
+
+@export var cratesPerLevel: int = 3
+
+# Onready vars
+
+@onready var crate := preload("res://assets/interactables/cassetteItems/crate/cartridgeCrate.tscn")
+
+# basic Vars
+
 var crateSlots: Array
 var crateState: String = "unprocessed"
-
-@onready var crate := preload("res://assets/interactables/cartridge/cartridgeCrate.tscn")
-
 
 func _ready() -> void:
 	super._ready()
@@ -25,6 +32,9 @@ func getTotalPoints() -> int:
 		total += crat.getTotalPoints()
 	return total
 
+func levelOf(index):
+	return floori(float(index) / max(cratesPerLevel, 1))
+
 func checkSlots():
 	var topIndex = -1
 	for i in range(crateSlots.size() - 1, -1, -1):
@@ -32,16 +42,30 @@ func checkSlots():
 			topIndex = i
 			break
 	
+	var topLevel = -1 if topIndex == -1 else levelOf(topIndex)
+	
+	var placeLevel = 0
+	if topLevel >= 0:
+		placeLevel = topLevel
+		var topLevelFull = true
+		for i in range(crateSlots.size()):
+			if levelOf(i) == topLevel and crateSlots[i].slottedItem == null:
+				topLevelFull = false
+				break
+		if topLevelFull:
+			placeLevel = topLevel + 1
+
 	for i in range(crateSlots.size()):
 		var craSlot = crateSlots[i]
-		
+		var level = levelOf(i)
+
 		if craSlot.slottedItem != null:
-			if i == topIndex:
+			if level == topLevel:
 				craSlot.InteractOn()
 			else:
 				craSlot.InteractOff()
 		else:
-			if i == topIndex + 1:
+			if level == placeLevel:
 				craSlot.showSlot()
 			else:
 				craSlot.hideSlot()

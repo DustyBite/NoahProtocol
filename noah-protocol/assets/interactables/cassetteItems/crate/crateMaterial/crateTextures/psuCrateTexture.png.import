@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do6tmphqroi35"
-path.s3tc="res://.godot/imported/psuIndicatorAIsolator.png-05f897d2f81b4347f4a360b46301a14d.s3tc.ctex"
+uid="uid://d101fyac7mf"
+path.s3tc="res://.godot/imported/psuCrateTexture.png-1be51adc56ee881b66ed5bf571c11f1b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuIndicatorAIsolator.png"
-dest_files=["res://.godot/imported/psuIndicatorAIsolator.png-05f897d2f81b4347f4a360b46301a14d.s3tc.ctex"]
+source_file="res://assets/interactables/cassetteItems/crate/crateMaterial/crateTextures/psuCrateTexture.png"
+dest_files=["res://.godot/imported/psuCrateTexture.png-1be51adc56ee881b66ed5bf571c11f1b.s3tc.ctex"]
 
 [params]
 

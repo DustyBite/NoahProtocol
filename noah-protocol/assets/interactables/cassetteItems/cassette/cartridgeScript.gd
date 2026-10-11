@@ -44,11 +44,13 @@ func getRandomAge():
 		return randf_range(0.6, 1.0)
 
 func applyCardVisuals():
-	var caseColor = caseColorNew.lerp(caseColorAged, cardAge)
-	baseMaterial.set_shader_parameter("caseColor", caseColor)
-	var handleColorBase = Color(randf_range(0.5, 1.0), randf_range(0.5, 1.0), randf_range(0.5, 1.0))
-	var handleColorAged = handleColorBase.lerp(Color(0.6, 0.5, 0.2), cardAge * 0.6)
-	baseMaterial.set_shader_parameter("handleColor", handleColorAged)
+	
+	for mat in baseMaterial:
+		var caseColor = caseColorNew.lerp(caseColorAged, cardAge)
+		mat.set_shader_parameter("caseColor", caseColor)
+		var handleColorBase = Color(randf_range(0.5, 1.0), randf_range(0.5, 1.0), randf_range(0.5, 1.0))
+		var handleColorAged = handleColorBase.lerp(Color(0.6, 0.5, 0.2), cardAge * 0.6)
+		mat.set_shader_parameter("handleColor", handleColorAged)
 
 func getPoints() -> int:
 	match status:
@@ -59,23 +61,25 @@ func getPoints() -> int:
 	return 0
 
 func updateStatus():
-	match status:
-		"loaded":
-			baseMaterial.set_shader_parameter("indicBColor", Color(0,1,0,1))
-		"processing":
-			baseMaterial.set_shader_parameter("indicBColor", Color(1,.5,0,1))
-		"clear":
-			baseMaterial.set_shader_parameter("indicBColor", Color(0,0,1,1))
-		"corrupted":
-			baseMaterial.set_shader_parameter("indicBColor", Color(1,0,0,1))
+	for mat in baseMaterial:
+		match status:
+			"loaded":
+				mat.set_shader_parameter("indicBColor", Color(0,1,0,1))
+			"processing":
+				mat.set_shader_parameter("indicBColor", Color(1,.5,0,1))
+			"clear":
+				mat.set_shader_parameter("indicBColor", Color(0,0,1,1))
+			"corrupted":
+				mat.set_shader_parameter("indicBColor", Color(1,0,0,1))
 
 func blinkIndicLight():
-	blinkFlip = !blinkFlip
-	
-	if blinkFlip:
-		baseMaterial.set_shader_parameter("indicAColor", Color(0,0,0,1))
-	else:
-		baseMaterial.set_shader_parameter("indicAColor", Color(0,1,0,1))
+	for mat in baseMaterial:
+		blinkFlip = !blinkFlip
+		
+		if blinkFlip:
+			mat.set_shader_parameter("indicAColor", Color(0,0,0,1))
+		else:
+			mat.set_shader_parameter("indicAColor", Color(0,1,0,1))
 
 func TEMPrandStatus():
 	if randf() < 0.05:

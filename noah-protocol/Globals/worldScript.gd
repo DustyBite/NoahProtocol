@@ -14,8 +14,8 @@ class_name WorldScript
 
 #Spawnables
 @onready var palletScene = preload("res://assets/TEMP/pallet/pallet.tscn")
-@onready var crateScene = preload("res://assets/interactables/cartridge/cartridgeCrate.tscn")
-@onready var cassetteScene = preload("res://assets/interactables/cartridge/cartridge.tscn")
+@onready var crateScene = preload("res://assets/interactables/cassetteItems/crate/cartridgeCrate.tscn")
+@onready var cassetteScene = preload("res://assets/interactables/cassetteItems/cassette/cartridge.tscn")
 
 @onready var drinkScene = preload("res://assets/interactables/consumables/eDrink.tscn")
 @onready var foodScene = preload("res://assets/interactables/consumables/packFood.tscn")

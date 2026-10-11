@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bgnbl47a05wp6" path="res://Globals/worldScript.gd" id="1_sxt15"]
 [ext_resource type="PackedScene" uid="uid://cefxbaqoyxb1w" path="res://assets/TEMP/piecesTemp/deliveryRooms/deliveryRoom.tscn" id="2_gf6sq"]
 [ext_resource type="VoxelGIData" uid="uid://dux17gt4v6iad" path="res://assets/TEMP/Scenes/TestingWorld.VoxelGI_data.res" id="4_f8tqv"]
-[ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cartridge/cartridgeCrate.tscn" id="5_02xml"]
+[ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cassetteItems/crate/cartridgeCrate.tscn" id="5_02xml"]
 [ext_resource type="Environment" uid="uid://6vloryp1odkx" path="res://assets/TEMP/Environment.tres" id="15_eumgo"]
 
 [node name="root" type="Node3D" unique_id=1108410745]

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0cel842456m7"
-path.s3tc="res://.godot/imported/psuHandleIsolator.png-258027d7939fdfa9eea9adf26722a50c.s3tc.ctex"
+uid="uid://dnsbcsws4abvr"
+path.s3tc="res://.godot/imported/psuCaseIsolator.png-b57bf0a5f84958d67085ec322f79283c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/interactables/cartridge/cardMaterial/cardTextures/psuHandleIsolator.png"
-dest_files=["res://.godot/imported/psuHandleIsolator.png-258027d7939fdfa9eea9adf26722a50c.s3tc.ctex"]
+source_file="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuCaseIsolator.png"
+dest_files=["res://.godot/imported/psuCaseIsolator.png-b57bf0a5f84958d67085ec322f79283c.s3tc.ctex"]
 
 [params]
 

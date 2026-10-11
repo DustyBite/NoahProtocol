@@ -8,17 +8,17 @@ extends Control
 # Onready vars
 
 
-@onready var tabButtons: Array = [$Panel/mainNavigationTerminal/emailTabButton, $Panel/mainNavigationTerminal/upgradeTabButton, $Panel/mainNavigationTerminal/achivementTabButton, $Panel/mainNavigationTerminal/saveTabButton]
+@onready var tabButtons: Array = [$Panel/mainNavigation/buttons/guidesTabButton, $Panel/mainNavigation/buttons/emailTabButton, $Panel/mainNavigation/buttons/upgradeTabButton, $Panel/mainNavigation/buttons/achievementTabButton, $Panel/mainNavigation/buttons/saveTabButton]
 
-@onready var tabs: Array = [$Panel/emailTerminal, $Panel/upgradeTerminal, $Panel/achivementsTerminal, $Panel/saveTerminal]
+@onready var tabs: Array = [$Panel/emailTab, $Panel/upgradeTab, $Panel/achivementsTab, $Panel/saveTab]
 
 
-@onready var emailTab = $Panel/emailTerminal
-@onready var upgradeTab = $Panel/upgradeTerminal
-@onready var achievmentsTab = $Panel/achivementsTerminal
-@onready var saveTab = $Panel/saveTerminal
+@onready var emailTab = $Panel/emailTab
+@onready var upgradeTab = $Panel/upgradeTab
+@onready var achievmentsTab = $Panel/achivementsTab
+@onready var saveTab = $Panel/saveTab
 
-@onready var upgradeCard = preload("res://assets/interactables/cartridge/upgradeCartridge.tscn")
+@onready var upgradeCard = preload("res://assets/interactables/cassetteItems/upgradeCartridge.tscn")
 
 # basic vars
 
@@ -39,26 +39,30 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	
-	if event.is_action_pressed("navDown") or event.is_action_pressed("back"):
+	if event.is_action_pressed("navLeft") or event.is_action_pressed("left"):
 		if currentTab < tabButtons.size()-1:
 			currentTab += 1
 			tabButtons[currentTab].grab_focus()
+			tabButtons[currentTab].pressed.emit()
 		else:
 			currentTab = 0
 			tabButtons[currentTab].grab_focus()
+			tabButtons[currentTab].pressed.emit()
 	
-	if event.is_action_pressed("navUp") or event.is_action_pressed("forward"):
+	if event.is_action_pressed("navRight") or event.is_action_pressed("right"):
 		if currentTab > 0:
 			currentTab -= 1
 			tabButtons[currentTab].grab_focus()
+			tabButtons[currentTab].pressed.emit()
 		else:
 			currentTab = tabButtons.size()-1
 			tabButtons[currentTab].grab_focus()
+			tabButtons[currentTab].pressed.emit()
 	
-	if event.is_action_pressed("navLeft") or event.is_action_pressed("left"):
+	if event.is_action_pressed("navUp") or event.is_action_pressed("forward"):
 		chanceTab(-1)
 	
-	if event.is_action_pressed("navRight") or event.is_action_pressed("right"):
+	if event.is_action_pressed("navDown") or event.is_action_pressed("back"):
 		chanceTab(1)
 
 func setActiveTab(tabNumber):
@@ -73,30 +77,7 @@ func setActiveTab(tabNumber):
 func chanceTab(value):
 	match activeTab:
 		emailTab:
-			emailTabNum += value
-			
-			if emailTabNum < 0:
-				emailTabNum = 2
-			elif emailTabNum > 2:
-				emailTabNum = 0
-			
-			match emailTabNum:
-				0:
-					$Panel/emailTerminal/email1.visible = true
-					$Panel/emailTerminal/email2.visible = false
-					$Panel/emailTerminal/email3.visible = false
-				1:
-					$Panel/emailTerminal/email1.visible = false
-					$Panel/emailTerminal/email3.visible = false
-					
-					if Globals.avalibleEmail >= 1:
-						$Panel/emailTerminal/email2.visible = true
-				2:
-					$Panel/emailTerminal/email1.visible = false
-					$Panel/emailTerminal/email2.visible = false
-					
-					if Globals.avalibleEmail >= 2:
-						$Panel/emailTerminal/email3.visible = true
+			emailTab.cycleEmail(value)
 		upgradeTab:
 			currentUpgrade += value
 			
@@ -109,14 +90,17 @@ func chanceTab(value):
 func checkEmails():
 	match Globals.avalibleEmail:
 		0:
-			$Panel/emailTerminal/emailTab1.visible = true
+			pass
+			#$Panel/emailTerminal/emailTab1.visible = true
 		1:
-			$Panel/emailTerminal/emailTab1.visible = true
-			$Panel/emailTerminal/emailTab2.visible = true
+			pass
+			#$Panel/emailTerminal/emailTab1.visible = true
+			#$Panel/emailTerminal/emailTab2.visible = true
 		2:
-			$Panel/emailTerminal/emailTab1.visible = true
-			$Panel/emailTerminal/emailTab2.visible = true
-			$Panel/emailTerminal/emailTab3.visible = true
+			pass
+			#$Panel/emailTerminal/emailTab1.visible = true
+			#$Panel/emailTerminal/emailTab2.visible = true
+			#$Panel/emailTerminal/emailTab3.visible = true
 
 func checkUnlocks():
 	var i = upgrades.size()
