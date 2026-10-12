@@ -193,6 +193,7 @@ theme_override_font_sizes/font_size = 8
 text = "SAVE"
 
 [node name="emailTab" parent="Panel" unique_id=2050147221 instance=ExtResource("2_p3gj0")]
+visible = false
 layout_mode = 0
 offset_left = 10.0
 offset_top = 80.0
