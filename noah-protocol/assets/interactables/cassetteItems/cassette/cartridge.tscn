@@ -4,10 +4,13 @@
 [ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="2_fjt8e"]
 [ext_resource type="Shader" uid="uid://djav1egd1s0oc" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/customCardShader.gdshader" id="3_q0eip"]
 [ext_resource type="Texture2D" uid="uid://dnsbcsws4abvr" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuCaseIsolator.png" id="4_fjt8e"]
+[ext_resource type="Texture2D" uid="uid://bvvoqenrdynnf" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuAlphaTex.png" id="4_xvv1q"]
 [ext_resource type="Texture2D" uid="uid://b0cel842456m7" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuHandleIsolator.png" id="5_vi6oi"]
 [ext_resource type="Texture2D" uid="uid://do6tmphqroi35" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuIndicatorAIsolator.png" id="6_xvv1q"]
 [ext_resource type="Texture2D" uid="uid://cpxc0iqkxlya1" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuIndicatorBIsolator.png" id="7_xass4"]
 [ext_resource type="Texture2D" uid="uid://cqajv7jhkctrl" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuTexture.png" id="8_wedrd"]
+[ext_resource type="Texture2D" uid="uid://d3uefv8x8hs3k" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuMetallicMap.png" id="10_xass4"]
+[ext_resource type="Texture2D" uid="uid://dwnq8l5u620m2" path="res://assets/interactables/cassetteItems/cassette/cardMaterial/cardTextures/psuRoughnessMap.png" id="11_wedrd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_60eil"]
 size = Vector3(0.06, 0.3, 0.3)
@@ -24,6 +27,9 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_dvbrj")
 shader = ExtResource("3_q0eip")
 shader_parameter/mainTexture = ExtResource("8_wedrd")
+shader_parameter/alphaTexture = ExtResource("4_xvv1q")
+shader_parameter/metallicTexture = ExtResource("10_xass4")
+shader_parameter/roughnessTexture = ExtResource("11_wedrd")
 shader_parameter/handleFilter = ExtResource("5_vi6oi")
 shader_parameter/caseFilter = ExtResource("4_fjt8e")
 shader_parameter/indicAFilter = ExtResource("6_xvv1q")

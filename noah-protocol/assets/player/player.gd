@@ -18,6 +18,9 @@ var activeTerminal = null
 var inTerminal = false
 var inPauseMenu = false
 
+var camTween: Tween
+var savedCamLocal: Transform3D
+
 # Speed Variables
 var currentSpeed = 5.0
 const walkingSpeed = 4.0
@@ -63,6 +66,7 @@ var dragVelocity = Vector3.ZERO
 @onready var eStatUI := $playerUi/mainUi/exhaustionBar
 @onready var sStatUI := $playerUi/mainUi/sanityBar
 
+@onready var crtEffect := $screenEffects/crtEffectLayer/crtShader
 
 # Player Stats
 var hunger: float = 100.0
@@ -76,7 +80,7 @@ var sanity: float = 100.0
 var sanityMod: float = 0.0
 var inGame: bool = false
 
-var drainRate: float = 0.5
+var drainRate: float = 0.25
 
 
 func _ready():
@@ -122,14 +126,16 @@ func _process(delta: float) -> void:
 	if isPaused:
 		return
 	
+	sanityCheck()
+	
 	checkRayCol()
 	
-	hunger = hunger - delta * drainRate
-	exhaustion = exhaustion - delta * (drainRate + hungerMod)
+	hunger = clampf(hunger - delta * drainRate,0,100)
+	exhaustion = clampf(exhaustion - delta * (drainRate + hungerMod),0,100)
 	if inGame:
-		sanity = sanity + delta * drainRate
+		sanity = clampf(sanity + delta * drainRate*2, 0, 100)
 	else:
-		sanity = sanity - delta * (drainRate + (hungerMod / 2) + exhaustionMod)
+		sanity = clampf(sanity - delta * (drainRate + (hungerMod / 2) + exhaustionMod), 0, 100)
 	
 	updateStats()
 
@@ -149,7 +155,10 @@ func _input(event: InputEvent) -> void:
 				interItem.interact(self)
 
 func _physics_process(delta: float) -> void:
-	if isPaused or inTerminal:
+	if isPaused:
+		return
+	
+	if inTerminal:
 		return
 	
 	# ALWAYS update dragged items, regardless of player authority
@@ -220,19 +229,47 @@ func _physics_process(delta: float) -> void:
 				var push_direction = -collision.get_normal()
 				collider.apply_force(push_direction * push_force * currentSpeed, collision_point - collider.global_position)
 
-func enterTerminal(terminal, isGame):
+func sanityCheck():
+	var sanityNorm = clampf(sanity / 100.0, 0.0, 1.0)
+	var insanity = 1.0 - sanityNorm
+
+	var crtEffectMat = crtEffect.material
+	crtEffectMat.set_shader_parameter("curvature", clampf(sanity / 10.0, 3, 10))
+	crtEffectMat.set_shader_parameter("vignette_strength", insanity * 0.5)
+	crtEffectMat.set_shader_parameter("vignette_power", insanity * 5.0)
+
+func tweenCamTo(target, duration, onDone: Callable = Callable()):
+	if camTween:
+		camTween.kill()
+	
+	var start = camera.global_transform
+	camTween = create_tween()
+	camTween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	camTween.tween_method(
+		func(w): camera.global_transform = start.interpolate_with(target, w),
+		0.0, 1.0, duration)
+	
+	if onDone.is_valid():
+		camTween.tween_callback(onDone)
+
+func enterTerminal(terminal, terminalCam, isGame):
 	#print("enter Terminal")
 	activeTerminal = terminal
 	intRay.enabled = false
-	await get_tree().create_timer(0.1).timeout
+	savedCamLocal = camera.transform
+	tweenCamTo(terminalCam.global_transform.orthonormalized(), 0.5)
+	await get_tree().create_timer(0.5).timeout
 	
+	terminalCam.make_current()
 	inTerminal = true
 	if isGame:
 		inGame = true
-	
 
 func exitTerminal():
 	#print("exit Terminal")
+	camera.make_current()
+	var back = head.global_transform * savedCamLocal
+	tweenCamTo(back, 0.4, func(): camera.transform = savedCamLocal)
 	activeTerminal = null
 	intRay.enabled = true
 	inTerminal = false
@@ -253,10 +290,6 @@ func updateStats():
 	else:
 		exhaustionMod = 0.0
 
-#var exhaustion: float = 100.0
-#var exhaustionMod: float = 0.0
-#var maxExhaRegen: float = 50.0
-
 func consume(type, amount):
 	match type:
 		"eDrink":
@@ -270,6 +303,16 @@ func consume(type, amount):
 				hunger = 100
 			else:
 				hunger += amount
+
+func sleep(camTarget):
+	inTerminal = true
+	savedCamLocal = camera.transform
+	tweenCamTo(camTarget.global_transform.orthonormalized(), 0.5)
+	await get_tree().create_timer(1.0).timeout
+	exhaustion = 100
+	var back = head.global_transform * savedCamLocal
+	tweenCamTo(back, 0.4, func(): camera.transform = savedCamLocal)
+	inTerminal = false
 
 func chargeThrow(value):
 	chargedThrow = value

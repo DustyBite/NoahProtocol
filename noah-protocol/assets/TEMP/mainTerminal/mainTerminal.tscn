@@ -45,6 +45,7 @@ resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_mc75p")
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_xrsl8")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_keuar"]
 resource_local_to_scene = true
@@ -71,6 +72,9 @@ script = ExtResource("1_120gq")
 mesh = NodePath("MeshInstance3D")
 interactButton = "[ E ]"
 
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1364369481]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1.3813629, 0.6263694)
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=869616436]
 size = Vector2i(800, 600)
 
@@ -87,6 +91,7 @@ material = SubResource("ShaderMaterial_vtjgt")
 mesh = SubResource("QuadMesh_l15dx")
 
 [node name="rgbSeperatorLayer" type="CanvasLayer" parent="SubViewport/screenEffects" unique_id=658877313]
+visible = false
 
 [node name="rgbSeperator" type="MeshInstance2D" parent="SubViewport/screenEffects/rgbSeperatorLayer" unique_id=853939746]
 material = SubResource("ShaderMaterial_78ch1")

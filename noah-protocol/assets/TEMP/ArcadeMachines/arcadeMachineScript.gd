@@ -8,6 +8,7 @@ extends InteractableStatic
 # Onready var
 
 @onready var machineLabel = $machineLabelSubviewport/Control/Panel/Label
+@onready var terminalCam = $Camera3D
 
 # Basic var
 
@@ -26,4 +27,4 @@ func _ready() -> void:
 
 func interact(body):
 	if body.has_method("enterTerminal") and gameController != null:
-		body.enterTerminal(gameController, true)
+		body.enterTerminal(gameController, terminalCam, true)

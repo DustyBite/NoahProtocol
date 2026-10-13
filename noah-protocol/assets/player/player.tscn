@@ -29,8 +29,8 @@ properties/1/replication_mode = 1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_862jj"]
 shader = ExtResource("3_t8m1s")
 shader_parameter/curvature = 7.0
-shader_parameter/vignette_strength = 0.15
-shader_parameter/vignette_power = 4.5
+shader_parameter/vignette_strength = 0.3
+shader_parameter/vignette_power = 5.0
 shader_parameter/scanline_intensity = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_shvar"]
@@ -195,7 +195,6 @@ replication_config = SubResource("SceneReplicationConfig_rn675")
 [node name="screenEffects" type="Node2D" parent="." unique_id=1607139290]
 
 [node name="crtEffectLayer" type="CanvasLayer" parent="screenEffects" unique_id=824103503]
-visible = false
 
 [node name="crtShader" type="MeshInstance2D" parent="screenEffects/crtEffectLayer" unique_id=341174175]
 material = SubResource("ShaderMaterial_862jj")

@@ -18,7 +18,6 @@ config/icon="uid://caavpwtaaer7k"
 [autoload]
 
 NetworkManager="*uid://v42kvmrokdr8"
-SaveLoadSystem="*uid://c4ropdk5klsyh"
 Globals="*uid://cgbaa0uypgufa"
 BestScores="*uid://cetay6xa4hlkl"
 

@@ -71,8 +71,10 @@ func checkSlots(slot, card):
 				currentTxt = validTxt
 			"clear":
 				currentTxt = finishedTxt
+				return
 			"corrupted":
 				currentTxt = invalidTxt
+				return
 		
 		slot.InteractOff()
 		await processCard(card)

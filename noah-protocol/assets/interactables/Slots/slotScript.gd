@@ -1,12 +1,21 @@
 extends Node3D
 class_name ItemSlot
 
+# Onready vars
+
 @onready var marker: Marker3D = $Marker3D
 @onready var area: Area3D = $Area3D
 
 @export var slotType: String
 
 @onready var ghostMesh := $meshGhost
+
+# Export vars
+
+@export var hasOffset: bool = false
+@export var removeOffset: Vector3 = Vector3(0,.25,0)
+
+# Basic vars
 
 var slottedItem = null
 
@@ -46,11 +55,14 @@ func clearSlot() -> void:
 	if slottedItem:
 		slottedItem.unplace()
 		var savedPosition = slottedItem.global_position
-		#var savedRotation = slottedItem.global_rotation
+		var savedRotation = slottedItem.global_rotation
 		remove_child(slottedItem)
 		get_tree().current_scene.add_child(slottedItem)
+		if hasOffset:
+			savedPosition += removeOffset
+		
 		slottedItem.global_position = savedPosition
-		#slottedItem.global_rotation = savedRotation
+		slottedItem.global_rotation = savedRotation
 		slottedItem = null
 		area.monitoring = true
 

@@ -7,10 +7,11 @@ extends InteractableStatic
 # Onready var
 
 @onready var screenController = $SubViewport/mainTerminalScreen
+@onready var terminalCam = $Camera3D
 
 func interact(body):
 	if body.has_method("enterTerminal"):
-		body.enterTerminal(screenController, false)
+		body.enterTerminal(screenController, terminalCam, false)
 
 func spawnUpgrade(cardScene, type, modifier):
 	var card = cardScene.instantiate()

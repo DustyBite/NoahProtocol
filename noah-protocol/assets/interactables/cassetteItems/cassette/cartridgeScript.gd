@@ -5,11 +5,16 @@ extends InteractableDynamic
 @export var caseColorNew := Color(1.0, 1.0, 1.0, 1.0)
 @export var caseColorAged := Color(.78, 0.65, 0.25, 1.0)
 
+@export var corruptChanceNew: float = 0.02
+@export var corruptChanceAged: float = 0.30
+@export var wipedChance: float = 0.05
+@export var processedChance: float = 0.10
+
 # Basic vars
 
 var cardAge: float = 0
 
-var status: String = "upload"
+var status: String = "loaded"
 
 var blinkFlip: bool = true
 var blinkTimer: float = 0.0
@@ -23,7 +28,7 @@ func _ready() -> void:
 	cardAge = getRandomAge()
 	applyCardVisuals()
 	
-	TEMPrandStatus()
+	randStatus()
 	blinkTimer = randf() * blinkInterval
 
 func _process(delta: float) -> void:
@@ -64,13 +69,13 @@ func updateStatus():
 	for mat in baseMaterial:
 		match status:
 			"loaded":
-				mat.set_shader_parameter("indicBColor", Color(0,1,0,1))
+				mat.set_shader_parameter("indicBColor", Color(0,1,0,0.5))
 			"processing":
-				mat.set_shader_parameter("indicBColor", Color(1,.5,0,1))
+				mat.set_shader_parameter("indicBColor", Color(1,.5,0,0.5))
 			"clear":
-				mat.set_shader_parameter("indicBColor", Color(0,0,1,1))
+				mat.set_shader_parameter("indicBColor", Color(0,0,1,0.5))
 			"corrupted":
-				mat.set_shader_parameter("indicBColor", Color(1,0,0,1))
+				mat.set_shader_parameter("indicBColor", Color(1,0,0,0.5))
 
 func blinkIndicLight():
 	for mat in baseMaterial:
@@ -81,8 +86,19 @@ func blinkIndicLight():
 		else:
 			mat.set_shader_parameter("indicAColor", Color(0,1,0,1))
 
-func TEMPrandStatus():
-	if randf() < 0.05:
+func randStatus():
+	var corruptChance = lerp(corruptChanceNew, corruptChanceAged, cardAge)
+	
+	if randf() < corruptChance:
 		status = "corrupted"
+		return
+	
+	var roll = randf()
+	if roll < wipedChance:
+		status = "clear"
+		wipeProgress = 100.0
+	elif roll < wipedChance + processedChance:
+		status = "processing"
+		processProgress = 100.0
 	else:
 		status = "loaded"
