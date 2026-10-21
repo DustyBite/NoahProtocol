@@ -10,15 +10,16 @@ extends Control
 
 @onready var tabButtons: Array = [$Panel/mainNavigation/buttons/guidesTabButton, $Panel/mainNavigation/buttons/emailTabButton, $Panel/mainNavigation/buttons/upgradeTabButton, $Panel/mainNavigation/buttons/achievementTabButton, $Panel/mainNavigation/buttons/saveTabButton]
 
-@onready var tabs: Array = [$Panel/emailTab, $Panel/upgradeTab, $Panel/achivementsTab, $Panel/saveTab]
+@onready var tabs: Array = [$Panel/guideTab, $Panel/emailTab, $Panel/upgradeTab, $Panel/achivementsTab, $Panel/saveTab]
 
 
 @onready var emailTab = $Panel/emailTab
+@onready var guideTab = $Panel/guideTab
+
 @onready var upgradeTab = $Panel/upgradeTab
 @onready var achievmentsTab = $Panel/achivementsTab
 @onready var saveTab = $Panel/saveTab
 
-@onready var upgradeCard = preload("res://assets/interactables/cassetteItems/upgradeCartridge.tscn")
 
 # basic vars
 
@@ -32,9 +33,10 @@ var saveTabNum: int = 0
 
 var currentUpgrade = 0
 
+func _ready() -> void:
+	upgradeTab.mainTerminal = mainTerminal
+
 func _process(_delta: float) -> void:
-	checkEmails()
-	
 	checkUnlocks()
 
 func _input(event: InputEvent) -> void:
@@ -64,6 +66,10 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("navDown") or event.is_action_pressed("back"):
 		chanceTab(1)
+	
+	if event.is_action_pressed("select"):
+		if activeTab == upgradeTab:
+			upgradeTab.buy()
 
 func setActiveTab(tabNumber):
 	if activeTab == null:
@@ -76,31 +82,12 @@ func setActiveTab(tabNumber):
 
 func chanceTab(value):
 	match activeTab:
-		emailTab:
-			emailTab.cycleEmail(value)
 		upgradeTab:
-			currentUpgrade += value
-			
-			if currentUpgrade < 0:
-				currentUpgrade = upgrades.size()-1
-			elif currentUpgrade > upgrades.size()-1:
-				currentUpgrade = 0
-			upgrades[currentUpgrade].grab_focus()
-
-func checkEmails():
-	match Globals.avalibleEmail:
-		0:
-			pass
-			#$Panel/emailTerminal/emailTab1.visible = true
-		1:
-			pass
-			#$Panel/emailTerminal/emailTab1.visible = true
-			#$Panel/emailTerminal/emailTab2.visible = true
-		2:
-			pass
-			#$Panel/emailTerminal/emailTab1.visible = true
-			#$Panel/emailTerminal/emailTab2.visible = true
-			#$Panel/emailTerminal/emailTab3.visible = true
+			upgradeTab.navigate(value)
+		emailTab:
+			emailTab.navigate(value)
+		guideTab:
+			guideTab.navigate(value)
 
 func checkUnlocks():
 	var i = upgrades.size()
@@ -109,70 +96,17 @@ func checkUnlocks():
 		if Globals.unlockArray[i] == 1:
 			upgrades[i].text = "Purchased!"
 
-func _on_email_tab_button_pressed() -> void:
+func _on_guides_tab_button_pressed() -> void:
 	setActiveTab(0)
 
-func _on_upgrade_tab_button_pressed() -> void:
+func _on_email_tab_button_pressed() -> void:
 	setActiveTab(1)
 
-func _on_achivement_tab_button_pressed() -> void:
+func _on_upgrade_tab_button_pressed() -> void:
 	setActiveTab(2)
 
-func _on_save_tab_button_pressed() -> void:
+func _on_achivement_tab_button_pressed() -> void:
 	setActiveTab(3)
 
-# upgrade Buttons
-
-func _on_process_1_pressed() -> void:
-	if Globals.unlockArray[0] == 0 and Globals.pointTotal >= 100:
-		Globals.unlockArray[0] = 1
-		Globals.pointTotal -= 100
-		
-		mainTerminal.spawnUpgrade(upgradeCard, "processUpgrade", 4)
-
-func _on_upload_1_pressed() -> void:
-	if Globals.unlockArray[1] == 0 and Globals.pointTotal >= 100:
-		Globals.unlockArray[1] = 1
-		Globals.pointTotal -= 100
-		
-		mainTerminal.spawnUpgrade(upgradeCard, "uploadUpgrade", 4)
-
-func _on_wipe_1_pressed() -> void:
-	if Globals.unlockArray[2] == 0 and Globals.pointTotal >= 100:
-		Globals.unlockArray[2] = 1
-		Globals.pointTotal -= 100
-		
-		mainTerminal.spawnUpgrade(upgradeCard, "wipeUpgrade", 4)
-
-func _on_process_2_pressed() -> void:
-	if Globals.unlockArray[3] == 0 and Globals.pointTotal >= 1000:
-		Globals.unlockArray[3] = 1
-		Globals.pointTotal -= 1000
-		
-		mainTerminal.spawnUpgrade(upgradeCard, "processUpgrade", 2)
-
-func _on_upload_2_pressed() -> void:
-	if Globals.unlockArray[4] == 0 and Globals.pointTotal >= 1000:
-		Globals.unlockArray[4] = 1
-		Globals.pointTotal -= 1000
-		
-		mainTerminal.spawnUpgrade(upgradeCard, "uploadUpgrade", 2)
-
-func _on_wipe_2_pressed() -> void:
-	if Globals.unlockArray[5] == 0 and Globals.pointTotal >= 1000:
-		Globals.unlockArray[5] = 1
-		Globals.pointTotal -= 1000
-		
-		mainTerminal.spawnUpgrade(upgradeCard, "wipeUpgrade", 2)
-
-func _on_food_1_pressed() -> void:
-	if Globals.unlockArray[6] == 0 and Globals.pointTotal >= 500:
-		Globals.unlockArray[6] = 1
-		Globals.pointTotal -= 500
-		
-		Globals.type2Consumables = true
-
-func _on_arcade_1_pressed() -> void:
-	if Globals.unlockArray[8] == 0 and Globals.pointTotal >= 250:
-		Globals.unlockArray[8] = 1
-		Globals.pointTotal -= 250
+func _on_save_tab_button_pressed() -> void:
+	setActiveTab(4)

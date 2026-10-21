@@ -21,6 +21,9 @@ class_name InteractableDynamic
 var placed: bool = false
 
 var fixRot: = false
+var alignRot: = false
+
+var alignTarget: Quaternion
 
 var slot
 
@@ -88,7 +91,9 @@ func moveTo(targetPosition: Vector3, delta: float, camPosition: Vector3) -> void
 	linear_velocity = direction * 10  # tune drag_speed, e.g. 10.0
 	freeze = false  # make sure freeze is off while moving
 	
-	if fixRot:
+	if alignRot:
+		quaternion = quaternion.slerp(alignTarget, delta * 5)
+	elif fixRot:
 		var lookDir = (camPosition - global_position).normalized()
 		var targetBasis = Basis.looking_at(lookDir, Vector3.UP)
 		quaternion = quaternion.slerp(targetBasis.get_rotation_quaternion(), delta * 5)

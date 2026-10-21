@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dku6lsi3mcvk7"]
+
+[ext_resource type="Script" uid="uid://c6q5n0vhe4mag" path="res://assets/player/UI/settingsTabScript.gd" id="1_4qgh1"]
+
+[node name="settingsTab" type="Panel" unique_id=2012195235]
+offset_right = 1000.0
+offset_bottom = 800.0
+script = ExtResource("1_4qgh1")
+
+[node name="textColor" type="Label" parent="." unique_id=1727885497]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 200.0
+text = "TEXT COLOR:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hoverColor" type="Label" parent="." unique_id=105832450]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 200.0
+offset_bottom = 400.0
+text = "HOVER COLOR:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="textRSlider" type="HSlider" parent="." unique_id=513882848]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 700.0
+offset_bottom = 100.0
+
+[node name="textGSlider" type="HSlider" parent="." unique_id=1984671311]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 700.0
+offset_bottom = 150.0
+
+[node name="textBSlider" type="HSlider" parent="." unique_id=651612986]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 150.0
+offset_right = 700.0
+offset_bottom = 200.0
+
+[node name="hoverRSlider" type="HSlider" parent="." unique_id=1606728077]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 250.0
+offset_right = 700.0
+offset_bottom = 300.0
+
+[node name="hoverGSlider" type="HSlider" parent="." unique_id=948726400]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 300.0
+offset_right = 700.0
+offset_bottom = 350.0
+
+[node name="hoverBSlider" type="HSlider" parent="." unique_id=1711903266]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 350.0
+offset_right = 700.0
+offset_bottom = 400.0
+
+[node name="hoverColorRec" type="ColorRect" parent="." unique_id=1807797634]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 250.0
+offset_right = 900.0
+offset_bottom = 400.0
+
+[node name="textColorRec" type="ColorRect" parent="." unique_id=2144212091]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 50.0
+offset_right = 900.0
+offset_bottom = 200.0

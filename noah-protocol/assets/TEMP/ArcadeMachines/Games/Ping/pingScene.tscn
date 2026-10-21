@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://c451bthbu4or"]
+
+[ext_resource type="Script" uid="uid://geygheu5x5u4" path="res://assets/TEMP/ArcadeMachines/Games/Ping/pingGlobal.gd" id="1_slsg8"]
+[ext_resource type="Texture2D" uid="uid://bk863b7osrpqu" path="res://assets/TEMP/ArcadeMachines/Games/Ping/pingAssets/PingBoard.png" id="1_tjtsp"]
+[ext_resource type="AudioStream" uid="uid://bbdlh2jt7u1e" path="res://assets/TEMP/ArcadeMachines/Games/Ping/pingAssets/sounds/pingM1BC.wav" id="2_lym2y"]
+[ext_resource type="Texture2D" uid="uid://t4bqmpwfpjvp" path="res://assets/TEMP/ArcadeMachines/Games/Ping/pingAssets/PingBoardBase.png" id="2_nitsu"]
+[ext_resource type="Texture2D" uid="uid://v3slj1mmjryr" path="res://assets/TEMP/ArcadeMachines/Games/Ping/pingAssets/PingBoardBoarder.png" id="3_qpu40"]
+[ext_resource type="PackedScene" uid="uid://dm8h2daoipwik" path="res://assets/TEMP/ArcadeMachines/Games/Ping/pingPaddle.tscn" id="4_qpu40"]
+[ext_resource type="PackedScene" uid="uid://di3yhtp5cvlud" path="res://assets/TEMP/ArcadeMachines/Games/Ping/scoreNumber.tscn" id="5_ncujs"]
+[ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="6_rqb2n"]
+[ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="7_n8tvo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nitsu"]
+size = Vector2(330, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8tvo"]
+size = Vector2(330, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lym2y"]
+size = Vector2(30, 240)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncujs"]
+shader = ExtResource("7_n8tvo")
+shader_parameter/screen_size = Vector2(16, 9)
+shader_parameter/screenSizeMultiplier = 1.0
+shader_parameter/brightness_boost = 5.0
+shader_parameter/bleed = 0.3
+shader_parameter/effect_strength = 0.10000000475
+shader_parameter/gap_strength = 0.5
+shader_parameter/scanline_strength = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_xjd4r"]
+size = Vector2(800, 600)
+center_offset = Vector3(400, 300, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n8tvo"]
+shader = ExtResource("6_rqb2n")
+shader_parameter/curvature = 7.0
+shader_parameter/vignette_strength = 0.25
+shader_parameter/vignette_power = 10.0
+shader_parameter/scanline_intensity = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ncujs"]
+size = Vector2(800, 600)
+center_offset = Vector3(400, 300, 0)
+
+[node name="pingScene" type="Control" unique_id=2130849551]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pingRoot" type="Node2D" parent="." unique_id=1479419134]
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_slsg8")
+
+[node name="audio" type="Node2D" parent="pingRoot" unique_id=2012224526]
+
+[node name="PingM1" type="AudioStreamPlayer" parent="pingRoot/audio" unique_id=1962298459]
+stream = ExtResource("2_lym2y")
+
+[node name="PingBoardBase" type="Sprite2D" parent="pingRoot" unique_id=925352334]
+position = Vector2(160, 120)
+texture = ExtResource("2_nitsu")
+
+[node name="PingBoard" type="Sprite2D" parent="pingRoot" unique_id=335665408]
+visible = false
+position = Vector2(160, 120)
+texture = ExtResource("1_tjtsp")
+
+[node name="bluePaddle" parent="pingRoot" unique_id=802651073 instance=ExtResource("4_qpu40")]
+position = Vector2(40, 125)
+
+[node name="redPaddle" parent="pingRoot" unique_id=675273172 instance=ExtResource("4_qpu40")]
+position = Vector2(280, 125)
+redPaddle = true
+isAi = true
+
+[node name="NWall" type="StaticBody2D" parent="pingRoot" unique_id=1672559358]
+position = Vector2(160, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pingRoot/NWall" unique_id=9568673]
+shape = SubResource("RectangleShape2D_nitsu")
+
+[node name="SWall" type="StaticBody2D" parent="pingRoot" unique_id=1501929467]
+position = Vector2(160, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pingRoot/SWall" unique_id=559518844]
+shape = SubResource("RectangleShape2D_n8tvo")
+
+[node name="goalA" type="Area2D" parent="pingRoot" unique_id=1317974289]
+position = Vector2(0, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pingRoot/goalA" unique_id=590468150]
+shape = SubResource("RectangleShape2D_lym2y")
+
+[node name="goalB" type="Area2D" parent="pingRoot" unique_id=56442672]
+position = Vector2(320, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pingRoot/goalB" unique_id=1585776889]
+shape = SubResource("RectangleShape2D_lym2y")
+
+[node name="score" type="Node2D" parent="pingRoot" unique_id=606128236]
+position = Vector2(160, 39)
+
+[node name="p2Score" parent="pingRoot/score" unique_id=1324701694 instance=ExtResource("5_ncujs")]
+position = Vector2(13, 0)
+redScores = true
+
+[node name="p1Score" parent="pingRoot/score" unique_id=1345743243 instance=ExtResource("5_ncujs")]
+position = Vector2(-13, 0)
+
+[node name="PingBoardBoarder" type="Sprite2D" parent="." unique_id=1424838429]
+position = Vector2(400, 300)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_qpu40")
+
+[node name="rgbSeperatorLayer" type="CanvasLayer" parent="." unique_id=680924591]
+visible = false
+
+[node name="rgbSeperator" type="MeshInstance2D" parent="rgbSeperatorLayer" unique_id=2024503236]
+material = SubResource("ShaderMaterial_ncujs")
+mesh = SubResource("QuadMesh_xjd4r")
+
+[node name="crtEffectLayer" type="CanvasLayer" parent="." unique_id=1225828342]
+
+[node name="crtShader" type="MeshInstance2D" parent="crtEffectLayer" unique_id=1986811957]
+material = SubResource("ShaderMaterial_n8tvo")
+mesh = SubResource("QuadMesh_ncujs")
+
+[connection signal="body_entered" from="pingRoot/goalA" to="pingRoot" method="_on_goal_a_body_entered"]
+[connection signal="body_entered" from="pingRoot/goalB" to="pingRoot" method="_on_goal_b_body_entered"]

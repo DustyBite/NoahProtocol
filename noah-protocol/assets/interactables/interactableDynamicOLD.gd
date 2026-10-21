@@ -38,11 +38,13 @@ func updateHoverMat():
 		baseMat = hoverMesh.get_surface_override_material(0)
 		hoverMat = hoverMesh.get_active_material(0).duplicate()
 		hoverMat.stencil_mode = 1
+		hoverMat.stencil_color = Globals.hoverColor
 	else:
 		for mesh in hoverMesh.get_children():
 			baseMatArray.append(mesh.get_surface_override_material(0))
 			var dupMat = mesh.get_active_material(0).duplicate()
 			dupMat.stencil_mode = 1
+			dupMat.stencil_color = Globals.hoverColor
 			hoverMatArray.append(dupMat)
 
 func hover(value):

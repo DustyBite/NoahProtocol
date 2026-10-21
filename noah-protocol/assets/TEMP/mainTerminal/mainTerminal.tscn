@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="2_h6sfg"]
 [ext_resource type="Material" uid="uid://873nptvltcdk" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SoftOrange.tres" id="2_qbiau"]
 [ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="3_120gq"]
+[ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="6_vtjgt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vtjgt"]
 shader = ExtResource("2_h6sfg")
@@ -67,9 +68,12 @@ size = Vector3(0.9, 0.7, 0.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_120gq"]
 size = Vector3(0.9, 0.7, 0.6)
 
-[node name="MainTerminal" type="Node3D" unique_id=105346542 node_paths=PackedStringArray("mesh")]
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+size = Vector3(0.1, 0.05, 0.1)
+
+[node name="MainTerminal" type="Node3D" unique_id=105346542 node_paths=PackedStringArray("hoverMesh")]
 script = ExtResource("1_120gq")
-mesh = NodePath("MeshInstance3D")
+hoverMesh = NodePath("MeshInstance3D")
 interactButton = "[ E ]"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1364369481]
@@ -134,3 +138,8 @@ collision_mask = 0
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D2" unique_id=436807850]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1.0209426, 0.009474881)
 shape = SubResource("BoxShape3D_120gq")
+
+[node name="newEmailIndicator" type="MeshInstance3D" parent="." unique_id=851817000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 1.5172142, 0.0361756)
+mesh = SubResource("BoxMesh_yf5fn")
+surface_material_override/0 = ExtResource("6_vtjgt")

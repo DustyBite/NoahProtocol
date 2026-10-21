@@ -19,13 +19,19 @@ func interact():
 		swapPallet()
 
 func spawnPallet():
-	print("spawn")
+	#print("spawn")
 	var spawnPal = palletScene.instantiate()
 	root.add_child(spawnPal)
 	spawnPal.global_transform = palletSpot.global_transform
 
 func swapPallet():
-	print("swap")
+	Globals.pointTotal += pallet.getTotalPoints()
+	
+	pallet.queue_free()
+	
+	await get_tree().create_timer(1.0).timeout
+	
+	spawnPallet()
 
 func checkPallet():
 	pallet = get_tree().get_first_node_in_group("pallet")

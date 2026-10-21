@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cw5n36b3i2pbg"]
 
 [ext_resource type="Script" uid="uid://b7pt8aog87qur" path="res://assets/player/player.gd" id="1_irka0"]
-[ext_resource type="PackedScene" uid="uid://d0b4kwrk0go2i" path="res://assets/player/pauseUi.tscn" id="2_rn675"]
+[ext_resource type="PackedScene" uid="uid://d0b4kwrk0go2i" path="res://assets/player/UI/pauseUi.tscn" id="2_rn675"]
 [ext_resource type="Script" uid="uid://2us806sde5ga" path="res://Globals/debugScripts/playerUiPanelScript.gd" id="3_d5dr7"]
 [ext_resource type="Shader" uid="uid://ddxnmur0gudl" path="res://assets/TEMP/overlays/crtShader.gdshader" id="3_t8m1s"]
 [ext_resource type="Shader" uid="uid://cgth4e6bigage" path="res://assets/TEMP/overlays/rgbSeperator.gdshader" id="4_tdhke"]
@@ -105,6 +105,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="pauseUi" parent="playerUi" unique_id=179495863 instance=ExtResource("2_rn675")]
+visible = false
 layout_mode = 0
 
 [node name="mainUi" type="Control" parent="playerUi" unique_id=1131172781]
@@ -188,6 +189,14 @@ script = ExtResource("3_d5dr7")
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 600.0
+
+[node name="ColorRect" type="ColorRect" parent="playerUi/mainUi" unique_id=1529944432]
+layout_mode = 0
+offset_left = 797.5
+offset_top = 447.5
+offset_right = 802.5
+offset_bottom = 452.5
+mouse_filter = 2
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1963837097]
 replication_config = SubResource("SceneReplicationConfig_rn675")

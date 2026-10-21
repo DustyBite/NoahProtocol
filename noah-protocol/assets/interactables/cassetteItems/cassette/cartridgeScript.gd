@@ -14,6 +14,9 @@ extends InteractableDynamic
 
 var cardAge: float = 0
 
+var caseColor: Color
+var handleColor: Color
+
 var status: String = "loaded"
 
 var blinkFlip: bool = true
@@ -51,11 +54,14 @@ func getRandomAge():
 func applyCardVisuals():
 	
 	for mat in baseMaterial:
-		var caseColor = caseColorNew.lerp(caseColorAged, cardAge)
+		if caseColor == null or caseColor == Color():
+			caseColor = caseColorNew.lerp(caseColorAged, cardAge)
 		mat.set_shader_parameter("caseColor", caseColor)
-		var handleColorBase = Color(randf_range(0.5, 1.0), randf_range(0.5, 1.0), randf_range(0.5, 1.0))
-		var handleColorAged = handleColorBase.lerp(Color(0.6, 0.5, 0.2), cardAge * 0.6)
-		mat.set_shader_parameter("handleColor", handleColorAged)
+		
+		if handleColor == null or handleColor == Color():
+			handleColor = Color(randf_range(0.5, 1.0), randf_range(0.5, 1.0), randf_range(0.5, 1.0))
+			handleColor = handleColor.lerp(Color(0.6, 0.5, 0.2), cardAge * 0.6)
+		mat.set_shader_parameter("handleColor", handleColor)
 
 func getPoints() -> int:
 	match status:

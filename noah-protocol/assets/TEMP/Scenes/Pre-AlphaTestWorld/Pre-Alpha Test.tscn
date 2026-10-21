@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://4p2fvjs4q43o" path="res://assets/TEMP/mainTerminal/mainTerminal.tscn" id="15_bmyng"]
 [ext_resource type="PackedScene" uid="uid://bgfk47tea34py" path="res://assets/TEMP/ArcadeMachines/arcadeMachine.tscn" id="16_tq6an"]
 [ext_resource type="PackedScene" uid="uid://ddn2vmru6xuh8" path="res://assets/TEMP/ArcadeMachines/Games/Snake/Scenes/board.tscn" id="17_7eint"]
+[ext_resource type="PackedScene" uid="uid://c451bthbu4or" path="res://assets/TEMP/ArcadeMachines/Games/Ping/pingScene.tscn" id="17_rllff"]
+[ext_resource type="PackedScene" uid="uid://c16j83dp2ptx0" path="res://assets/TEMP/ducks/duck.tscn" id="18_jrnnp"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 size = Vector2(6, 10)
@@ -128,7 +130,7 @@ area_size = Vector2(1, 5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2)
 
 [node name="mainMonitor" parent="room" unique_id=949887311 instance=ExtResource("6_pwkhq")]
-transform = Transform3D(-0.75, -9.870114e-09, -1.1281591e-07, 0, 0.747146, -0.065366805, 1.13246855e-07, -0.065366805, -0.747146, 0, 3.8522058, 5)
+transform = Transform3D(-0.75, -9.870114e-09, -1.1281591e-07, 0, 0.747146, -0.065366805, 1.13246855e-07, -0.065366805, -0.747146, 0, 3.6564603, 5)
 
 [node name="spawning" type="Node3D" parent="room" unique_id=537585541]
 script = ExtResource("8_usvf2")
@@ -146,20 +148,22 @@ interactItem = NodePath("..")
 [node name="drinkVM" parent="room" unique_id=2074133122 instance=ExtResource("10_te081")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.65, 0, 2)
 consumableScene = ExtResource("11_dj8e6")
+consumableSet = "drink"
 mainText = "DRINK MACHINE"
 typeALabel1 = "BLAND E-DRINK"
 typeALabel2 = "FREE"
 typeBLabel1 = "PREMIUM E-DRINK"
-typeBLabel2 = "10 Points"
+typeBLabel2 = "25 Points"
 
 [node name="foodVM" parent="room" unique_id=1786360286 instance=ExtResource("10_te081")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.65, 0, 0)
 consumableScene = ExtResource("12_ufcqu")
+consumableSet = "food"
 mainText = "FOOD MACHINE"
 typeALabel1 = "BLAND FOOD-PACK"
 typeALabel2 = "FREE"
 typeBLabel1 = "PREMIUM FOOD-PACK"
-typeBLabel2 = "10 Points"
+typeBLabel2 = "25 Points"
 
 [node name="trashCan" parent="room" unique_id=467985966 instance=ExtResource("13_errtw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 4)
@@ -174,11 +178,26 @@ deliverySpawner = NodePath("../spawning/cargoSpawner")
 [node name="pingMachine" parent="room" unique_id=1902991594 instance=ExtResource("16_tq6an")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, 4.5)
 gameLabel = "PING"
+gameScene = ExtResource("17_rllff")
 
 [node name="snekMachine" parent="room" unique_id=1830079195 instance=ExtResource("16_tq6an")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4.5)
 gameLabel = "SNEK"
 gameScene = ExtResource("17_7eint")
+
+[node name="ducks" type="Node3D" parent="room" unique_id=210278004]
+
+[node name="duck1" parent="room/ducks" unique_id=1570052016 instance=ExtResource("18_jrnnp")]
+transform = Transform3D(0.9528836, 0, 0.3033361, 0, 1, 0, -0.3033361, 0, 0.9528836, 2.8933365, 1.6104541, -1.2549894)
+
+[node name="duck2" parent="room/ducks" unique_id=215982322 instance=ExtResource("18_jrnnp")]
+transform = Transform3D(0.7391386, 0, -0.67355335, 0, 1, 0, 0.67355335, 0, 0.7391386, 2.7972772, 0.110630184, 2.7433434)
+
+[node name="duck3" parent="room/ducks" unique_id=734933677 instance=ExtResource("18_jrnnp")]
+transform = Transform3D(0.99831486, 0, 0.058029383, -0.0038804882, 0.9977616, 0.0667584, -0.05789949, -0.06687109, 0.9960802, 0.81473714, 4.8695602, 4.828665)
+
+[node name="duck4" parent="room/ducks" unique_id=2006734522 instance=ExtResource("18_jrnnp")]
+transform = Transform3D(-0.91965437, 0, -0.3927287, -1.8626451e-09, 1, 0, 0.3927287, 0, -0.91965437, -2.6573656, 2.105051, -0.679227)
 
 [node name="enviroment" type="Node3D" parent="." unique_id=1903319439]
 

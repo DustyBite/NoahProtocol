@@ -1,12 +1,15 @@
 extends ItemSlot
 
-func loadItem(card: PackedScene, doSpawn: bool, status = null) -> void:
+func loadCard(card: PackedScene, doSpawn: bool, status, caseColor: Color, handleColor: Color) -> void:
 	if doSpawn:
 		var I = card.instantiate()
 		slotItem(I)
 		if status != null:
 			I.status = status
+			I.caseColor = caseColor
+			I.handleColor = handleColor
+			I.applyCardVisuals()
 
-func deloadItem() -> void:
+func deloadCard() -> void:
 	if slottedItem != null:
 		slottedItem.queue_free()

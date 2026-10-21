@@ -71,6 +71,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		return
 	if "type" in body and body.type != slotType:
 		return
+	if "alignRot" in body and "alignTarget" in body:
+		body.alignRot = true
+		body.alignTarget = Quaternion(self.global_transform.basis.orthonormalized())
+	
 	if "placable" in body and body.placable:
 		body.slot = self
 		ghostMesh.visible = true
@@ -79,6 +83,11 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	ghostMesh.visible = false
 	if "type" in body and body.type != slotType:
 		return
+	
+	if "alignRot" in body and "alignTarget" in body:
+		body.alignRot = false
+		#body.alignTarget = Vector3
+	
 	if "placable" in body and body.placable:
 		if slottedItem != body and body.slot == self:  # if its not slotted here, clear the reference
 			body.slot = null

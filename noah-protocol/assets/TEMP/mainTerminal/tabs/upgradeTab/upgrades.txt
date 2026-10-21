@@ -1,0 +1,76 @@
+id: process_1
+name: PROCESS UPGRADE I
+cost: 100
+max: 1
+effect: spawnUpgrade
+type: processUpgrade
+value: 2
+---
+Gives you a card that you can use to upgrade the processing speed to be double the speed
+===
+id: upload_1
+name: UPLOAD UPGRADE I
+cost: 100
+max: 1
+effect: spawnUpgrade
+type: uploadUpgrade
+value: 2
+---
+Gives you a card that you can use to upgrade the upload speed to be double the speed
+===
+id: wipe_1
+name: WIPE UPGRADE I
+cost: 100
+max: 1
+effect: spawnUpgrade
+type: wipeUpgrade
+value: 2
+---
+Gives you a card that you can use to upgrade the wiping speed to be double the speed
+===
+id: process_2
+name: PROCESS UPGRADE II
+cost: 1000
+max: 1
+effect: spawnUpgrade
+type: processUpgrade
+value: 4
+---
+Gives you a card that you can use to upgrade the processing speed to be four times the speed
+===
+id: upload_2
+name: UPLOAD UPGRADE II
+cost: 1000
+max: 1
+effect: spawnUpgrade
+type: uploadUpgrade
+value: 4
+---
+Gives you a card that you can use to upgrade the uploading speed to be four times the speed
+===
+id: wipe_2
+name: WIPE UPGRADE II
+cost: 1000
+max: 1
+effect: spawnUpgrade
+type: wipeUpgrade
+value: 4
+---
+Gives you a card that you can use to upgrade the wiping speed to be four times the speed
+===
+id: food_1
+name: TIER 2 CONSUMABLES
+cost: 500
+max: 1
+effect: flag
+flag: type2Consumables
+---
+Unlocks the ability to purchase tier 2 food and drinks, which gives better refil
+===
+id: arcade_1
+name: ARCADE ACCESS
+cost: 250
+max: 1
+effect: none
+---
+Unlocks PING

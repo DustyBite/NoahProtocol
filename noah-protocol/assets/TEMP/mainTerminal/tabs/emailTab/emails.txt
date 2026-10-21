@@ -1,0 +1,60 @@
+id: welcome
+from: IAP-ADMIN
+subject: WELCOME
+unlock: start
+
+---
+
+	Welcome to the IAP Training Simulation. Your task is simple, Process the data cards and purchase upgrades and objects that make your processing more efficient.
+
+	Your first task is to process 6 data cards. Get started by Spawning a pallet of crates by using the button on the wall.
+
+===
+
+id: quotaNotice
+from: IAP-ADMIN
+subject: QUOTA NOTICE
+unlock: sixCard
+
+---
+
+	Good job on processing your first set of cards. This should have given you enough points that you can now start aquirming upgrades through the upgrades tab in this main terminal.
+
+	Continue processing cards and managing your personal stats.
+
+===
+
+id: congratulations
+from: @DWilson
+subject: Congratulations
+unlock: hundredCard
+
+---
+
+	Congratulations on processing 100 cards. This concludes the training module. Please feel free to reference back to this at any time should you feel lost or confused.
+	That is all
+- Director D. Wilson
+
+===
+
+id: duck1
+from: I-CORP
+subject: DUCKS
+unlock: start
+
+---
+
+	Somehow, it seems that the duck entity we originally discovered back in the 40's has spread its reach even to the most isolated locations. This includes but is not limited to, All Icarus Corp locations, Employee homes, and even the Training simulations. If found, please collect and return to Management at your earliest conveience
+
+===
+
+id: duck2
+from: I-CORP
+subject: RE: DUCKS
+unlock: duck2
+
+---
+
+All of the ducks have been found in the simultor, and returned to management. Please enjoy a complimentary 500 points for your service.
+
+===

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://djkwd8sf0xdhh"]
+
+[ext_resource type="Script" uid="uid://geygheu5x5u4" path="res://Ping/pingGlobal.gd" id="1_ibtt8"]
+[ext_resource type="PackedScene" uid="uid://dm8h2daoipwik" path="res://Ping/pingPaddle.tscn" id="2_w8l8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slsg8"]
+size = Vector2(1600, 80)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qpu40"]
+size = Vector2(1600, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqtgr"]
+size = Vector2(1600, 40)
+
+[sub_resource type="QuadMesh" id="QuadMesh_slsg8"]
+size = Vector2(1600, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpu40"]
+size = Vector2(100, 900)
+
+[node name="PingRoot" type="Node2D" unique_id=568584483]
+script = ExtResource("1_ibtt8")
+
+[node name="paddle1" parent="." unique_id=802651073 instance=ExtResource("2_w8l8w")]
+position = Vector2(200, 470)
+
+[node name="paddle2" parent="." unique_id=1172184499 instance=ExtResource("2_w8l8w")]
+position = Vector2(1400, 470)
+is_ai = true
+ai_difficulty = 2
+
+[node name="NWall" type="StaticBody2D" parent="." unique_id=1506412841]
+position = Vector2(800, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NWall" unique_id=1200347437]
+shape = SubResource("RectangleShape2D_slsg8")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="NWall" unique_id=55249055]
+mesh = SubResource("QuadMesh_qpu40")
+
+[node name="SWall" type="StaticBody2D" parent="." unique_id=1145509947]
+position = Vector2(800, 880)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SWall" unique_id=1572915308]
+shape = SubResource("RectangleShape2D_pqtgr")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SWall" unique_id=688383249]
+mesh = SubResource("QuadMesh_slsg8")
+
+[node name="goalA" type="Area2D" parent="." unique_id=1691016953]
+position = Vector2(0, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goalA" unique_id=1747082810]
+shape = SubResource("RectangleShape2D_qpu40")
+
+[node name="goalB" type="Area2D" parent="." unique_id=1560554033]
+position = Vector2(1600, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goalB" unique_id=316440002]
+shape = SubResource("RectangleShape2D_qpu40")
+
+[node name="score" type="Node2D" parent="." unique_id=657911850]
+position = Vector2(800, 130)
+
+[node name="playerOneScore" type="Label" parent="score" unique_id=633754828]
+offset_left = -90.0
+offset_top = -75.0
+offset_right = -30.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 100
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="playerTwoScore" type="Label" parent="score" unique_id=554965147]
+offset_left = 30.0
+offset_top = -75.0
+offset_right = 90.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 100
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="goalA" to="." method="_on_goal_a_body_entered"]
+[connection signal="body_entered" from="goalB" to="." method="_on_goal_b_body_entered"]

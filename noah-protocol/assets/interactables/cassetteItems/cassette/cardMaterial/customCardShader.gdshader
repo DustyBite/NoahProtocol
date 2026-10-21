@@ -13,8 +13,8 @@ uniform sampler2D indicAFilter : filter_nearest;
 uniform sampler2D indicBFilter : filter_nearest;
 
 group_uniforms Colors;
-uniform vec4 handleColor : source_color;
-uniform vec4 caseColor : source_color;
+uniform vec4 handleColor : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 caseColor : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform vec4 indicAColor : source_color;
 uniform vec4 indicBColor : source_color;
 

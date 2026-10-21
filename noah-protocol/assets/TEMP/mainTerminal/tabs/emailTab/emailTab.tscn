@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://clx5o28qonrxg"]
+
+[ext_resource type="Script" uid="uid://citcwlq74pbip" path="res://assets/TEMP/mainTerminal/tabs/emailTab/emailTabScript.gd" id="1_bd6ar"]
+
+[node name="emailTab" type="Panel" unique_id=2050147221]
+offset_right = 380.0
+offset_bottom = 180.0
+script = ExtResource("1_bd6ar")
+
+[node name="lineLabel" type="Label" parent="." unique_id=220976099]
+layout_mode = 0
+offset_left = 185.0
+offset_right = 195.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "|
+|
+|
+|
+|
+|
+|
+|
+|
+|"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1908963196]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 165.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "> INBOX"
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="." unique_id=1615871531]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 30.0
+offset_right = 165.0
+offset_bottom = 170.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=699058337]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 170.0
+focus_mode = 2
+
+[node name="fromLabel" type="Label" parent="VBoxContainer" unique_id=493527403]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "FROM"
+
+[node name="subjectLabel" type="Label" parent="VBoxContainer" unique_id=1935078393]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "SUBJECT"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=1463736007]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true

@@ -1,10 +1,13 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://c2fjbptveu302"]
 
-[ext_resource type="Texture2D" uid="uid://djatjge132da" path="res://DevAssets/Materials/PalletOne/Textures/DT_SpringGreen.png" id="1_2q0g4"]
+[ext_resource type="Texture2D" uid="uid://bq7nrwnjabgeh" path="res://DevAssets/Materials/PalletOne/Textures/DT_Green.png" id="1_7bp7d"]
 
 [resource]
 transparency = 1
-albedo_color = Color(1, 1, 1, 0.19607843)
-albedo_texture = ExtResource("1_2q0g4")
+albedo_color = Color(1, 1, 1, 0.39215687)
+albedo_texture = ExtResource("1_7bp7d")
+emission_enabled = true
+emission_energy_multiplier = 0.5
+emission_texture = ExtResource("1_7bp7d")
 uv1_triplanar = true
 texture_filter = 0

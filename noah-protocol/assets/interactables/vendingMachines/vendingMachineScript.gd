@@ -1,8 +1,11 @@
 extends Node
 
+# Enum
+
 # Export var
 
 @export var consumableScene : PackedScene
+@export_enum("food", "drink") var consumableSet: String
 
 @export_group("Text")
 @export var mainText: String
@@ -19,7 +22,10 @@ extends Node
 
 # Basic var
 
+var worldRoot
+
 func _ready() -> void:
+	worldRoot = get_tree().current_scene
 	updateDisplay()
 
 func _process(_delta: float) -> void:
@@ -57,6 +63,17 @@ func updateText(label, text):
 	label.text = text
 
 func interactA():
+	if consumableSet == "drink":
+		if worldRoot.maxFreeDrink > 0:
+			worldRoot.maxFreeDrink -= 1
+		else:
+			return
+	elif consumableSet == "food":
+		if worldRoot.maxFreeFood > 0:
+			worldRoot.maxFreeFood -= 1
+		else:
+			return
+	
 	var disCon = consumableScene.instantiate()
 	var root = get_tree().current_scene
 	
@@ -67,8 +84,10 @@ func interactA():
 	disCon.global_position = spawnSpot.global_position
 
 func interactB():
-	if !Globals.type2Consumables:
+	if !Globals.type2Consumables or Globals.pointTotal <= 25:
 		return
+	
+	Globals.pointTotal -= 25
 	
 	var disCon = consumableScene.instantiate()
 	var root = get_tree().current_scene

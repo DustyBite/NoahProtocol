@@ -1,0 +1,97 @@
+id: example
+title: DEV EXAMPLE
+image: res://DevAssets/Materials/PalletOne/Textures/DT_Azure.png
+unlock: Dev
+---
+
+This is just the exmaple text for guides. The player should never see this
+
+===
+
+id: objectHandleing
+title: HANDELING OBJECTS
+image: res://DevAssets/Materials/PalletOne/Textures/DT_Brown.png
+unlock: start
+---
+
+Object manipulation is an important part of this simulation. To pick up an object:
+- look at the object till it the outline appears.
+- Press and hold [left mouse button]
+- Drag object around.
+- pressing and holding [Right mouse button] will reset the objects orientation.
+
+===
+
+id: sanity
+title: SANITY
+image: res://DevAssets/Materials/PalletOne/Textures/DT_BrightRed.png
+unlock: start
+---
+
+It is important to maintain your Sanity while performing your tasks. here are some suggestions to maintaining your sanity levels:
+- Playing arcade games helps refil your sanity! take frequent breaks to play some Snek, and contact your manager about aquiring more arcade machines!
+
+===
+
+id: energy
+title: ENERGY
+image: res://DevAssets/Materials/PalletOne/Textures/DT_Yellow.png
+unlock: start
+---
+
+It is important to maintain your energy while performing your tasks. here are some suggestions to maintaining your energy levels:
+- Energy drinks are provided from the vending machine. 2 per day limit!
+- Sleep When needed. A cot or bed will always be avalible
+
+===
+
+id: hunger
+title: HUNGER
+image: res://DevAssets/Materials/PalletOne/Textures/DT_White.png
+unlock: start
+---
+
+It is important to maintain your hunger while performing your tasks. here are some suggestions to maintaining your hunger levels:
+- Food packets are provided from the vending machine. 2 per day limit!
+
+===
+
+id: cassetteObject
+title: PSU CASSETTE
+image: res://DevAssets/Materials/PalletOne/Textures/DT_Green.png
+unlock: start
+---
+
+The PSU Cassette cards are the main objects you will be processing
+- The front indicator light (Non blinking light) shows the status of the card.
+Green: Ready to be processed
+Orange: Mid processing
+Blue: Fully processed
+Red: Broken, unable to be processed.
+
+===
+
+id: crateObject
+title: PSU CRATE
+image: res://DevAssets/Materials/PalletOne/Textures/DT_Magenta.png
+unlock: start
+---
+
+The PSU crate holds 6 cards. Some information:
+- The crate will lock in place when the lid is opened, to move the crate around, keep the lid closed.
+
+===
+
+id: astral
+title: ASTRAL
+image: res://DevAssets/Materials/PalletOne/Textures/DT_Magenta.png
+unlock: astral
+---
+
+I've come to make an announcement: Astral's a bitch-ass motherfucker, he pissed on my fucking wife. That's right, he took his toaster-fuckin' dick out and he pissed on my fucking wife, and he said his dick was "THIS BIG," and I said "that's disgusting," so I'm making a callout post on my Twitter.com: Astral, you've got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like.
+
+[Explosion sounds] That's right, baby. All points, no quills, no pillows — look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the Earth. That's right, this is what you get: MY SUPER LASER PISS!! Except I'm not gonna piss on the Earth, I'm gonna go higher; I'M PISSING ON THE MOON! How do you like that, Obama?! I PISSED ON THE MOON, YOU IDIOT!
+
+You have twenty-three hours before the piss D R O P L E T S hit the fucking Earth, now get outta my fucking sight, before I piss on you too!
+
+===

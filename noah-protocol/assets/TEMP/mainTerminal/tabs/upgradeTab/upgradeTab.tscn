@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://kn3pgmmldc6m"]
+
+[ext_resource type="Script" uid="uid://c5re6sk8d1yx6" path="res://assets/TEMP/mainTerminal/tabs/upgradeTab/upgradeTabScript.gd" id="1_v6m60"]
+
+[node name="upgradeTab" type="Panel" unique_id=2050147221]
+offset_right = 380.0
+offset_bottom = 180.0
+script = ExtResource("1_v6m60")
+
+[node name="lineLabel" type="Label" parent="." unique_id=1664791135]
+layout_mode = 0
+offset_left = 185.0
+offset_right = 195.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "|
+|
+|
+|
+|
+|
+|
+|
+|
+|"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1455310117]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 165.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "> UPGRADES"
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="." unique_id=1997896617]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 30.0
+offset_right = 165.0
+offset_bottom = 170.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=322699381]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 170.0
+focus_mode = 2
+
+[node name="fromLabel" type="Label" parent="VBoxContainer" unique_id=2056923129]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "FROM"
+
+[node name="subjectLabel" type="Label" parent="VBoxContainer" unique_id=1685933116]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "SUBJECT"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=413318527]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true

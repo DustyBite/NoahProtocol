@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://d0b4kwrk0go2i"]
 
-[ext_resource type="Script" uid="uid://bqgufvduppbmd" path="res://assets/player/pauseUiScript.gd" id="1_p6hx7"]
+[ext_resource type="Script" uid="uid://bqgufvduppbmd" path="res://assets/player/UI/pauseUiScript.gd" id="1_0tk2c"]
+[ext_resource type="PackedScene" uid="uid://dku6lsi3mcvk7" path="res://assets/player/UI/settingsTab.tscn" id="2_1m82w"]
 
 [node name="pauseUi" type="Control" unique_id=179495863]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_p6hx7")
+script = ExtResource("1_0tk2c")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="." unique_id=2134111105]
@@ -18,18 +18,27 @@ offset_bottom = 900.0
 [node name="RETURN" type="Button" parent="Panel" unique_id=1928962391]
 process_mode = 3
 layout_mode = 0
-offset_left = 162.0
-offset_top = 108.0
-offset_right = 499.0
-offset_bottom = 257.0
+offset_left = 100.0
+offset_top = 65.0
+offset_right = 400.0
+offset_bottom = 215.0
 text = "RETURN"
+
+[node name="SETTINGS" type="Button" parent="Panel" unique_id=1072380208]
+process_mode = 3
+layout_mode = 0
+offset_left = 100.0
+offset_top = 265.0
+offset_right = 400.0
+offset_bottom = 415.0
+text = "SETTINGS"
 
 [node name="MAINMENU" type="Button" parent="Panel" unique_id=1333164205]
 layout_mode = 0
-offset_left = 166.0
-offset_top = 490.0
-offset_right = 503.0
-offset_bottom = 639.0
+offset_left = 100.0
+offset_top = 465.0
+offset_right = 400.0
+offset_bottom = 615.0
 text = "MAIN MENU"
 
 [node name="SAVE" type="Button" parent="Panel" unique_id=1842125378]
@@ -52,13 +61,22 @@ text = "LOAD"
 
 [node name="QUITGAME" type="Button" parent="Panel" unique_id=306728647]
 layout_mode = 0
-offset_left = 172.0
-offset_top = 672.0
-offset_right = 509.0
-offset_bottom = 821.0
+offset_left = 100.0
+offset_top = 665.0
+offset_right = 400.0
+offset_bottom = 815.0
 text = "QUIT GAME"
 
+[node name="settingsTab" parent="Panel" unique_id=2012195235 instance=ExtResource("2_1m82w")]
+visible = false
+layout_mode = 0
+offset_left = 500.0
+offset_top = 50.0
+offset_right = 1547.0
+offset_bottom = 852.0
+
 [connection signal="pressed" from="Panel/RETURN" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Panel/SETTINGS" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Panel/MAINMENU" to="." method="_on_mainmenu_pressed"]
 [connection signal="pressed" from="Panel/SAVE" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Panel/LOAD" to="." method="_on_load_pressed"]

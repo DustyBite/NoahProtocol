@@ -24,8 +24,9 @@ var score
 @onready var body: Node2D = $Body
 @onready var body_segment = preload("res://assets/TEMP/ArcadeMachines/Games/Snake/Scenes/body_segment.tscn")
 
-func _ready():
+func start():
 	# variable setup
+	start_direction = directions.values().pick_random()
 	current_direction = start_direction
 	current_length = start_length
 	alive = false
@@ -39,6 +40,7 @@ func _ready():
 	# places the head. note that posision is the center of the object
 	# in the 2d scene, the snake object is offset to 8,8 to place it properly
 	# anything that changes an objects position relies on this
+	start_pos = Vector2((randi() % (board.board_size - 8) + 4), (randi() % (board.board_size - 8) + 4))
 	current_head_pos = start_pos
 	head.position = start_pos * 16
 	occupied_positions.append(current_head_pos)
@@ -74,8 +76,12 @@ func _ready():
 				distance_from_head += Vector2(1, 0)
 				segment.move_to(start_pos + distance_from_head)
 				occupied_positions.append(start_pos + distance_from_head)
-	
-	
+
+func reset():
+	for segment in body.get_children():
+		segment.queue_free()
+	occupied_positions.clear()
+	return
 
 func _process(delta: float) -> void:
 	# moves the snake every move_delay seconds while the game is active
@@ -89,6 +95,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	# input processing
 	if event.is_action_pressed("interact") and not game_active:
+		board.start_prompt.hide()
 		start_game()
 	if not alive:
 		return

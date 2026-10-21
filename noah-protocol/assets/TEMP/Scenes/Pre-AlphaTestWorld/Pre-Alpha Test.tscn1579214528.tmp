@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://c75xog731djh0"]
+
+[ext_resource type="Script" uid="uid://bgnbl47a05wp6" path="res://Globals/worldScript.gd" id="1_jfim8"]
+[ext_resource type="PackedScene" uid="uid://cw5n36b3i2pbg" path="res://assets/player/player.tscn" id="2_dgj22"]
+[ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="2_epc50"]
+[ext_resource type="Material" uid="uid://r6cd4bcr7v5j" path="res://DevAssets/Materials/PalletOne/DM_Black.tres" id="3_c5wij"]
+[ext_resource type="Material" uid="uid://pvedlhfunyar" path="res://DevAssets/Materials/PalletOne/DM_White.tres" id="4_epc50"]
+[ext_resource type="VoxelGIData" uid="uid://c5m4laxg6vmvb" path="res://assets/TEMP/Scenes/Pre-AlphaTestWorld/Pre-Alpha Test.VoxelGI_data.res" id="5_epc50"]
+[ext_resource type="PackedScene" uid="uid://c6hgq84ngi0ss" path="res://assets/processingStation/processingStation.tscn" id="6_c5wij"]
+[ext_resource type="PackedScene" uid="uid://hcfdh453gt1c" path="res://assets/mainMonitor/mainMonitor.tscn" id="6_pwkhq"]
+[ext_resource type="PackedScene" uid="uid://bh8ed2i5b7ewc" path="res://assets/interactables/button/button.tscn" id="8_jfim8"]
+[ext_resource type="Script" uid="uid://juuoowoqksm3" path="res://assets/TEMP/Scenes/Pre-AlphaTestWorld/TempShit/spawnerTemp.gd" id="8_usvf2"]
+[ext_resource type="PackedScene" uid="uid://boj12aj5kcwk5" path="res://assets/interactables/vendingMachines/vendingMachine.tscn" id="10_te081"]
+[ext_resource type="PackedScene" uid="uid://dbcutms64howc" path="res://assets/interactables/consumables/eDrink.tscn" id="11_dj8e6"]
+[ext_resource type="PackedScene" uid="uid://bni75vkdf1c86" path="res://assets/interactables/consumables/packFood.tscn" id="12_ufcqu"]
+[ext_resource type="PackedScene" uid="uid://c2ehxgywv6fp1" path="res://assets/TEMP/trashCan/trashCan.tscn" id="13_errtw"]
+[ext_resource type="PackedScene" uid="uid://c0x6xtnr1kbt4" path="res://assets/TEMP/bed/bed.tscn" id="14_3vp2f"]
+[ext_resource type="PackedScene" uid="uid://4p2fvjs4q43o" path="res://assets/TEMP/mainTerminal/mainTerminal.tscn" id="15_bmyng"]
+[ext_resource type="PackedScene" uid="uid://bgfk47tea34py" path="res://assets/TEMP/ArcadeMachines/arcadeMachine.tscn" id="16_tq6an"]
+[ext_resource type="PackedScene" uid="uid://ddn2vmru6xuh8" path="res://assets/TEMP/ArcadeMachines/Games/Snake/Scenes/board.tscn" id="17_7eint"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+size = Vector2(6, 10)
+
+[sub_resource type="QuadMesh" id="QuadMesh_dgj22"]
+size = Vector2(10, 5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0ndc7"]
+size = Vector2(6, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(6.1, 0.1, 10.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pi36s"]
+size = Vector3(5.1, 0.1, 10.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epc50"]
+size = Vector3(5.1, 0.1, 6.1)
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 4
+ambient_light_source = 1
+reflected_light_source = 1
+ssil_enabled = true
+ssil_intensity = 0.1
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+
+[node name="root" type="Node3D" unique_id=1017047254]
+script = ExtResource("1_jfim8")
+devMode = true
+
+[node name="player" parent="." unique_id=1774373292 node_paths=PackedStringArray("worldRoot") instance=ExtResource("2_dgj22")]
+worldRoot = NodePath("..")
+
+[node name="room" type="Node3D" parent="." unique_id=1620108555]
+
+[node name="mesh" type="Node3D" parent="room" unique_id=1559012173]
+
+[node name="floor" type="MeshInstance3D" parent="room/mesh" unique_id=1435368687]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+material_override = ExtResource("2_epc50")
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="ceiling" type="MeshInstance3D" parent="room/mesh" unique_id=774092032]
+transform = Transform3D(-1, 3.821371e-15, -8.742278e-08, 8.742278e-08, 4.371139e-08, -1, 0, -1, -4.371139e-08, 0, 5, 0)
+material_override = ExtResource("3_c5wij")
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="eWall" type="MeshInstance3D" parent="room/mesh" unique_id=1908369374]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 2.5, 0)
+material_override = ExtResource("4_epc50")
+mesh = SubResource("QuadMesh_dgj22")
+
+[node name="wWall" type="MeshInstance3D" parent="room/mesh" unique_id=2018321538]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -3, 2.5, 0)
+material_override = ExtResource("4_epc50")
+mesh = SubResource("QuadMesh_dgj22")
+
+[node name="sWall" type="MeshInstance3D" parent="room/mesh" unique_id=1508260562]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 0, 2.5, 5)
+material_override = ExtResource("4_epc50")
+mesh = SubResource("QuadMesh_0ndc7")
+
+[node name="nWall" type="MeshInstance3D" parent="room/mesh" unique_id=963662924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -5)
+material_override = ExtResource("4_epc50")
+mesh = SubResource("QuadMesh_0ndc7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="room" unique_id=1800111118]
+
+[node name="floor" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=1759403207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="ceiling" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=399618527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.05, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="eWall" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=730962340]
+transform = Transform3D(0, 1.0000001, 0, -1.0000001, 0, 0, 0, 0, 1, 3.05, 2.5, 0)
+shape = SubResource("BoxShape3D_pi36s")
+
+[node name="wWall" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=91133287]
+transform = Transform3D(0, 1.0000001, 0, -1.0000001, 0, 0, 0, 0, 1, -3.05, 2.5, 0)
+shape = SubResource("BoxShape3D_pi36s")
+
+[node name="sWall" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=374819758]
+transform = Transform3D(0, -4.3711392e-08, 1, -1.0000001, 0, 0, 0, -1.0000001, -4.371139e-08, 0, 2.5, 5.05)
+shape = SubResource("BoxShape3D_epc50")
+
+[node name="nWall" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=1236352956]
+transform = Transform3D(0, -4.3711392e-08, 1, -1.0000001, 0, 0, 0, -1.0000001, -4.371139e-08, 0, 2.5, -5.05)
+shape = SubResource("BoxShape3D_epc50")
+
+[node name="lights" type="Node3D" parent="room" unique_id=1582076924]
+
+[node name="AreaLight3D" type="AreaLight3D" parent="room/lights" unique_id=778314150]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 4.95, 0)
+light_energy = 20.0
+shadow_enabled = true
+area_range = 6.0
+area_attenuation = 2.0
+area_size = Vector2(1, 5)
+
+[node name="processingStation" parent="room" unique_id=1748344850 instance=ExtResource("6_c5wij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2)
+
+[node name="mainMonitor" parent="room" unique_id=949887311 instance=ExtResource("6_pwkhq")]
+transform = Transform3D(-0.75, -9.870114e-09, -1.1281591e-07, 0, 0.747146, -0.065366805, 1.13246855e-07, -0.065366805, -0.747146, 0, 3.8522058, 5)
+
+[node name="spawning" type="Node3D" parent="room" unique_id=537585541]
+script = ExtResource("8_usvf2")
+
+[node name="palletSpawner" type="Marker3D" parent="room/spawning" unique_id=1556592587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="cargoSpawner" type="Marker3D" parent="room/spawning" unique_id=299457044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="button" parent="room/spawning" unique_id=695884298 node_paths=PackedStringArray("interactItem") instance=ExtResource("8_jfim8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+interactItem = NodePath("..")
+
+[node name="drinkVM" parent="room" unique_id=2074133122 instance=ExtResource("10_te081")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.65, 0, 2)
+consumableScene = ExtResource("11_dj8e6")
+mainText = "DRINK MACHINE"
+typeALabel1 = "BLAND E-DRINK"
+typeALabel2 = "FREE"
+typeBLabel1 = "PREMIUM E-DRINK"
+typeBLabel2 = "10 Points"
+
+[node name="foodVM" parent="room" unique_id=1786360286 instance=ExtResource("10_te081")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.65, 0, 0)
+consumableScene = ExtResource("12_ufcqu")
+mainText = "FOOD MACHINE"
+typeALabel1 = "BLAND FOOD-PACK"
+typeALabel2 = "FREE"
+typeBLabel1 = "PREMIUM FOOD-PACK"
+typeBLabel2 = "10 Points"
+
+[node name="trashCan" parent="room" unique_id=467985966 instance=ExtResource("13_errtw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 4)
+
+[node name="bed" parent="room" unique_id=1722128145 instance=ExtResource("14_3vp2f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0, 4.5)
+
+[node name="MainTerminal" parent="room" unique_id=105346542 node_paths=PackedStringArray("deliverySpawner") instance=ExtResource("15_bmyng")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5, 0, -1)
+deliverySpawner = NodePath("../spawning/cargoSpawner")
+
+[node name="pingMachine" parent="room" unique_id=1902991594 instance=ExtResource("16_tq6an")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, 4.5)
+gameLabel = "PING"
+
+[node name="snekMachine" parent="room" unique_id=1830079195 instance=ExtResource("16_tq6an")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4.5)
+gameLabel = "SNEK"
+gameScene = ExtResource("17_7eint")
+
+[node name="enviroment" type="Node3D" parent="." unique_id=1903319439]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="enviroment" unique_id=452040538]
+environment = SubResource("Environment_g4v7s")
+
+[node name="VoxelGI" type="VoxelGI" parent="enviroment" unique_id=528834318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+size = Vector3(6.5, 5.5, 10.5)
+data = ExtResource("5_epc50")

@@ -6,3 +6,4 @@
 albedo_texture = ExtResource("1_dpwfb")
 uv1_triplanar = true
 texture_filter = 0
+stencil_flags = 2

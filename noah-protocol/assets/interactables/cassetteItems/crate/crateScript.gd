@@ -23,14 +23,18 @@ var cratecolOpen := .3
 var cassettesSlots: Array
 var cardData: Array = []
 
+var interacting: bool = false
+
 func _ready() -> void:
 	super._ready()
 
 	getSlots()
-
+	
+	crateColBox.shape = crateColBox.shape.duplicate(true)
+	
 	if cardData.is_empty():
 		for i in cassettesSlots.size():
-			cardData.append({"card": 1 if spawnCassettes else 0, "status": null})
+			cardData.append({"card": 1 if spawnCassettes else 0, "status": null, "caseColor": Color(), "handleColor": Color()})
 
 	loadCassettes()
 	spawnCassettes = false
@@ -47,8 +51,8 @@ func loadCassettes():
 		if cardSlot.slottedItem != null:
 			continue  # already occupied, don't double-spawn
 		var data = cardData[i]
-		if cardSlot.has_method("loadItem"):
-			cardSlot.loadItem(cassettes, data.card == 1, data.status)
+		if cardSlot.has_method("loadCard"):
+			cardSlot.loadCard(cassettes, data.card == 1, data.status, data.caseColor, data.handleColor)
 	return
 
 func deloadCassettes():
@@ -56,11 +60,11 @@ func deloadCassettes():
 		var cardSlot = cassettesSlots[i]
 		var card = cardSlot.slottedItem
 		if card != null:
-			cardData[i] = {"card": 1, "status": card.status}
-		else:
-			cardData[i] = {"card": 0, "status": null}
+			cardData[i] = {"card": 1, "status": card.status, "caseColor": card.caseColor, "handleColor": card.handleColor}
+		else: 
+			cardData[i] = {"card": 0, "status": null, "caseColor": Color(), "handleColor": Color()}
 		if cardSlot.has_method("deloadItem"):
-			cardSlot.deloadItem()
+			cardSlot.deloadCard()
 	return
 
 func get_save_data() -> Array:
@@ -79,14 +83,20 @@ func _process(_delta: float) -> void:
 
 func getTotalPoints():
 	var total = 0
-	for cardSlot in cassettesSlots:
-		var card = cardSlot.slottedItem
-		if card != null and card.has_method("getPoints"):
-			total += card.getPoints()
+	for i in range(cassettesSlots.size()):
+		var cardSlot = cassettesSlots[i]
+		if cardSlot.slottedItem == null:
+			return
+		var status = cardData[i].status
+		match status:
+			"loaded": total += -20
+			"processing": total +=  0
+			"clear": total +=  15
+			"corrupted": total +=  -5
 	return total
 
 func interact(_body):
-	if placed:
+	if placed or interacting:
 		return
 	
 	if !lidOpen:
@@ -95,6 +105,7 @@ func interact(_body):
 		closeLid()
 
 func openLid():
+	interacting = true
 	loadCassettes()
 	
 	freeze = true
@@ -108,8 +119,11 @@ func openLid():
 	crateColBox.position.y = -.1
 	
 	self.canDrag = false
+	
+	interacting = false
 
 func closeLid():
+	interacting = true
 	
 	freeze = false
 	lidOpen = false
@@ -125,3 +139,5 @@ func closeLid():
 	
 	await get_tree().create_timer(0.5).timeout
 	deloadCassettes()
+	
+	interacting = false

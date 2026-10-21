@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c16j83dp2ptx0"]
+
+[ext_resource type="Material" uid="uid://5m8fp28n0qtb" path="res://DevAssets/Materials/PalletOne/DM_Yellow.tres" id="1_hlwm7"]
+[ext_resource type="Script" uid="uid://cljlwbhc4cxli" path="res://assets/TEMP/ducks/duckScript.gd" id="1_q3qh4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q3qh4"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rllff"]
+size = Vector3(0.15, 0.1, 0.175)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=215982322 node_paths=PackedStringArray("hoverMesh")]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_q3qh4")
+hoverMesh = NodePath("mesh")
+interactButton = "[ E ]"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=182560608]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="mesh" type="Node3D" parent="." unique_id=772127645]
+
+[node name="duckMesh" type="MeshInstance3D" parent="mesh" unique_id=1570052016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.042748183, 0.04801541)
+mesh = SubResource("BoxMesh_q3qh4")
+surface_material_override/0 = ExtResource("1_hlwm7")
+
+[node name="duckMesh2" type="MeshInstance3D" parent="mesh" unique_id=1887750661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_rllff")
+surface_material_override/0 = ExtResource("1_hlwm7")

@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://dktlowpmjjmnr"]
+
+[ext_resource type="Script" uid="uid://cs32a8koxtjc2" path="res://assets/TEMP/mainTerminal/mtScreenScript.gd" id="1_4iut3"]
+[ext_resource type="PackedScene" uid="uid://clx5o28qonrxg" path="res://assets/TEMP/mainTerminal/tabs/emailTab/emailTab.tscn" id="2_p3gj0"]
+[ext_resource type="PackedScene" uid="uid://dkg7tkcrnufkq" path="res://assets/TEMP/mainTerminal/tabs/guideTab/guideTab.tscn" id="3_sfeww"]
+[ext_resource type="PackedScene" uid="uid://kn3pgmmldc6m" path="res://assets/TEMP/mainTerminal/tabs/upgradeTab/upgradeTab.tscn" id="4_0vdr2"]
+
+[node name="mainTerminalScreen" type="Control" unique_id=2037854877 node_paths=PackedStringArray("upgrades")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4iut3")
+upgrades = [null, null, null, null, null, null, null, null, null]
+
+[node name="Panel" type="Panel" parent="." unique_id=454290730]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="mainNavigation" type="Control" parent="Panel" unique_id=2131022411]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="lineLabel" type="Label" parent="Panel/mainNavigation" unique_id=1752756550]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 390.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "___________________________________________________________"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lineLabel2" type="Label" parent="Panel/mainNavigation" unique_id=1263990175]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 250.0
+offset_right = 390.0
+offset_bottom = 274.99994
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "___________________________________________________________"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Panel/mainNavigation" unique_id=220126182]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 310.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "ICARUS CORP / IAP BUNKER TERMINAL"
+vertical_alignment = 1
+
+[node name="pointsLabel" type="Label" parent="Panel/mainNavigation" unique_id=242254828]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 260.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "POINTS : . . . . . . . . . . . . . . . . . 0"
+vertical_alignment = 1
+
+[node name="tabLabel" type="Label" parent="Panel/mainNavigation" unique_id=1651759830]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 270.0
+offset_right = 105.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[<] [>] TAB"
+vertical_alignment = 1
+
+[node name="selectLabel" type="Label" parent="Panel/mainNavigation" unique_id=139394475]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 270.0
+offset_right = 200.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[UP] [DN] SELECT"
+vertical_alignment = 1
+
+[node name="enterLabel" type="Label" parent="Panel/mainNavigation" unique_id=193923256]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 270.0
+offset_right = 295.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[ENTER] CONFIRM"
+vertical_alignment = 1
+
+[node name="logoffLabel" type="Label" parent="Panel/mainNavigation" unique_id=1689350686]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 270.0
+offset_right = 390.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "[ESC] LOG OFF"
+vertical_alignment = 1
+
+[node name="cardsLabel" type="Label" parent="Panel/mainNavigation" unique_id=1365658496]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 390.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "CARDS PROCESSED : . . . . . 0"
+vertical_alignment = 1
+
+[node name="SysOk" type="Label" parent="Panel/mainNavigation" unique_id=389088522]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 379.99997
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "SYS OK"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="buttons" type="Control" parent="Panel/mainNavigation" unique_id=1013615576]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="guidesTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=1686697559]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 30.0
+offset_right = 355.00012
+offset_bottom = 50.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "GUIDES"
+
+[node name="emailTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=1578554865]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 30.0
+offset_right = 285.0
+offset_bottom = 50.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "EMAIL"
+
+[node name="upgradeTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=258152741]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 30.0
+offset_right = 215.0
+offset_bottom = 50.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "UPGRADE"
+
+[node name="achievementTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=1668701562]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 30.0
+offset_right = 145.0
+offset_bottom = 50.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "ACHIEVEMENT"
+
+[node name="saveTabButton" type="Button" parent="Panel/mainNavigation/buttons" unique_id=2145458344]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 30.0
+offset_right = 75.0
+offset_bottom = 50.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "SAVE"
+
+[node name="emailTab" parent="Panel" unique_id=2050147221 instance=ExtResource("2_p3gj0")]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
+
+[node name="saveTab" type="Panel" parent="Panel" unique_id=711371780]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
+
+[node name="achivementsTab" type="Panel" parent="Panel" unique_id=109559438]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
+
+[node name="guideTab" parent="Panel" unique_id=1266328441 instance=ExtResource("3_sfeww")]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
+
+[node name="upgradeTab" parent="Panel" unique_id=1614876995 instance=ExtResource("4_0vdr2")]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 390.0
+offset_bottom = 260.0
+
+[connection signal="pressed" from="Panel/mainNavigation/buttons/guidesTabButton" to="." method="_on_guides_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/emailTabButton" to="." method="_on_email_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/upgradeTabButton" to="." method="_on_upgrade_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/achievementTabButton" to="." method="_on_achivement_tab_button_pressed"]
+[connection signal="pressed" from="Panel/mainNavigation/buttons/saveTabButton" to="." method="_on_save_tab_button_pressed"]

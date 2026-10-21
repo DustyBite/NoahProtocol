@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://dbsjox1ie0oau" path="res://assets/TEMP/Scenes/mainMenu/mainMenuScript.gd" id="1_od37m"]
 [ext_resource type="PackedScene" uid="uid://4p2fvjs4q43o" path="res://assets/TEMP/mainTerminal/mainTerminal.tscn" id="2_5v1jn"]
 
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 2
+
 [node name="root" type="Node3D" unique_id=2142084937]
 
 [node name="Control" type="Control" parent="." unique_id=1771307766]
@@ -58,6 +61,12 @@ text = "QUIT"
 transform = Transform3D(0.9110474, -0.03243143, 0.41102418, -0.052989997, 0.97942364, 0.19473428, -0.40888232, -0.19919232, 0.8905828, 0.20717782, 1.3761168, 1.3849145)
 
 [node name="MainTerminal" parent="." unique_id=105346542 instance=ExtResource("2_5v1jn")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=50041434]
+environment = SubResource("Environment_g4v7s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=850670175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.108872, 0.877625)
 
 [connection signal="pressed" from="Control/START" to="Control" method="_on_start_pressed"]
 [connection signal="pressed" from="Control/HOST" to="Control" method="_on_host_pressed"]

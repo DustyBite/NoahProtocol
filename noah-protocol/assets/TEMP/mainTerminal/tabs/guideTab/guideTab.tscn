@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dkg7tkcrnufkq"]
+
+[ext_resource type="Script" uid="uid://d1174hmtx1r1f" path="res://assets/TEMP/mainTerminal/tabs/guideTab/guideTabScript.gd" id="1_cgdvn"]
+[ext_resource type="Texture2D" uid="uid://co4tdjs3q6wto" path="res://DevAssets/Materials/PalletOne/Textures/DT_BrightRed.png" id="2_p4bob"]
+
+[node name="guideTab" type="Panel" unique_id=2050147221]
+offset_right = 380.0
+offset_bottom = 180.0
+script = ExtResource("1_cgdvn")
+
+[node name="lineLabel" type="Label" parent="." unique_id=220976099]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 160.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "|
+|
+|
+|
+|
+|
+|
+|
+|
+|"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1908963196]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 165.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "> INDEX"
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="." unique_id=1615871531]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 30.0
+offset_right = 140.0
+offset_bottom = 170.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 8
+
+[node name="fromLabel" type="Label" parent="." unique_id=493527403]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 10.0
+offset_right = 295.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 8
+text = "TITLE"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=803604614]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 75.0
+texture = ExtResource("2_p4bob")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1463736007]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 31.0
+offset_right = 295.0
+offset_bottom = 171.0
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true

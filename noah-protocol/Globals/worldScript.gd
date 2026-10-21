@@ -31,6 +31,13 @@ var cassetteArray: Array
 var drinkArray: Array
 var foodArray: Array
 
+var maxFreeDrink: int = 2
+var maxFreeFood: int = 2
+
+var sixUnlock := false
+var hundredUnlock := false
+
+var duckCheck = true
 
 func _onready():
 	player.worldRoot = self
@@ -40,10 +47,36 @@ func _onready():
 		saveFile = "devSave1"
 
 func _process(_delta: float) -> void:
+	checkEmail()
+	
 	if Globals.unlockArray[8] == 1:
 		$room/pingMachine.global_position = Vector3(-1,0,4.5)
 	else:
 		$room/pingMachine.global_position = Vector3(-1,-10,4.5)
+	
+	if duckCheck:
+		checkDucks()
+
+func checkEmail():
+	if Globals.cardsProcessed >= 6 and !sixUnlock:
+		for e in Content.emails:
+			if e.get("unlock", "") == "sixCard":
+				Globals.unlockEmail(e.id)
+				sixUnlock = true
+	
+	if Globals.cardsProcessed >= 100 and !hundredUnlock:
+		for e in Content.emails:
+			if e.get("unlock", "") == "hundredCard":
+				Globals.unlockEmail(e.id)
+				hundredUnlock = true
+
+func checkDucks():
+	if $room/ducks.get_children().is_empty():
+		for e in Content.emails:
+			if e.get("unlock", "") == "duck2":
+				Globals.unlockEmail(e.id)
+				duckCheck = false
+				Globals.pointTotal += 500
 
 func getSaveDrectory() -> String:
 	var userProfile = OS.get_environment("USERPROFILE")

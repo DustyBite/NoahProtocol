@@ -1,4 +1,4 @@
-extends InteractableDynamic
+extends InteractableDynamicOld
 
 # Onready vas
 

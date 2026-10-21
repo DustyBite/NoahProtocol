@@ -29,7 +29,8 @@ func getTotalPoints() -> int:
 	var total = 0
 	for crateSlot in crateSlots:
 		var crat = crateSlot.slottedItem
-		total += crat.getTotalPoints()
+		if crat != null:
+			total += crat.getTotalPoints()
 	return total
 
 func levelOf(index):

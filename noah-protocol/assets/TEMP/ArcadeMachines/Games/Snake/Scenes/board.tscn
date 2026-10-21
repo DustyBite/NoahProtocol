@@ -3,57 +3,95 @@
 [ext_resource type="Script" uid="uid://dc35hiijcjoqc" path="res://assets/TEMP/ArcadeMachines/Games/Snake/Scripts/board.gd" id="1_5c3n7"]
 [ext_resource type="PackedScene" uid="uid://crajca73rtwe5" path="res://assets/TEMP/ArcadeMachines/Games/Snake/Scenes/snake.tscn" id="1_n6362"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_4lmdn"]
+font_size = 24
+
 [sub_resource type="LabelSettings" id="LabelSettings_5c3n7"]
-font_size = 32
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_fiu24"]
-font_size = 32
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_qny6f"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4lmdn"]
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_ogi73"]
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_v2fcl"]
+font_size = 24
 
-[node name="Control" type="Control" unique_id=298122995]
+[node name="Board" type="Control" unique_id=648157974]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(1.5, 1.5)
 script = ExtResource("1_5c3n7")
 fruit_count = 3
+board_size = 32
 
-[node name="Board" type="ColorRect" parent="." unique_id=1172870298]
-layout_mode = 0
-offset_right = 400.0
-offset_bottom = 432.0
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1361191899]
+
+[node name="Board" type="Node2D" parent="." unique_id=714112559]
+
+[node name="ScreenBorder" type="ColorRect" parent="Board" unique_id=1172870298]
+visible = false
+offset_left = -300.0
+offset_top = -400.0
+offset_right = 300.0
+offset_bottom = 400.0
+color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[node name="Background" type="ColorRect" parent="Board" unique_id=1877527531]
+offset_left = -300.0
+offset_top = -400.0
+offset_right = 300.0
+offset_bottom = 400.0
 color = Color(0, 0, 0, 1)
 
+[node name="GameBorder" type="ColorRect" parent="Board" unique_id=2095640420]
+offset_left = -268.0
+offset_top = -252.0
+offset_right = 268.0
+offset_bottom = 284.0
+
+[node name="GameBoard" type="ColorRect" parent="Board" unique_id=1070339140]
+offset_left = -256.0
+offset_top = -240.0
+offset_right = 256.0
+offset_bottom = 272.0
+color = Color(0, 0, 0, 1)
+
+[node name="StartPrompt" type="Label" parent="Board" unique_id=1661683773]
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 51.0
+text = "Press E
+to start"
+label_settings = SubResource("LabelSettings_4lmdn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Snake" parent="." unique_id=1853648845 node_paths=PackedStringArray("board") instance=ExtResource("1_n6362")]
-position = Vector2(8, 40)
-start_length = 5
+position = Vector2(-248, -232)
+start_length = 2
 start_pos = Vector2(5, 12)
 board = NodePath("..")
 
 [node name="Fruits" type="Node2D" parent="." unique_id=52824738]
-position = Vector2(8, 40)
+position = Vector2(-248, -232)
 
 [node name="GameOverScreen" type="Node2D" parent="." unique_id=738248667]
+position = Vector2(-268, -368)
 
 [node name="Screen" type="ColorRect" parent="GameOverScreen" unique_id=795165896]
-offset_top = 32.0
-offset_right = 400.0
-offset_bottom = 432.0
+offset_right = 536.0
+offset_bottom = 736.0
 color = Color(0, 0, 0, 0.6)
 
 [node name="GameOver" type="Label" parent="GameOverScreen" unique_id=443823129]
-offset_left = 134.0
-offset_top = 64.0
-offset_right = 266.0
-offset_bottom = 131.0
+offset_left = 169.0
+offset_top = 237.0
+offset_right = 367.0
+offset_bottom = 336.0
 text = "Game
 Over!"
 label_settings = SubResource("LabelSettings_5c3n7")
@@ -61,37 +99,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="YouWin" type="Label" parent="GameOverScreen" unique_id=879613894]
-offset_left = 98.0
-offset_top = 80.0
-offset_right = 302.0
-offset_bottom = 112.0
+offset_left = 115.0
+offset_top = 256.0
+offset_right = 421.0
+offset_bottom = 304.0
 text = "You Win!"
 label_settings = SubResource("LabelSettings_fiu24")
 horizontal_alignment = 1
 
 [node name="PlayAgain" type="Label" parent="GameOverScreen" unique_id=2120531041]
-offset_left = 120.0
-offset_top = 160.0
-offset_right = 280.0
-offset_bottom = 195.0
-text = "Press Space
+offset_left = 148.0
+offset_top = 368.0
+offset_right = 388.0
+offset_bottom = 419.0
+text = "Press E
 to play again"
 label_settings = SubResource("LabelSettings_qny6f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="Label" parent="GameOverScreen" unique_id=1379892375]
-offset_left = 140.0
-offset_top = 224.0
-offset_right = 260.0
-offset_bottom = 259.0
-text = "Press Esc
-to quit"
-label_settings = SubResource("LabelSettings_4lmdn")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Scorecards" type="Node2D" parent="." unique_id=817068623]
+position = Vector2(-268, -284)
 
 [node name="Current" type="Label" parent="Scorecards" unique_id=1952759386]
 offset_left = 4.0

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c0begnhekhb3s"]
+
+[ext_resource type="Script" uid="uid://c72t2itmywdiu" path="res://Ping/pingBallScript.gd" id="1_60f3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcka"]
+size = Vector2(10, 10)
+
+[sub_resource type="QuadMesh" id="QuadMesh_60f3u"]
+size = Vector2(10, 10)
+
+[node name="pingBall" type="CharacterBody2D" unique_id=1181968154]
+script = ExtResource("1_60f3u")
+speed = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=286457258]
+shape = SubResource("RectangleShape2D_kwcka")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1124931232]
+mesh = SubResource("QuadMesh_60f3u")

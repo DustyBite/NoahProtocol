@@ -1,6 +1,6 @@
 extends InteractableStatic
 
-@onready var switch := $switch
+@onready var switch := $mesh/switch
 var switchRestPos = .05
 var switchPressPos = .025
 var targetPos = .05

@@ -133,7 +133,7 @@ func _process(delta: float) -> void:
 	hunger = clampf(hunger - delta * drainRate,0,100)
 	exhaustion = clampf(exhaustion - delta * (drainRate + hungerMod),0,100)
 	if inGame:
-		sanity = clampf(sanity + delta * drainRate*2, 0, 100)
+		sanity = clampf(sanity + delta * drainRate*4, 0, 100)
 	else:
 		sanity = clampf(sanity - delta * (drainRate + (hungerMod / 2) + exhaustionMod), 0, 100)
 	
@@ -309,7 +309,12 @@ func sleep(camTarget):
 	savedCamLocal = camera.transform
 	tweenCamTo(camTarget.global_transform.orthonormalized(), 0.5)
 	await get_tree().create_timer(1.0).timeout
+	
 	exhaustion = 100
+	maxExhaRegen = 50.0
+	worldRoot.maxFreeFood = 2
+	worldRoot.maxFreeDrink = 2
+	
 	var back = head.global_transform * savedCamLocal
 	tweenCamTo(back, 0.4, func(): camera.transform = savedCamLocal)
 	inTerminal = false

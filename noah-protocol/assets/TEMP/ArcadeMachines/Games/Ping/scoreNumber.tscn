@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://di3yhtp5cvlud"]
+
+[ext_resource type="Script" uid="uid://c44oecs6ji240" path="res://Ping/scoreNumberScript.gd" id="1_du0e5"]
+[ext_resource type="Texture2D" uid="uid://b8xfa8vnwomnn" path="res://Ping/pingAssets/numbers/b0.png" id="1_wj32p"]
+[ext_resource type="Texture2D" uid="uid://bc68pgxya5stn" path="res://Ping/pingAssets/numbers/b1.png" id="2_du0e5"]
+[ext_resource type="Texture2D" uid="uid://dq8gsi5bgdr6l" path="res://Ping/pingAssets/numbers/b2.png" id="3_ctmrf"]
+[ext_resource type="Texture2D" uid="uid://b6y7c655bhh6o" path="res://Ping/pingAssets/numbers/b3.png" id="4_8i1oc"]
+[ext_resource type="Texture2D" uid="uid://dg3s4fs8ncu2o" path="res://Ping/pingAssets/numbers/b4.png" id="5_fmgf6"]
+[ext_resource type="Texture2D" uid="uid://b011btxjbcauk" path="res://Ping/pingAssets/numbers/b5.png" id="6_fothx"]
+[ext_resource type="Texture2D" uid="uid://no7mdv53q6f7" path="res://Ping/pingAssets/numbers/b6.png" id="7_c6n6u"]
+[ext_resource type="Texture2D" uid="uid://cwhwy2jjk3ny8" path="res://Ping/pingAssets/numbers/b7.png" id="8_3wwd7"]
+[ext_resource type="Texture2D" uid="uid://1a8ghltrj1ms" path="res://Ping/pingAssets/numbers/b8.png" id="9_vfy4r"]
+[ext_resource type="Texture2D" uid="uid://cjv07c403d1kh" path="res://Ping/pingAssets/numbers/b9.png" id="10_mubi5"]
+[ext_resource type="Texture2D" uid="uid://dipt1rve8gok5" path="res://Ping/pingAssets/numbers/r0.png" id="11_quixm"]
+[ext_resource type="Texture2D" uid="uid://c7v3hcygwc8n3" path="res://Ping/pingAssets/numbers/r1.png" id="12_h15eo"]
+[ext_resource type="Texture2D" uid="uid://b3fcy4xbqqlvc" path="res://Ping/pingAssets/numbers/r2.png" id="13_gv428"]
+[ext_resource type="Texture2D" uid="uid://c6vsc725420ob" path="res://Ping/pingAssets/numbers/r3.png" id="14_o1lxf"]
+[ext_resource type="Texture2D" uid="uid://b1yi1srvj62i3" path="res://Ping/pingAssets/numbers/r4.png" id="15_a3efu"]
+[ext_resource type="Texture2D" uid="uid://bhvql5k220sec" path="res://Ping/pingAssets/numbers/r5.png" id="16_25xm8"]
+[ext_resource type="Texture2D" uid="uid://002cd3wehh11" path="res://Ping/pingAssets/numbers/r6.png" id="17_o2ooc"]
+[ext_resource type="Texture2D" uid="uid://chdav0abolxhu" path="res://Ping/pingAssets/numbers/r7.png" id="18_g3stc"]
+[ext_resource type="Texture2D" uid="uid://crvs0hqt2pwo5" path="res://Ping/pingAssets/numbers/r8.png" id="19_3tspj"]
+[ext_resource type="Texture2D" uid="uid://bfgvwxndbcyu1" path="res://Ping/pingAssets/numbers/r9.png" id="20_xe61p"]
+
+[node name="scoreNumber" type="Node2D" unique_id=1324701694]
+script = ExtResource("1_du0e5")
+
+[node name="blue" type="Node2D" parent="." unique_id=465010321]
+
+[node name="B0" type="Sprite2D" parent="blue" unique_id=43102522]
+texture = ExtResource("1_wj32p")
+
+[node name="B1" type="Sprite2D" parent="blue" unique_id=1921977125]
+visible = false
+texture = ExtResource("2_du0e5")
+
+[node name="B2" type="Sprite2D" parent="blue" unique_id=531939214]
+visible = false
+texture = ExtResource("3_ctmrf")
+
+[node name="B3" type="Sprite2D" parent="blue" unique_id=235059884]
+visible = false
+texture = ExtResource("4_8i1oc")
+
+[node name="B4" type="Sprite2D" parent="blue" unique_id=176018379]
+visible = false
+texture = ExtResource("5_fmgf6")
+
+[node name="B5" type="Sprite2D" parent="blue" unique_id=1957009136]
+visible = false
+texture = ExtResource("6_fothx")
+
+[node name="B6" type="Sprite2D" parent="blue" unique_id=272752850]
+visible = false
+texture = ExtResource("7_c6n6u")
+
+[node name="B7" type="Sprite2D" parent="blue" unique_id=59998831]
+visible = false
+texture = ExtResource("8_3wwd7")
+
+[node name="B8" type="Sprite2D" parent="blue" unique_id=12415741]
+visible = false
+texture = ExtResource("9_vfy4r")
+
+[node name="B9" type="Sprite2D" parent="blue" unique_id=976017767]
+visible = false
+texture = ExtResource("10_mubi5")
+
+[node name="red" type="Node2D" parent="." unique_id=1280734283]
+visible = false
+
+[node name="R0" type="Sprite2D" parent="red" unique_id=70374958]
+texture = ExtResource("11_quixm")
+
+[node name="R1" type="Sprite2D" parent="red" unique_id=287563339]
+visible = false
+texture = ExtResource("12_h15eo")
+
+[node name="R2" type="Sprite2D" parent="red" unique_id=384741952]
+visible = false
+texture = ExtResource("13_gv428")
+
+[node name="R3" type="Sprite2D" parent="red" unique_id=1359259317]
+visible = false
+texture = ExtResource("14_o1lxf")
+
+[node name="R4" type="Sprite2D" parent="red" unique_id=1290909532]
+visible = false
+texture = ExtResource("15_a3efu")
+
+[node name="R5" type="Sprite2D" parent="red" unique_id=782656355]
+visible = false
+texture = ExtResource("16_25xm8")
+
+[node name="R6" type="Sprite2D" parent="red" unique_id=1471145397]
+visible = false
+texture = ExtResource("17_o2ooc")
+
+[node name="R7" type="Sprite2D" parent="red" unique_id=1123384837]
+visible = false
+texture = ExtResource("18_g3stc")
+
+[node name="R8" type="Sprite2D" parent="red" unique_id=1433867590]
+visible = false
+texture = ExtResource("19_3tspj")
+
+[node name="R9" type="Sprite2D" parent="red" unique_id=1331597885]
+visible = false
+texture = ExtResource("20_xe61p")

@@ -13,23 +13,32 @@ var game_won
 @onready var game_over_text: Label = $GameOverScreen/GameOver
 @onready var you_win_text: Label = $GameOverScreen/YouWin
 @onready var fruit_scene = preload("res://assets/TEMP/ArcadeMachines/Games/Snake/Scenes/fruit.tscn")
+@onready var start_prompt: Label = $Board/StartPrompt
 
 func _ready():
+	start()
+
+func start():
 	# game setup
+	snake.start()
 	for i in range(fruit_count):
 		spawn_fruit()
 	update_score()
 	update_best()
 	game_over_screen.hide()
 	game_won = false
+	start_prompt.show()
+
+func reset():
+	snake.reset()
+	for fruit in fruits.get_children():
+		fruit.queue_free()
+	return
 
 func _input(event: InputEvent) -> void:
 	# play again and quit actions on game over/win screen
 	if event.is_action_pressed("interact") and snake.game_active and not snake.alive:
 		play_again()
-	
-	#if event.is_action_pressed("quit") and snake.game_active and not snake.alive:
-		#get_tree().quit()
 
 func fruit_check(pos):
 	# checks all currently spawned fruits for if pos is already occupied
@@ -89,7 +98,10 @@ func game_over():
 
 func play_again():
 	# reload the scene to play again
-	get_tree().reload_current_scene()
+	reset()
+	await get_tree().create_timer(0.1).timeout
+	start()
+	#put the code to start the game over here
 
 func win():
 	# win screen setup
