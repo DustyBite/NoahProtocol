@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://jpwxwni2q38p"
-path="res://.godot/imported/PSUCrate.glb-d6029c405263b821dd7bd46d545530f1.scn"
+uid="uid://b6lkt82qrfnm"
+path="res://.godot/imported/CRT.glb-21723b864697bc81118ff45275b2ed5b.scn"
 
 [deps]
 
-source_file="res://assets/imports/PSUCrate.glb"
-dest_files=["res://.godot/imported/PSUCrate.glb-d6029c405263b821dd7bd46d545530f1.scn"]
+source_file="res://assets/imports/CRT.glb"
+dest_files=["res://.godot/imported/CRT.glb-21723b864697bc81118ff45275b2ed5b.scn"]
 
 [params]
 
