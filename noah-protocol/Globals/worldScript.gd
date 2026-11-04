@@ -47,6 +47,8 @@ func _onready():
 		saveFile = "devSave1"
 
 func _process(_delta: float) -> void:
+	return
+	
 	checkEmail()
 	
 	if Globals.unlockArray[8] == 1:

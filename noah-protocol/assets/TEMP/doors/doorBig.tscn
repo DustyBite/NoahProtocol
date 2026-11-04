@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://cjbefy4j4kw8s"]
 
-[ext_resource type="Script" uid="uid://c6h41qlk0yi45" path="res://assets/TEMP/doors/doorScript.gd" id="1_84sua"]
 [ext_resource type="Material" uid="uid://pvedlhfunyar" path="res://DevAssets/Materials/PalletOne/DM_White.tres" id="2_yxdbs"]
 [ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="3_qnfyb"]
-[ext_resource type="Script" uid="uid://sqyec3v0274h" path="res://assets/TEMP/doors/doorSwitchScript.gd" id="4_oy3s7"]
 [ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="5_uoxdh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4oasc"]
@@ -43,9 +41,6 @@ size = Vector3(0.2, 0.3, 0.15)
 size = Vector3(3, 2, 0.04)
 
 [node name="doorBig" type="Node3D" unique_id=1161124829]
-script = ExtResource("1_84sua")
-openPos = 1.5
-doorSpeed = 0.025
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1579768091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.5, 0)
@@ -102,11 +97,8 @@ shape = SubResource("ConcavePolygonShape3D_yxdbs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConcavePolygonShape3D_qnfyb")
 
-[node name="doorSwitch1" type="Node3D" parent="." unique_id=1665229137 node_paths=PackedStringArray("mesh")]
+[node name="doorSwitch1" type="Node3D" parent="." unique_id=1665229137]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.4, 0.05)
-script = ExtResource("4_oy3s7")
-mesh = NodePath("plate")
-interactButton = "[ E ]"
 
 [node name="plate" type="MeshInstance3D" parent="doorSwitch1" unique_id=1776812166]
 material_override = ExtResource("3_qnfyb")
@@ -126,11 +118,8 @@ collision_mask = 128
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.025)
 shape = SubResource("BoxShape3D_1rq10")
 
-[node name="doorSwitch2" type="Node3D" parent="." unique_id=1698788727 node_paths=PackedStringArray("mesh")]
+[node name="doorSwitch2" type="Node3D" parent="." unique_id=1698788727]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.8, 1.4, -0.049999915)
-script = ExtResource("4_oy3s7")
-mesh = NodePath("plate")
-interactButton = "[ E ]"
 
 [node name="plate" type="MeshInstance3D" parent="doorSwitch2" unique_id=561559146]
 material_override = ExtResource("3_qnfyb")

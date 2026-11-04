@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://w20ee7gyra2k"]
+
+[ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="1_cp0ax"]
+[ext_resource type="Shader" uid="uid://c6p5358xjkq4v" path="res://assets/TEMP/doors/materials/customDoorShader.gdshader" id="1_qfhor"]
+[ext_resource type="Texture2D" uid="uid://cml05dt4t46wk" path="res://assets/TEMP/doors/materials/textures/lightEmissionMask.png" id="2_bbs18"]
+[ext_resource type="Texture2D" uid="uid://p6uointq1nk4" path="res://assets/TEMP/doors/materials/textures/doorTexture.png" id="2_lq2mt"]
+[ext_resource type="Texture2D" uid="uid://vwbn6ferpqcq" path="res://assets/TEMP/doors/materials/textures/button1EmissionMask.png" id="2_sgwqn"]
+[ext_resource type="Texture2D" uid="uid://bp7hk7mxmvn4m" path="res://assets/TEMP/doors/materials/textures/doorMetallicMap.png" id="3_3pibh"]
+[ext_resource type="Texture2D" uid="uid://cwpbyoln4lpp6" path="res://assets/TEMP/doors/materials/textures/button2EmissionMask.png" id="3_cp0ax"]
+[ext_resource type="Texture2D" uid="uid://kvlx7ffletpe" path="res://assets/TEMP/doors/materials/textures/doorRoughnessMap.png" id="4_bbs18"]
+[ext_resource type="Texture2D" uid="uid://dldu54d1hofnm" path="res://assets/TEMP/doors/materials/textures/scanneremissionMask.png" id="8_uhes6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhes6"]
+render_priority = 0
+shader = ExtResource("1_cp0ax")
+shader_parameter/outlineColor = Color(1, 1, 1, 1)
+shader_parameter/outlineThickness = 0.0050000002375
+shader_parameter/outlineToggle = false
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_uhes6")
+shader = ExtResource("1_qfhor")
+shader_parameter/mainTexture = ExtResource("2_lq2mt")
+shader_parameter/metallicTexture = ExtResource("3_3pibh")
+shader_parameter/roughnessTexture = ExtResource("4_bbs18")
+shader_parameter/lightFilter = ExtResource("2_bbs18")
+shader_parameter/scannerFilter = ExtResource("8_uhes6")
+shader_parameter/button1Filter = ExtResource("2_sgwqn")
+shader_parameter/button2Filter = ExtResource("3_cp0ax")
+shader_parameter/lightColor = Color(1, 1, 1, 1)
+shader_parameter/scannerColor = Color(1, 1, 1, 1)
+shader_parameter/button1Color = Color(0, 0.5370987, 0, 1)
+shader_parameter/button2Color = Color(0.38963804, 0, 0, 1)

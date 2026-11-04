@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cefxbaqoyxb1w" path="res://assets/TEMP/piecesTemp/deliveryRooms/deliveryRoom.tscn" id="2_gf6sq"]
 [ext_resource type="VoxelGIData" uid="uid://dux17gt4v6iad" path="res://assets/TEMP/Scenes/TestingWorld.VoxelGI_data.res" id="4_f8tqv"]
 [ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cassetteItems/crate/cartridgeCrate.tscn" id="5_02xml"]
+[ext_resource type="PackedScene" uid="uid://cw5n36b3i2pbg" path="res://assets/player/player.tscn" id="6_fmvhc"]
 [ext_resource type="Environment" uid="uid://6vloryp1odkx" path="res://assets/TEMP/Environment.tres" id="15_eumgo"]
 
 [node name="root" type="Node3D" unique_id=1108410745]
@@ -34,3 +35,6 @@ data = ExtResource("4_f8tqv")
 
 [node name="cartridgeCrate" parent="." unique_id=1567765031 instance=ExtResource("5_02xml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7665696, 1.356561, -10.031477)
+
+[node name="player" parent="." unique_id=1774373292 instance=ExtResource("6_fmvhc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.56077695, 0.28428864, -7.7108464)

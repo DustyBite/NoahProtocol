@@ -1,18 +1,26 @@
-extends InteractableStatic
+extends Node
 
-@onready var switch := $switch
-var switchRestPos = .05
-var switchPressPos = .025
-var targetPos = .05
+@export var doorMain: Node
 
-@onready var doorMain = $".."
+@onready var mesh := $doorSwitchBase
+
+var lockStatus: bool = true
+
+var mat
+
+func _ready() -> void:
+	mat = mesh.get_active_material(0).duplicate()
+	mesh.set_surface_override_material(0, mat)
 
 func _process(_delta: float) -> void:
-	switch.position.z = lerp(switch.position.z, targetPos, .1)
+	if doorMain.locked != lockStatus:
+		print(lockStatus)
+		lockStatus = doorMain.locked
+		updateScanner()
 
-func interact(_body):
-	doorMain.openClose()
+func updateScanner():
+	var color = Color(0,0.5,0)
+	if lockStatus:
+		color = Color(0.5,0,0)
 	
-	targetPos = switchPressPos
-	await get_tree().create_timer(1.0).timeout
-	targetPos = switchRestPos
+	mat.set_shader_parameter("scannerColor", color)
