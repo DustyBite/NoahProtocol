@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cfhryf6ebviue"]
+
+[ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="1_knfu6"]
+[ext_resource type="Shader" uid="uid://oq1s4j1tth2y" path="res://assets/TEMP/piecesTemp/Materials/customRoomShader.gdshader" id="2_lwowk"]
+[ext_resource type="Texture2D" uid="uid://scrmrjyprc8w" path="res://assets/TEMP/piecesTemp/mainOffice/materials/textures/officeMetalicMap.png" id="5_ipv18"]
+[ext_resource type="Texture2D" uid="uid://bupwki1jkfavg" path="res://assets/TEMP/piecesTemp/mainOffice/materials/textures/officeRoughnessMap.png" id="6_oe2lq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhes6"]
+render_priority = 0
+shader = ExtResource("1_knfu6")
+shader_parameter/outlineColor = Color(1, 1, 1, 1)
+shader_parameter/outlineThickness = 0.0050000002375
+shader_parameter/outlineToggle = false
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_uhes6")
+shader = ExtResource("2_lwowk")
+shader_parameter/metallicTexture = ExtResource("5_ipv18")
+shader_parameter/roughnessTexture = ExtResource("6_oe2lq")
+shader_parameter/lightColor = Color(1, 1, 1, 1)

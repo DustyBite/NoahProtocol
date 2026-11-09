@@ -1,0 +1,139 @@
+[gd_scene format=4 uid="uid://bxkok334tvt8d"]
+
+[ext_resource type="Script" uid="uid://cgepqh2w6lpj" path="res://assets/TEMP/piecesTemp/miscParts/Lightswitch/lightSwitchScript.gd" id="1_5q1q4"]
+[ext_resource type="Script" uid="uid://ccbgbuae5wt7w" path="res://assets/TEMP/piecesTemp/miscParts/Lightswitch/lightSwitchButtonScript.gd" id="1_d5bbt"]
+[ext_resource type="Material" uid="uid://b7a5bs80m81i8" path="res://assets/TEMP/piecesTemp/miscParts/Lightswitch/mat/lightSwitchMat.tres" id="2_t3oqn"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0lh0e"]
+_surfaces = [{
+"aabb": AABB(-0.08000003, -0.10999998, -0.010000028, 0.16000006, 0.21999995, 0.050000057),
+"format": 34896613377,
+"index_count": 114,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABgAEAAMABwAFAAAABgADAAgACQAGAAgAAwABAAoABQAKAAEAAwAKAAsACAADAAsACwAKAAwABQAMAAoACwAMAA0ACAALAA0ADQAMAAUADQAFAAgACQAIAA4ABQAOAAgADwAJAA4ABwAQAAUABQAQAA4AEQAQAAcAEgARAA8AEQASABAADwAOABMAEgAPABMAEwAOABQADgAQABUAEgAVABAADgAVABQAEwAWABIAEgAWABUAEwAXABYAFQAWABcAEwAUABcAFQAXABQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/98AAAAAAAD//wAAmZkAAP//AAAAAAAA/////5mZAAD/////AAAAAP/fAACZmQAA/9///wAAAAD/HwAAAAAAAP/f//+ZmQAA/x///wAAAAD//0UX//8AAP//uej//wAA/99FF///AAD/37no//8AAP8f//+ZmQAAAAD//wAAAAD/HwAAmZkAAAAAAAAAAAAAAAAAAJmZAAAAAP//mZkAAP8fuej//wAA/x9FF///AAAAAEUX//8AAAAAuej//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8kgps"]
+resource_name = "lightSwitch_Cube_017"
+_surfaces = [{
+"aabb": AABB(-0.08000003, -0.10999998, -0.010000028, 0.16000006, 0.21999995, 0.050000057),
+"attribute_data": PackedByteArray("fxN/HH8Vfxl/FX8cfxN/GX8Hfxx/B38ZfwV/HH8Ffxl/E38AfxV/A38TfwN/FX8Afwd/AH8HfwN/BX8AfwV/A38Ffxl/B38Xfwd/GX8Ffxd/E38ZfxV/F38Vfxl/E38XfwV/A38HfwV/BX8Ffwd/A38TfwN/FX8FfxN/BX8VfwN/Gn8Zfxd/A38afwN/F38ZfxV/F38VfwV/FX8FfxN/F38TfwV/FX8Xfyt/An8pfxZ/KX8Afyt/FH8pfxZ/HX8Afyl/AH8dfxZ/HX8Afxt/FH8bfwJ/HX8Wfwd/F38FfwV/B38FfwV/F38DfwN/BX8XfwN/GX8FfwV/AH8DfwB/GQ=="),
+"format": 34896613399,
+"index_count": 114,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAFAAQABgAHAAUACAAJAAoACAALAAkADAAIAAoADAAKAA0ADgAMAA0ADgANAA8AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAIQAjACQAIQAkACUAJgAnACgAJgApACcAKgArACwAKgAtACsALgAvADAALgAxAC8AMgAzADQAMgA1ADMANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPAA+ADoAPAA/AD4A"),
+"material": ExtResource("2_t3oqn"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("/98AAAAA/7///wAAmZn/v///AAAAAP+//98AAJmZ/7//HwAAAAD/v/8fAACZmf+/AAAAAAAA/78AAAAAmZn/v//f//8AAP+//////5mZ/7//3///mZn/v/////8AAP+//x///wAA/7//H///mZn/vwAA//8AAP+/AAD//5mZ/78AAAAAmZn/n/8fRRf///+f/x8AAJmZ/58AAEUX////n//fAACZmf+f//9FF////5///wAAmZn/n//fRRf///+fAAD//5mZ/5//H7no////nwAAuej///+f/x///5mZ/5//3///mZn/n///uej///+f/9+56P///5//////mZn/n///AAAAAP+//////5mZ/7//////AAD/v///AACZmf+///9FF////7///7no////v///uej//wCA/99FF///AID/37no//8AgP//RRf//wCA/9+56P///7//3wAAmZn/v//f//+Zmf+//99FF////7//3wAAmZkAgP8f//+ZmQCA/9///5mZAID/HwAAmZkAgP8f//+Zmf+//x9FF////7//H7no////v/8fAACZmf+//x9FF///AIAAALno//8AgP8fuej//wCAAABFF///AIAAAP//mZn/vwAARRf///+/AAAAAJmZ/78AALno////vwAA//8AAP+/AAAAAAAA/78AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f////3////9/////f////3////9/////f////3////9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/////f////3////9/////f/9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/////f////3////9/////f/7//3/+//9//v//f/7//3////9/////f////3////9/AAD/fwAA/38AAP9/AAD/f////3////9/////f////3/+//9//v//f/7//3/+//9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0lh0e")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t3oqn"]
+size = Vector3(0.12, 0.1, 0.05)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hy6so"]
+_surfaces = [{
+"aabb": AABB(-0.050000057, 0.010000028, 0.009999968, 0.10000011, 0.07999992, 0.03000006),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAAEAAEAAQAFAAMABAAFAAEABgADAAUAAAAHAAQAAAAGAAcABAAHAAUABgAFAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAD//wAA//8AAP//AAAAAAAA/////wAAAAAAAAAA//8AAP///////wAAAAD//wAAAAAAAP////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kx6gk"]
+resource_name = "lightSwitch_Cube_026"
+_surfaces = [{
+"aabb": AABB(-0.050000057, 0.010000028, 0.009999968, 0.10000011, 0.07999992, 0.03000006),
+"attribute_data": PackedByteArray("fy9/Dn85fwt/OX8Ofy9/C38vfwB/OX8Dfy9/A385fwB/OX8Lfzx/A388fwt/OX8Dfy9/C385fwN/OX8Lfy9/A38sfwt/L38Dfy9/C38sfwM="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": ExtResource("2_t3oqn"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAAAA/7///wAA////v///AAAAAP+/AAAAAP///78AAP//AAD/v/////////+/AAD//////7//////AAD/v///AAD///+//////wAA/7///wAAAAD/v/////////+/AAAAAP//AID///////8AgP//AAD//wCAAAD/////AIAAAAAAAAD/vwAA//////+/AAAAAP///78AAP//AAD/vwAA/38AAP9/AAD/fwAA/3////9/////f////3////9//38AAP9/AAD/fwAA/38AAP9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_hy6so")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_chyy7"]
+_surfaces = [{
+"aabb": AABB(-0.050000057, -0.089999996, 0.009999968, 0.10000011, 0.07999992, 0.03000006),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAAEAAEAAQAFAAMABAAFAAEABgADAAUAAAAHAAQAAAAGAAcABAAHAAUABgAFAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAD//wAA//8AAP//AAAAAAAA/////wAAAAAAAAAA//8AAP///////wAAAAD//wAAAAAAAP////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ajudl"]
+resource_name = "lightSwitch_Cube_027"
+_surfaces = [{
+"aabb": AABB(-0.050000057, -0.089999996, 0.009999968, 0.10000011, 0.07999992, 0.03000006),
+"attribute_data": PackedByteArray("fy9/HX85fxp/OX8dfy9/Gn8vfw9/OX8Sfy9/En85fw9/OX8afzx/En88fxp/OX8Sfy9/Gn85fxJ/OX8afy9/En8sfxp/L38Sfy9/Gn8sfxI="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": ExtResource("2_t3oqn"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAAAA/7///wAA////v///AAAAAP+/AAAAAP///78AAP//AAD/v/////////+/AAD//////7//////AAD/v///AAD///+//////wAA/7///wAAAAD/v/////////+/AAAAAP//AID///////8AgP//AAD//wCAAAD/////AIAAAAAAAAD/vwAA//////+/AAAAAP///78AAP//AAD/vwAA/38AAP9/AAD/fwAA/3////9/////f////3////9//38AAP9/AAD/fwAA/38AAP9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_chyy7")
+
+[node name="lightSwitch" type="Node3D" unique_id=783342634]
+script = ExtResource("1_5q1q4")
+
+[node name="lightSwitchBase" type="MeshInstance3D" parent="." unique_id=112659437]
+mesh = SubResource("ArrayMesh_8kgps")
+
+[node name="buttonOne" type="Node3D" parent="." unique_id=1595591231 node_paths=PackedStringArray("switch", "hoverMeshArray")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.025)
+script = ExtResource("1_d5bbt")
+switch = NodePath("lightDimButton")
+hoverMeshArray = [NodePath("lightDimButton")]
+
+[node name="button1Static" type="StaticBody3D" parent="buttonOne" unique_id=991209944]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="buttonOne/button1Static" unique_id=77691708]
+shape = SubResource("BoxShape3D_t3oqn")
+
+[node name="lightDimButton" type="MeshInstance3D" parent="buttonOne" unique_id=1943251571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.025)
+mesh = SubResource("ArrayMesh_kx6gk")
+
+[node name="buttonTwo" type="Node3D" parent="." unique_id=1256798476 node_paths=PackedStringArray("switch", "hoverMeshArray")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.025)
+script = ExtResource("1_d5bbt")
+switch = NodePath("lightToggleButton")
+dim = true
+hoverMeshArray = [NodePath("lightToggleButton")]
+
+[node name="button2Static" type="StaticBody3D" parent="buttonTwo" unique_id=994177130]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="buttonTwo/button2Static" unique_id=43409440]
+shape = SubResource("BoxShape3D_t3oqn")
+
+[node name="lightToggleButton" type="MeshInstance3D" parent="buttonTwo" unique_id=416876910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.025)
+mesh = SubResource("ArrayMesh_ajudl")

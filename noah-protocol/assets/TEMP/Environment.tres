@@ -20,5 +20,4 @@ volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.5882353, 0.5882353, 0.5882353, 1)
 volumetric_fog_sky_affect = 0.0
 adjustment_enabled = true
-adjustment_brightness = 0.9
-adjustment_saturation = 1.1
+adjustment_contrast = 1.25

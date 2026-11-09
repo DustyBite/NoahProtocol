@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://y3wim06xsjwb"]
 
 [ext_resource type="Script" uid="uid://bgnbl47a05wp6" path="res://Globals/worldScript.gd" id="1_sxt15"]
-[ext_resource type="PackedScene" uid="uid://cefxbaqoyxb1w" path="res://assets/TEMP/piecesTemp/deliveryRooms/deliveryRoom.tscn" id="2_gf6sq"]
+[ext_resource type="PackedScene" uid="uid://b1x5b3t5gj5u4" path="res://assets/TEMP/piecesTemp/mainOffice/mainOffice.tscn" id="2_fmvhc"]
 [ext_resource type="VoxelGIData" uid="uid://dux17gt4v6iad" path="res://assets/TEMP/Scenes/TestingWorld.VoxelGI_data.res" id="4_f8tqv"]
 [ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cassetteItems/crate/cartridgeCrate.tscn" id="5_02xml"]
 [ext_resource type="PackedScene" uid="uid://cw5n36b3i2pbg" path="res://assets/player/player.tscn" id="6_fmvhc"]
@@ -14,18 +14,9 @@ devMode = true
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1205161630]
 spawn_path = NodePath("..")
 
-[node name="spawnPoints" type="Node3D" parent="." unique_id=502608711]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13515615, 0, -7.1233187)
-
-[node name="Marker3D" type="Marker3D" parent="spawnPoints" unique_id=33406403]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05160761, 0.17511737, 0.34086943)
-
-[node name="Marker3D2" type="Marker3D" parent="spawnPoints" unique_id=665277592]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05160761, 0.17511737, -1.3371682)
-
 [node name="bunkerPieces" type="Node3D" parent="." unique_id=912366108]
 
-[node name="deliveryRoom" parent="bunkerPieces" unique_id=1821046668 instance=ExtResource("2_gf6sq")]
+[node name="mainOffice" parent="bunkerPieces" unique_id=82763826 instance=ExtResource("2_fmvhc")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=148173660]
 environment = ExtResource("15_eumgo")
@@ -34,7 +25,7 @@ environment = ExtResource("15_eumgo")
 data = ExtResource("4_f8tqv")
 
 [node name="cartridgeCrate" parent="." unique_id=1567765031 instance=ExtResource("5_02xml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7665696, 1.356561, -10.031477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78504634, 1.356561, -0.87925434)
 
 [node name="player" parent="." unique_id=1774373292 instance=ExtResource("6_fmvhc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.56077695, 0.28428864, -7.7108464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60833406, 0.28428864, -0.40351105)
