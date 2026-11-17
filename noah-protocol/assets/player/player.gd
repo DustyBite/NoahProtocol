@@ -15,6 +15,7 @@ var activeTerminal = null
 
 #misc
 @export var worldRoot: Node3D
+@export var devMode: bool = false
 var inTerminal = false
 var inPauseMenu = false
 
@@ -85,23 +86,9 @@ var drainRate: float = 0.25
 
 func _ready():
 	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pauseUi.player = self
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	call_deferred("_post_ready")
-
-func _post_ready():
-	print("Player:", name, " Authority:", get_multiplayer_authority())
-
-	#setup_visibility_layers()
-
-	if is_multiplayer_authority():
-		camera.current = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		print("✓ Local player")
-	else:
-		# Remote players never keep cameras
-		camera.queue_free()
-		print("✗ Remote player")
 
 func _unhandled_input(event):
 	if isPaused or inTerminal:
@@ -130,12 +117,13 @@ func _process(delta: float) -> void:
 	
 	checkRayCol()
 	
-	hunger = clampf(hunger - delta * drainRate,0,100)
-	exhaustion = clampf(exhaustion - delta * (drainRate + hungerMod),0,100)
-	if inGame:
-		sanity = clampf(sanity + delta * drainRate*4, 0, 100)
-	else:
-		sanity = clampf(sanity - delta * (drainRate + (hungerMod / 2) + exhaustionMod), 0, 100)
+	if !devMode:
+		hunger = clampf(hunger - delta * drainRate,0,100)
+		exhaustion = clampf(exhaustion - delta * (drainRate + hungerMod),0,100)
+		if inGame:
+			sanity = clampf(sanity + delta * drainRate*4, 0, 100)
+		else:
+			sanity = clampf(sanity - delta * (drainRate + (hungerMod / 2) + exhaustionMod), 0, 100)
 	
 	updateStats()
 

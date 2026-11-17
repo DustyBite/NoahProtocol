@@ -96,7 +96,10 @@ func getTotalPoints():
 	return total
 
 func interact(_body):
-	if placed or interacting:
+	if placed and !slot.interactable:
+		return
+	
+	if interacting:
 		return
 	
 	if !lidOpen:

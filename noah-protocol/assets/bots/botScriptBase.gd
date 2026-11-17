@@ -1,10 +1,10 @@
 extends RigidBody3D
 class_name botBase
 
-#misc Vars
+# Misc vars
 var currentTask: String = "idle"
 
-#Movement Vars
+# Movement vars
 @export_group("Movement")
 @export var angelWindow: float = .5
 @export var rotationSpeed: float = 1.0
@@ -16,135 +16,122 @@ var currentPathPos: int = 0
 var currentNode: Node
 var previousNode: Node
 var location: String = ""
+var rotateToFace: bool = false
 
-#Battery/Charger Vars
+# Battery/Charger vars
 @export_group("Battery & Charger")
 @export var chargerObj: Node
 
+# Task vars
 var targetObj: Node
 var targetLocation: Node
-var palletGrabbed: bool = false
-var rotateToFace: bool = false
+
 
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	checkTask(delta)
 
+
 func _physics_process(delta: float) -> void:
-	
 	if location == "movement":
 		moveTo(delta)
 
-func checkTask(delta):
-	var botPos = global_position
-	botPos.y = 0
-	
-	match currentTask:
-		"idle":
-			var chargerPos = chargerObj.global_position
-			chargerPos.y = 0
-			if botPos.distance_to(chargerPos) < locTolerance:
-				if location == "charger":
-					return
-				location = "charger"
-				
-				clearPath()
-				return
-			else:
-				location = "movement"
-				if !pathNodes.is_empty():
-					return
-				
-				var markA = pathManager.findClosest(self)
-				var markB = pathManager.findClosest(chargerObj)
-				pathNodes = pathManager.getPath(markA, markB)
-				pathNodes.append(chargerObj)
-				currentNode = pathNodes[0]
-				if "indicator" in currentNode:
-					currentNode.indicator = "target"
-		"grabObject":
-			var targetObjPos = targetObj.global_position
-			targetObjPos.y = 0
-			if botPos.distance_to(targetObjPos) < locTolerance:
-				location = "grab"
-				grabObject(targetObj, delta)
-				if palletGrabbed:
-					clearPath()
-					currentTask = "moveObject"
-				return
-			else:
-				location = "movement"
-				if !pathNodes.is_empty():
-					return
-				var markA = pathManager.findClosest(self)
-				var markB = pathManager.findClosest(targetObj)
-				pathNodes = pathManager.getPath(markA, markB)
-				pathNodes.append(targetObj)
-				currentNode = pathNodes[0]
-				if "indicator" in currentNode:
-					currentNode.indicator = "target"
-		"moveObject":
-			var targetLocPos = targetLocation.global_position
-			targetLocPos.y = 0
-			if botPos.distance_to(targetLocPos) < locTolerance:
-				location = "drop"
-				dropObject(targetObj, delta)
-				if !palletGrabbed:
-					clearPath()
-					
-					targetObj = null
-					targetLocation = null
-					currentTask = "idle"
-					
-					
-				return
-			else:
-				location = "movement"
-				if !pathNodes.is_empty():
-					return
-				var markA = pathManager.findClosest(self)
-				var markB = pathManager.findClosest(targetLocation)
-				#print(markA,markB)
-				pathNodes = pathManager.getPath(markA, markB)
-				pathNodes.append(targetLocation)
-				currentNode = pathNodes[0]
-				if "indicator" in currentNode:
-					currentNode.indicator = "target"
 
-func moveTo(delta):
+# --- Tasks ---
+
+func checkTask(delta) -> void:
+	if currentTask == "idle":
+		idleTask()
+	else:
+		runTask(delta)
+
+
+# Override in child scripts to handle their own task names
+func runTask(_delta) -> void:
+	pass
+
+
+func idleTask() -> void:
+	if isAtTarget(chargerObj):
+		if location == "charger":
+			return
+		location = "charger"
+		clearPath()
+		return
+	startPathTo(chargerObj)
+
+
+func assignTask(object, destination, label) -> void:
+	targetObj = object
+	targetLocation = destination
+	currentTask = label
+
+	pathManager.clearPath(pathNodes)
+	pathNodes.clear()
+	currentPathPos = 0
+	currentNode = null
+	previousNode = null
+
+
+# --- Helpers ---
+
+func isAtTarget(target: Node, tolerance: float = -1.0) -> bool:
+	if tolerance < 0:
+		tolerance = locTolerance
+	var a = global_position
+	var b = target.global_position
+	a.y = 0
+	b.y = 0
+	return a.distance_to(b) < tolerance
+
+
+func startPathTo(target: Node) -> void:
+	location = "movement"
+	if !pathNodes.is_empty():
+		return
+	var markA = pathManager.findClosest(self)
+	var markB = pathManager.findClosest(target)
+	pathNodes = pathManager.getPath(markA, markB)
+	pathNodes.append(target)
+	currentNode = pathNodes[0]
+	if "indicator" in currentNode:
+		currentNode.indicator = "target"
+
+
+# --- Movement ---
+
+func moveTo(delta) -> void:
 	if pathNodes.is_empty():
 		return
-	
+
 	var botPos = global_position
 	var curNodePos = currentNode.global_position
 	curNodePos.y = botPos.y
-	
+
 	if rotateToFace:
 		var direction = curNodePos - botPos
 		var angleRad = atan2(direction.x, direction.z)
-		
+
 		var angleTolerance = .005
 		var currentRad = deg_to_rad(rotation_degrees.y)
-		
+
 		if abs(angle_difference(angleRad, currentRad)) > angleTolerance:
 			rotation_degrees.y = rad_to_deg(rotate_toward(currentRad, angleRad, rotationSpeed * delta))
 			return
 		else:
 			rotateToFace = false
 			rotation_degrees.y = rad_to_deg(angleRad)
-	
+
 	if botPos.distance_to(curNodePos) < locTolerance:
 		getNextNode()
-	elif botPos.distance_to(curNodePos) > locTolerance:
+	else:
 		global_position = global_position.move_toward(curNodePos, moveSpeed * delta)
-		return
 
-func clearPath():
+
+func clearPath() -> void:
 	pathManager.clearPath(pathNodes)
 	pathNodes.clear()
 	currentPathPos = 0
@@ -152,7 +139,8 @@ func clearPath():
 	currentNode = null
 	previousNode = null
 
-func getNextNode():
+
+func getNextNode() -> void:
 	currentPathPos += 1
 	if currentPathPos < pathNodes.size():
 		if previousNode != null and "indicator" in previousNode:
@@ -162,49 +150,3 @@ func getNextNode():
 		rotateToFace = true
 		if "indicator" in currentNode:
 			currentNode.indicator = "target"
-
-func assignTask(object, destination, label):
-	targetObj = object
-	targetLocation = destination
-	currentTask = label
-	
-	pathManager.clearPath(pathNodes)
-	pathNodes.clear()
-	currentPathPos = 0
-	currentNode = null
-	previousNode = null
-
-func grabObject(grabObj, delta):
-	var currentRad = deg_to_rad(rotation_degrees.y)
-	var angleRad = deg_to_rad(grabObj.rotation_degrees.y)
-	var angleTolerance = .05
-	
-	if abs(angle_difference(angleRad, currentRad)) > angleTolerance:
-		rotation_degrees.y = rad_to_deg(rotate_toward(currentRad, angleRad, rotationSpeed * delta))
-		return
-	elif !palletGrabbed:
-		moveSpeed = moveSpeed/2
-		rotationSpeed = rotationSpeed/2
-		palletGrabbed = true
-	
-		grabObj.reparent(self)
-		grabObj.place()
-		grabObj.global_transform = global_transform
-
-func dropObject(grabObj, delta):
-	var currentRad = deg_to_rad(rotation_degrees.y)
-	var angleRad = deg_to_rad(targetLocation.rotation_degrees.y)
-	var angleTolerance = .05
-	var root = get_tree().current_scene
-	
-	if abs(angle_difference(angleRad, currentRad)) > angleTolerance:
-		rotation_degrees.y = rad_to_deg(rotate_toward(currentRad, angleRad, rotationSpeed * delta))
-		return
-	elif palletGrabbed:
-		moveSpeed = moveSpeed*2
-		rotationSpeed = rotationSpeed*2
-		palletGrabbed = false
-	
-		grabObj.reparent(root)
-		grabObj.place()
-		grabObj.global_transform = global_transform

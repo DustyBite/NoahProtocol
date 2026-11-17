@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://r04511lgxo3d"]
+
+[ext_resource type="Script" uid="uid://dvca5wmfuspjk" path="res://assets/bots/crateBot/crateBotScript.gd" id="1_4odjr"]
+[ext_resource type="Material" uid="uid://dvnmqt00othqo" path="res://DevAssets/Materials/PalletOne/DM_Magenta.tres" id="2_4odjr"]
+[ext_resource type="PackedScene" uid="uid://ca448i586dvem" path="res://assets/interactables/Slots/crateSlot.tscn" id="3_30of4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0bc61"]
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gf6sq"]
+height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.1, 0.09, 0.1)
+
+[node name="crateBot" type="RigidBody3D" unique_id=702302899 node_paths=PackedStringArray("carrySlots")]
+collision_layer = 8
+collision_mask = 9
+center_of_mass_mode = 1
+script = ExtResource("1_4odjr")
+carrySlots = [NodePath("slots/slot1"), NodePath("slots/slot2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639908087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_0bc61")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1005057545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = ExtResource("2_4odjr")
+mesh = SubResource("CylinderMesh_gf6sq")
+
+[node name="frontRaycast" type="RayCast3D" parent="." unique_id=443954343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, 0, 0.75)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1741231737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.05, 0.5)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="slots" type="Node3D" parent="." unique_id=1578974987]
+
+[node name="slot1" parent="slots" unique_id=1451234101 instance=ExtResource("3_30of4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.35, 0)
+
+[node name="slot2" parent="slots" unique_id=1604940350 instance=ExtResource("3_30of4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.85, 0)
+interactable = true

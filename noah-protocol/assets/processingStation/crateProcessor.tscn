@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dtcyefqjhpnq1"]
+
+[ext_resource type="Material" uid="uid://873nptvltcdk" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SoftOrange.tres" id="1_jq7qa"]
+[ext_resource type="Script" uid="uid://csync7uf7sb70" path="res://assets/processingStation/crateProcessorScript.gd" id="1_sdnri"]
+[ext_resource type="PackedScene" uid="uid://dcv811nqohas2" path="res://assets/processingStation/rackSlot.tscn" id="2_sdnri"]
+[ext_resource type="PackedScene" uid="uid://ca448i586dvem" path="res://assets/interactables/Slots/crateSlot.tscn" id="4_ej6pq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1, 0.3, 1.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 0.3, 1.1)
+
+[node name="crateProcessor" type="Node3D" unique_id=525203236]
+script = ExtResource("1_sdnri")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=253464528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = ExtResource("1_jq7qa")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=584546354]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1616506390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="rack" parent="." unique_id=1406826851 instance=ExtResource("2_sdnri")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.15, -0.15)
+slotType = "automationRack"
+
+[node name="slots" type="Node3D" parent="." unique_id=1019232288]
+
+[node name="slot1" parent="slots" unique_id=1451234101 instance=ExtResource("4_ej6pq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, -0.2)
+
+[node name="slot2" parent="slots" unique_id=737847425 instance=ExtResource("4_ej6pq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, -0.2)
+interactable = true

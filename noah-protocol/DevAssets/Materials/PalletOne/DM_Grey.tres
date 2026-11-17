@@ -1,8 +1,17 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://dvq7mupsaaku2"]
 
 [ext_resource type="Texture2D" uid="uid://xxc4q8d8fcga" path="res://DevAssets/Materials/PalletOne/Textures/DT_Grey.png" id="1_l6kqt"]
+[ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="2_b0c7c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17pp5"]
+render_priority = 0
+shader = ExtResource("2_b0c7c")
+shader_parameter/outlineColor = Color(1, 1, 1, 1)
+shader_parameter/outlineThickness = 0.01
+shader_parameter/outlineToggle = false
 
 [resource]
+next_pass = SubResource("ShaderMaterial_17pp5")
 albedo_texture = ExtResource("1_l6kqt")
 uv1_triplanar = true
 texture_filter = 0

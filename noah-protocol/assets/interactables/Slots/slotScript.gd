@@ -7,6 +7,7 @@ class_name ItemSlot
 @onready var area: Area3D = $Area3D
 
 @export var slotType: String
+@export var interactable: bool = false
 
 @onready var ghostMesh := $meshGhost
 

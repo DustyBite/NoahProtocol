@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dcv811nqohas2"]
+
+[ext_resource type="Script" uid="uid://cwkqdjymgsmkr" path="res://assets/processingStation/rackSlotScript.gd" id="1_1opy7"]
+[ext_resource type="Material" uid="uid://c2fjbptveu302" path="res://assets/interactables/Slots/ghostMat.tres" id="2_ljphm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iggj7"]
+size = Vector3(0.8, 0.15, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d1exs"]
+size = Vector3(0.8, 0.15, 0.8)
+
+[node name="rack" type="Node3D" unique_id=1406826851]
+script = ExtResource("1_1opy7")
+hasOffset = true
+removeOffset = Vector3(0, 0, 0.1)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1403373945]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1388726903]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1795556184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_iggj7")
+
+[node name="meshGhost" type="MeshInstance3D" parent="." unique_id=1781275312]
+visible = false
+material_override = ExtResource("2_ljphm")
+mesh = SubResource("BoxMesh_d1exs")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

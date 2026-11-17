@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cbr6ub06bjrde"]
+
+[ext_resource type="Script" uid="uid://clqmtu5rwmg7r" path="res://assets/interactables/expansionRacks/rackScript.gd" id="1_cf5lo"]
+[ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="2_ievij"]
+[ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="2_qtft0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(0.8, 0.15, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_57qmd"]
+material = ExtResource("2_ievij")
+size = Vector3(0.75, 0.1, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cf5lo"]
+material = ExtResource("2_qtft0")
+size = Vector3(0.8, 0.15, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.1, 0.1, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qtft0"]
+size = Vector3(0.3, 0.1, 0.05)
+
+[node name="rack" type="RigidBody3D" unique_id=1026339103 node_paths=PackedStringArray("hoverMeshArray")]
+collision_layer = 195
+collision_mask = 3
+script = ExtResource("1_cf5lo")
+hoverMeshArray = [NodePath("mesh/MeshInstance3D"), NodePath("mesh/MeshInstance3D2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=429501863]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="mesh" type="Node3D" parent="." unique_id=1838355748]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh" unique_id=502380543]
+mesh = SubResource("BoxMesh_57qmd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesh" unique_id=1776991855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+mesh = SubResource("BoxMesh_cf5lo")
+
+[node name="blinkIndicator" type="MeshInstance3D" parent="mesh" unique_id=24075720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.325, 0, 0.41)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="slotIndicator" type="MeshInstance3D" parent="mesh" unique_id=2070995196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, 0, 0.41)
+mesh = SubResource("BoxMesh_qtft0")
+
+[node name="tierIndicator" type="MeshInstance3D" parent="mesh" unique_id=1917707405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0.41)
+mesh = SubResource("BoxMesh_qtft0")

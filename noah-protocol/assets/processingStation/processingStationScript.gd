@@ -3,12 +3,14 @@ extends Node
 # Onready vars
 
 @onready var cardSlotA := $processingSlots/processingSlotA
-@onready var cardSlotB := $processingSlots/processingSlotB
-@onready var cardSlotC := $processingSlots/processingSlotC
+#@onready var cardSlotB := $processingSlots/processingSlotB
+#@onready var cardSlotC := $processingSlots/processingSlotC
 
-@onready var processUpgrade := $upgradeSlots/processSlot
-@onready var uploadUpgrade := $upgradeSlots/uploadSlot
-@onready var wipeUpgrade := $upgradeSlots/wipeSlot
+@onready var processRack := $processSlot
+@onready var uploadRack := $uploadSlot
+@onready var wipeRack := $wipeSlot
+
+@onready var crateProcessor := $crateProcessor
 
 @onready var screenLabel := $SubViewport/Control/Panel/Label
 @onready var progressBar := $SubViewport/Control/Panel/ProgressBar
@@ -34,33 +36,81 @@ var finishedTxt: String = "CASSETTE PROCESSED. PLEASE REMOVE"
 var processSpeed: int = 1
 var uploadSpeed: int = 1
 var wipeSpeed: int = 1
-var processUpgradeCard
-var uploadUpgradeCard
-var wipeUpgradeCard
+
+var processing: bool = false
+var checkInterval := 2.0  # seconds between checks
+var checkTimer := 0.0
 
 func _ready() -> void:
 	currentTxt = defaultTxt
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	screenLabel.text = currentTxt
 	
-	checkUpgrades()
+	automation(delta)
+
+func automation(delta):
+	if processing:
+		return
+
+	checkTimer += delta
+	if checkTimer < checkInterval:
+		return
+	checkTimer = 0.0
+
+	if crateProcessor.automating:
+		for i in range(crateProcessor.crateSlots.size() - 1, -1, -1):
+			var crate = crateProcessor.crateSlots[i].slottedItem
+			if crate != null:
+				if firstValidSlot(crate) != null:
+					if !crate.lidOpen:
+						crate.openLid()
+					automateCrate(crate)
+				elif crate.lidOpen:
+					crate.closeLid()
+				break
+
+func firstValidSlot(crate):
+	for slot in crate.cassettesSlots:
+		var card = slot.slottedItem
+		if card != null and (card.status == "loaded" or card.status == "processing"):
+			return slot
+	return null
+
+func automateCrate(crate):
+	while crateProcessor.automating:
+		var crateSlot = firstValidSlot(crate)
+		if crateSlot == null:
+			break
+		var card = crateSlot.slottedItem
+		moveCard(card, cardSlotA)
+		await checkSlots(cardSlotA, cardA)
+		moveCard(card, crateSlot)
+		checkSlots(cardSlotA, cardA)
+	if crate.lidOpen:
+		crate.closeLid()
+
+func moveCard(card, targetSlot):
+	var oldSlot = card.slot
+	if oldSlot != null and oldSlot != targetSlot:
+		oldSlot.slottedItem = null
+	targetSlot.slotItem(card)
 
 func checkUpgrades():
-	if processUpgrade.slottedItem != null and processUpgradeCard != processUpgrade.slottedItem:
-		processUpgradeCard = processUpgrade.slottedItem
-		processSpeed = processUpgradeCard.speedModifer
-	
-	if uploadUpgrade.slottedItem != null and uploadUpgradeCard != uploadUpgrade.slottedItem:
-		uploadUpgradeCard = uploadUpgrade.slottedItem
-		uploadSpeed = uploadUpgradeCard.speedModifer
-	
-	if wipeUpgrade.slottedItem != null and wipeUpgradeCard != wipeUpgrade.slottedItem:
-		wipeUpgradeCard = wipeUpgrade.slottedItem
-		wipeSpeed = wipeUpgradeCard.speedModifer
+	print(processRack.checkSlots())
+	processSpeed = processRack.checkSlots()
+	uploadSpeed = uploadRack.checkSlots()
+	wipeSpeed = wipeRack.checkSlots()
 
 func checkSlots(slot, card):
+	if processing:
+		return
+	
 	if slot.slottedItem != null and card != slot.slottedItem:
+		checkUpgrades()
+		
+		processing = true
+		
 		card = slot.slottedItem
 		slottedCard = true
 		
@@ -82,6 +132,8 @@ func checkSlots(slot, card):
 		await wipeCard(card)
 		slot.InteractOn()
 		
+		processing = false
+		
 	elif slot.slottedItem == null:
 		currentTxt = defaultTxt
 		progressBar.value = 0
@@ -91,8 +143,8 @@ func checkSlots(slot, card):
 
 func interact():
 	checkSlots(cardSlotA, cardA)
-	checkSlots(cardSlotB, cardB)
-	checkSlots(cardSlotC, cardC)
+	#checkSlots(cardSlotB, cardB)
+	#checkSlots(cardSlotC, cardC)
 
 func processCard(card):
 	card.status = "processing"

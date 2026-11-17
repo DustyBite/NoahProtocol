@@ -1,8 +1,17 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://davhh7anhuu5r"]
 
 [ext_resource type="Texture2D" uid="uid://fa2nwhaiqux7" path="res://DevAssets/Materials/PalletOne/Textures/DT_Orange.png" id="1_dpwfb"]
+[ext_resource type="Shader" uid="uid://d0n12ue8wjkl2" path="res://assets/interactables/outlineShader.gdshader" id="2_ilrmn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_08wu2"]
+render_priority = 0
+shader = ExtResource("2_ilrmn")
+shader_parameter/outlineColor = Color(1, 1, 1, 1)
+shader_parameter/outlineThickness = 0.01
+shader_parameter/outlineToggle = false
 
 [resource]
+next_pass = SubResource("ShaderMaterial_08wu2")
 albedo_texture = ExtResource("1_dpwfb")
 uv1_triplanar = true
 texture_filter = 0

@@ -26,11 +26,13 @@ func _ready() -> void:
 	for slot in unpackStations.get_children():
 		unpacking.append(slot)
 	
-	for slot in storagePosA.get_children():
-		storageA.append(slot)
+	if storagePosA != null:
+		for slot in storagePosA.get_children():
+			storageA.append(slot)
 	
-	for slot in storagePosB.get_children():
-		storageB.append(slot)
+	if storagePosB != null:
+		for slot in storagePosB.get_children():
+			storageB.append(slot)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

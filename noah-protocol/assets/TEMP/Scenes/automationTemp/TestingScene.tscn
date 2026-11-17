@@ -1,0 +1,327 @@
+[gd_scene format=3 uid="uid://u61spo1oh655"]
+
+[ext_resource type="Material" uid="uid://b7jy5p2q5f35p" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_DarkGrey.tres" id="1_y7uwa"]
+[ext_resource type="Material" uid="uid://crrwcv7gwxlpf" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_LightGrey.tres" id="2_xo4j7"]
+[ext_resource type="PackedScene" uid="uid://cw5n36b3i2pbg" path="res://assets/player/player.tscn" id="3_br6vu"]
+[ext_resource type="PackedScene" uid="uid://c6hgq84ngi0ss" path="res://assets/processingStation/processingStation.tscn" id="4_501v3"]
+[ext_resource type="PackedScene" uid="uid://cbr6ub06bjrde" path="res://assets/interactables/expansionRacks/rack.tscn" id="5_t8dd6"]
+[ext_resource type="PackedScene" uid="uid://bnr2yuqkqlt18" path="res://assets/interactables/cassetteItems/crate/cartridgeCrate.tscn" id="6_pi5ly"]
+[ext_resource type="PackedScene" uid="uid://r04511lgxo3d" path="res://assets/bots/crateBot/crateBot.tscn" id="7_i5d07"]
+[ext_resource type="PackedScene" uid="uid://cwq1ome0gf6e" path="res://assets/bots/chargers/chargerUnit.tscn" id="8_b8o64"]
+[ext_resource type="Script" uid="uid://ctvfj5ciknsfh" path="res://assets/bots/chargers/chargerUnitCrateScript.gd" id="9_bjiqq"]
+[ext_resource type="Script" uid="uid://bavb4od4b323l" path="res://assets/bots/chargers/storageSlotScript.gd" id="10_0utal"]
+[ext_resource type="Script" uid="uid://3fip1xunc5pm" path="res://assets/bots/pathMarkers/pathManager.gd" id="11_nipd7"]
+[ext_resource type="PackedScene" uid="uid://bjak7yqob2gwm" path="res://assets/bots/pathMarkers/pathMarker.tscn" id="12_r2etf"]
+[ext_resource type="PackedScene" uid="uid://bu8xy1oqntm2i" path="res://assets/TEMP/piecesTemp/deliveryRooms/container/container.tscn" id="13_nipd7"]
+[ext_resource type="PackedScene" uid="uid://cfr6037dw38lg" path="res://assets/bots/palletbot/palletBot.tscn" id="14_r2etf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(0.1, 3, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2etf"]
+size = Vector3(0.1, 3, 3.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+size = Vector3(0.1, 3, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mmg3v"]
+size = Vector3(0.1, 3, 3.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(10, 3, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1jse"]
+size = Vector3(3, 3, 7.5)
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 4
+ambient_light_source = 1
+reflected_light_source = 1
+ssil_enabled = true
+ssil_intensity = 0.1
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+
+[node name="root" type="Node3D" unique_id=503166850]
+
+[node name="room" type="Node3D" parent="." unique_id=1319655574]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="room" unique_id=94079536]
+
+[node name="floorCol" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=1335051166]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="ceilingCol" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=421378141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=821002998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=311411826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 3.25)
+shape = SubResource("BoxShape3D_r2etf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=480461464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -3.25)
+shape = SubResource("BoxShape3D_r2etf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=1186747900]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.5, 5)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="room/StaticBody3D" unique_id=810741876]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.371139e-07, 1.5, -5)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="meshes" type="Node3D" parent="room" unique_id=436429046]
+
+[node name="floorMesh" type="MeshInstance3D" parent="room/meshes" unique_id=1437996238]
+material_override = ExtResource("1_y7uwa")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="ceilingMesh" type="MeshInstance3D" parent="room/meshes" unique_id=1412674806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("1_y7uwa")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="wWallMesh" type="MeshInstance3D" parent="room/meshes" unique_id=489114570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+material_override = ExtResource("2_xo4j7")
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="eWallMesh" type="MeshInstance3D" parent="room/meshes" unique_id=892395576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -3.25)
+material_override = ExtResource("2_xo4j7")
+mesh = SubResource("BoxMesh_mmg3v")
+
+[node name="eWallMesh2" type="MeshInstance3D" parent="room/meshes" unique_id=1038684711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 3.25)
+material_override = ExtResource("2_xo4j7")
+mesh = SubResource("BoxMesh_mmg3v")
+
+[node name="sWallMesh" type="MeshInstance3D" parent="room/meshes" unique_id=367270333]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.5, 5)
+material_override = ExtResource("2_xo4j7")
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="nWallMesh" type="MeshInstance3D" parent="room/meshes" unique_id=1649763034]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.371139e-07, 1.5, -5)
+material_override = ExtResource("2_xo4j7")
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="lights" type="Node3D" parent="room" unique_id=1287401681]
+
+[node name="AreaLight3D" type="AreaLight3D" parent="room/lights" unique_id=2102321280]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.95, 0)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D2" type="AreaLight3D" parent="room/lights" unique_id=29570029]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.5, 2.95, 0)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D3" type="AreaLight3D" parent="room/lights" unique_id=387980536]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.5, 2.95, 0)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D4" type="AreaLight3D" parent="room/lights" unique_id=1283497794]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.95, 2.5)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D5" type="AreaLight3D" parent="room/lights" unique_id=1250322398]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.5, 2.95, 2.5)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D6" type="AreaLight3D" parent="room/lights" unique_id=1896178976]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.5, 2.95, 2.5)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D7" type="AreaLight3D" parent="room/lights" unique_id=118817910]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.95, -2.5)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D8" type="AreaLight3D" parent="room/lights" unique_id=952249395]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.5, 2.95, -2.5)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="AreaLight3D9" type="AreaLight3D" parent="room/lights" unique_id=1982841902]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.5, 2.95, -2.5)
+light_energy = 2.0
+shadow_enabled = true
+area_range = 10.0
+area_attenuation = 2.0
+
+[node name="processingStation" parent="room" unique_id=1748344850 instance=ExtResource("4_501v3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45, 0, 0)
+
+[node name="rack" parent="room" unique_id=1026339103 instance=ExtResource("5_t8dd6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.626176, 0.48285866, 1.9848273)
+slotType = "processingRack"
+tier = "tier3"
+
+[node name="rack2" parent="room" unique_id=1888470891 instance=ExtResource("5_t8dd6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85423636, 0.48285866, -1.2793229)
+slotType = "automationRack"
+tier = "tier1"
+
+[node name="cartridgeCrate" parent="room" unique_id=1567765031 instance=ExtResource("6_pi5ly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987131, 0.6000001, -2.0891871)
+
+[node name="cartridgeCrate2" parent="room" unique_id=453834417 instance=ExtResource("6_pi5ly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5795264, 0.6000001, -2.0891871)
+
+[node name="player" parent="room" unique_id=1774373292 node_paths=PackedStringArray("worldRoot") instance=ExtResource("3_br6vu")]
+worldRoot = NodePath("../..")
+devMode = true
+
+[node name="crateBot" parent="room" unique_id=702302899 node_paths=PackedStringArray("pathManager", "chargerObj") instance=ExtResource("7_i5d07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47712004, 0.049999956, -2.045329)
+pathManager = NodePath("../botPathMarkers")
+chargerObj = NodePath("../chargerUnit")
+
+[node name="chargerUnit" parent="room" unique_id=923556343 node_paths=PackedStringArray("assignedBot", "processStation", "roomArea", "unpackStations") instance=ExtResource("8_b8o64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48505902, 0.049999952, -4.2633104)
+script = ExtResource("9_bjiqq")
+assignedBot = NodePath("../crateBot")
+processStation = NodePath("../processingStation")
+roomArea = NodePath("../Area3D")
+unpackStations = NodePath("../unpackingStations")
+
+[node name="Area3D" type="Area3D" parent="room" unique_id=184041294]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room/Area3D" unique_id=608224505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="unpackingStations" type="Node3D" parent="room" unique_id=1627602067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2835746, 0, -3.0478876)
+
+[node name="unpack1" type="Marker3D" parent="room/unpackingStations" unique_id=1747189065]
+script = ExtResource("10_0utal")
+
+[node name="botPathMarkers" type="Node3D" parent="room" unique_id=2070740708]
+script = ExtResource("11_nipd7")
+
+[node name="MarkerChargeA" parent="room/botPathMarkers" unique_id=1273002714 instance=ExtResource("12_r2etf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4941349, 0, -4)
+
+[node name="MarkerChargeB" parent="room/botPathMarkers" unique_id=1722035787 instance=ExtResource("12_r2etf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1123176, 0, -4)
+
+[node name="Marker1" parent="room/botPathMarkers" unique_id=1742381902 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_r2etf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1123176, 0, -0.47598028)
+neighbors = [NodePath("../Marker2"), NodePath("../Marker3")]
+
+[node name="Marker3" parent="room/botPathMarkers" unique_id=2120026220 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_r2etf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1123176, 0, -2.7869828)
+neighbors = [NodePath("../Marker1"), NodePath("../MarkerChargeB")]
+
+[node name="Marker2" parent="room/botPathMarkers" unique_id=1266558407 node_paths=PackedStringArray("neighbors") instance=ExtResource("12_r2etf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1123176, 0, 0.57199955)
+neighbors = [NodePath("../Marker1")]
+
+[node name="Container" parent="room" unique_id=731819989 instance=ExtResource("13_nipd7")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9, 0, 8.742278e-08)
+
+[node name="containerA3D" type="Area3D" parent="room/Container" unique_id=1496613623]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room/Container/containerA3D" unique_id=1680535766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_w1jse")
+
+[node name="palletBot" parent="room" unique_id=1930124409 node_paths=PackedStringArray("pathManager", "chargerObj") instance=ExtResource("14_r2etf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.035454, 0.049999956, -2.1862614)
+pathManager = NodePath("../botPathMarkers")
+chargerObj = NodePath("../chargerUnit2")
+
+[node name="chargerUnit2" parent="room" unique_id=1839044556 node_paths=PackedStringArray("assignedBot", "containerArea", "unpackStations", "storagePosA", "storagePosB") instance=ExtResource("8_b8o64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.118105, 0.05000019, -4.020852)
+assignedBot = NodePath("../palletBot")
+containerArea = NodePath("../Container/containerA3D")
+unpackStations = NodePath("../unpackingStations")
+storagePosA = NodePath("../markerA")
+storagePosB = NodePath("../markerB")
+
+[node name="markerA" type="Node3D" parent="room" unique_id=1642616054]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.4531202, 0, 3.3483744)
+
+[node name="Marker3D" type="Marker3D" parent="room/markerA" unique_id=130280527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.16, -3.25)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D3" type="Marker3D" parent="room/markerA" unique_id=219371723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.16, -1.75)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D5" type="Marker3D" parent="room/markerA" unique_id=901947060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.16, -0.25)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D7" type="Marker3D" parent="room/markerA" unique_id=1016725855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.16, 1.25)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D9" type="Marker3D" parent="room/markerA" unique_id=1179221914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.16, 2.75)
+script = ExtResource("10_0utal")
+
+[node name="markerB" type="Node3D" parent="room" unique_id=1732012957]
+
+[node name="Marker3D2" type="Marker3D" parent="room/markerB" unique_id=836755075]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.7968798, 0.16, 2.5983744)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D4" type="Marker3D" parent="room/markerB" unique_id=1284360180]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.29687977, 0.16, 2.5983744)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D6" type="Marker3D" parent="room/markerB" unique_id=277883441]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.2031202, 0.16, 2.5983744)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D8" type="Marker3D" parent="room/markerB" unique_id=1143798447]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.7031202, 0.16, 2.5983744)
+script = ExtResource("10_0utal")
+
+[node name="Marker3D10" type="Marker3D" parent="room/markerB" unique_id=2011693701]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.20312, 0.16, 2.5983744)
+script = ExtResource("10_0utal")
+
+[node name="enviroment" type="Node3D" parent="." unique_id=1987539111]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="enviroment" unique_id=210741867]
+environment = SubResource("Environment_g4v7s")

@@ -3,6 +3,8 @@ class_name InteractableDynamic
 
 # Export vars
 
+@export var spawnParent: Node
+
 @export var hoverMeshArray: Array[Node]
 @export var canDrag: bool = true
 
@@ -40,6 +42,11 @@ func _ready() -> void:
 			mat.next_pass = mat.next_pass.duplicate()
 		mesh.set_surface_override_material(0, mat)
 		baseMaterial.append(mat)
+	
+	await get_tree().create_timer(0.1).timeout
+	if spawnParent != null:
+		slot = spawnParent
+		slot.slotItem(self)
 
 func hover(value):
 	if baseMaterial.is_empty():
