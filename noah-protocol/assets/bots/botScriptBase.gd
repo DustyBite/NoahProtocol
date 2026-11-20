@@ -27,6 +27,9 @@ var targetObj: Node
 var targetLocation: Node
 
 
+
+var checkTimer: float = 1.0
+
 func _ready() -> void:
 	pass
 
@@ -43,9 +46,12 @@ func _physics_process(delta: float) -> void:
 # --- Tasks ---
 
 func checkTask(delta) -> void:
-	if currentTask == "idle":
-		idleTask()
+	if checkTimer <= 0:
+		checkTimer = 1.0
+		if currentTask == "idle":
+			idleTask()
 	else:
+		checkTimer -= delta
 		runTask(delta)
 
 
@@ -94,6 +100,7 @@ func startPathTo(target: Node) -> void:
 		return
 	var markA = pathManager.findClosest(self)
 	var markB = pathManager.findClosest(target)
+	
 	pathNodes = pathManager.getPath(markA, markB)
 	pathNodes.append(target)
 	currentNode = pathNodes[0]

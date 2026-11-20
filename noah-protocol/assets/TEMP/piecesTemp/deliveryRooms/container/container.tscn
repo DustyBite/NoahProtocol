@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://r6cd4bcr7v5j" path="res://DevAssets/Materials/PalletOne/DM_Black.tres" id="1_g1q7o"]
 [ext_resource type="Script" uid="uid://s52n04wa4b2s" path="res://assets/TEMP/piecesTemp/deliveryRooms/container/containerScript.gd" id="1_s003e"]
-[ext_resource type="Material" uid="uid://dvq7mupsaaku2" path="res://DevAssets/Materials/PalletOne/DM_Grey.tres" id="2_3p6kk"]
+[ext_resource type="Material" uid="uid://b7jy5p2q5f35p" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_DarkGrey.tres" id="3_e64vl"]
 [ext_resource type="Material" uid="uid://pvedlhfunyar" path="res://DevAssets/Materials/PalletOne/DM_White.tres" id="3_s003e"]
 [ext_resource type="Script" uid="uid://spv4y7vs181s" path="res://assets/TEMP/piecesTemp/deliveryRooms/container/contDoorTEMP.gd" id="5_s003e"]
 
@@ -68,7 +68,7 @@ material_override = ExtResource("1_g1q7o")
 mesh = SubResource("BoxMesh_fxbys")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Mesh" unique_id=418060231]
-material_override = ExtResource("2_3p6kk")
+material_override = ExtResource("3_e64vl")
 mesh = SubResource("BoxMesh_fxbys")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="Mesh" unique_id=1128360019]

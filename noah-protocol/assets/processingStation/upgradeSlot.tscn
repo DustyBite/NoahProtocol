@@ -5,8 +5,7 @@
 [ext_resource type="Material" uid="uid://c165tsmybrlfy" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_Lavender.tres" id="2_2dxqh"]
 [ext_resource type="Script" uid="uid://c2fsgxps8osf1" path="res://assets/interactables/Slots/slotScript.gd" id="4_81yj5"]
 [ext_resource type="Material" uid="uid://c2fjbptveu302" path="res://assets/interactables/Slots/ghostMat.tres" id="5_w6awu"]
-[ext_resource type="Script" uid="uid://den5ylmq720c2" path="res://assets/interactables/interactableDynamic.gd" id="6_lxf7m"]
-[ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="6_w6awu"]
+[ext_resource type="PackedScene" uid="uid://y4pc22n30vax" path="res://assets/processingStation/serverPanel.tscn" id="6_lxf7m"]
 [ext_resource type="PackedScene" uid="uid://dcv811nqohas2" path="res://assets/processingStation/rackSlot.tscn" id="8_1lood"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
@@ -32,16 +31,6 @@ size = Vector3(0.7, 1, 0.075)
 
 [sub_resource type="BoxMesh" id="BoxMesh_d1exs"]
 size = Vector3(0.8, 1.1, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
-size = Vector3(0.8, 1.1, 0.05)
-
-[sub_resource type="BoxMesh" id="BoxMesh_d0u6y"]
-material = ExtResource("6_w6awu")
-size = Vector3(0.8, 1.1, 0.05)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3gngh"]
-size = Vector3(0.8, 0.15, 0.8)
 
 [node name="upgradeSlot" type="Node3D" unique_id=662239518]
 script = ExtResource("1_hdkg1")
@@ -93,45 +82,33 @@ mesh = SubResource("BoxMesh_exgra")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0.55)
 mesh = SubResource("BoxMesh_57qmd")
 
-[node name="panelSlot" type="Node3D" parent="." unique_id=1451234101]
+[node name="panelSlot" type="Node3D" parent="." unique_id=318018495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.525)
 script = ExtResource("4_81yj5")
 slotType = "panel"
-hasOffset = true
 removeOffset = Vector3(0, 0, 0.1)
 
-[node name="Marker3D" type="Marker3D" parent="panelSlot" unique_id=1803217197]
+[node name="Marker3D" type="Marker3D" parent="panelSlot" unique_id=1621381236]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.025)
 
-[node name="Area3D" type="Area3D" parent="panelSlot" unique_id=57437683]
+[node name="Area3D" type="Area3D" parent="panelSlot" unique_id=66049235]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 collision_layer = 64
 collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="panelSlot/Area3D" unique_id=1911407989]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="panelSlot/Area3D" unique_id=1180719374]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_lxf7m")
 
-[node name="meshGhost" type="MeshInstance3D" parent="panelSlot" unique_id=1363037023]
+[node name="meshGhost" type="MeshInstance3D" parent="panelSlot" unique_id=1676167201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 visible = false
 material_override = ExtResource("5_w6awu")
 mesh = SubResource("BoxMesh_d1exs")
 
-[node name="panel" type="RigidBody3D" parent="panelSlot" unique_id=527608314 node_paths=PackedStringArray("spawnParent", "hoverMeshArray")]
+[node name="panelSlot" parent="panelSlot" unique_id=2011955518 node_paths=PackedStringArray("spawnParent") instance=ExtResource("6_lxf7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.025)
-collision_layer = 195
-collision_mask = 3
-script = ExtResource("6_lxf7m")
 spawnParent = NodePath("..")
-hoverMeshArray = [NodePath("MeshInstance3D")]
-type = "panel"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="panelSlot/panel" unique_id=421646496]
-shape = SubResource("BoxShape3D_yf5fn")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="panelSlot/panel" unique_id=2042204208]
-mesh = SubResource("BoxMesh_d0u6y")
 
 [node name="rackSlots" type="Node3D" parent="." unique_id=226878257]
 
@@ -139,25 +116,21 @@ mesh = SubResource("BoxMesh_d0u6y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0.05)
 removeOffset = Vector3(0, 0, 1)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="rackSlots" unique_id=1011348799]
+[node name="rack2" parent="rackSlots" unique_id=1861462604 instance=ExtResource("8_1lood")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575, 0.05)
-visible = false
-mesh = SubResource("BoxMesh_3gngh")
+removeOffset = Vector3(0, 0, 1)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="rackSlots" unique_id=2037438664]
+[node name="rack3" parent="rackSlots" unique_id=522206216 instance=ExtResource("8_1lood")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.05)
-visible = false
-mesh = SubResource("BoxMesh_3gngh")
+removeOffset = Vector3(0, 0, 1)
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="rackSlots" unique_id=1909045414]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0.05)
-visible = false
-mesh = SubResource("BoxMesh_3gngh")
+[node name="rack4" parent="rackSlots" unique_id=1177518741 instance=ExtResource("8_1lood")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92499995, 0.05)
+removeOffset = Vector3(0, 0, 1)
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="rackSlots" unique_id=798499444]
+[node name="rack5" parent="rackSlots" unique_id=1725659031 instance=ExtResource("8_1lood")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0.05)
-visible = false
-mesh = SubResource("BoxMesh_3gngh")
+removeOffset = Vector3(0, 0, 1)
 
 [connection signal="body_entered" from="panelSlot/Area3D" to="panelSlot" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="panelSlot/Area3D" to="panelSlot" method="_on_area_3d_body_exited"]

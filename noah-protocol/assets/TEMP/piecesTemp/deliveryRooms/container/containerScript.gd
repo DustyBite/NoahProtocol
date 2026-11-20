@@ -34,6 +34,7 @@ func scanPallet():
 func deliverPallet():
 	for marker in markerArray:
 		var pall = pallet.instantiate()
+		pall.spawnOnReady = true
 		var pos = marker.global_position
 		get_tree().current_scene.add_child.call_deferred(pall)
 		pall.set_deferred("global_position", pos)

@@ -97,7 +97,6 @@ func moveCard(card, targetSlot):
 	targetSlot.slotItem(card)
 
 func checkUpgrades():
-	print(processRack.checkSlots())
 	processSpeed = processRack.checkSlots()
 	uploadSpeed = uploadRack.checkSlots()
 	wipeSpeed = wipeRack.checkSlots()

@@ -1,4 +1,5 @@
 extends InteractableDynamic
+class_name crateObj
 
 # EXPORT VAR
 
@@ -128,7 +129,10 @@ func openLid():
 func closeLid():
 	interacting = true
 	
-	freeze = false
+	if !placed:
+		freeze = false
+	
+	self.canDrag = true
 	lidOpen = false
 	lidTargetRot = lidCloseRot
 	
@@ -138,7 +142,6 @@ func closeLid():
 	crateColBox.shape.size.y = .5
 	crateColBox.position.y = 0
 	
-	self.canDrag = true
 	
 	await get_tree().create_timer(0.5).timeout
 	deloadCassettes()

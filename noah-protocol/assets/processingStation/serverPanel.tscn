@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://y4pc22n30vax"]
+
+[ext_resource type="Script" uid="uid://xm34nslwvwrl" path="res://assets/processingStation/serverPanelScript.gd" id="1_kyphd"]
+[ext_resource type="PackedScene" uid="uid://dwf3fpn31uo3r" path="res://assets/interactables/bolt/bolt.tscn" id="3_daq7y"]
+[ext_resource type="Material" uid="uid://davhh7anhuu5r" path="res://DevAssets/Materials/PalletOne/DM_Orange.tres" id="4_ernq4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(0.8, 1.1, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d0u6y"]
+material = ExtResource("4_ernq4")
+size = Vector3(0.8, 1.1, 0.05)
+
+[node name="panel" type="RigidBody3D" unique_id=1034060026 node_paths=PackedStringArray("hoverMeshArray")]
+collision_layer = 195
+collision_mask = 3
+script = ExtResource("1_kyphd")
+hoverMeshArray = [NodePath("MeshInstance3D")]
+type = "panel"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=403962607]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=17429703]
+mesh = SubResource("BoxMesh_d0u6y")
+
+[node name="bolts" type="Node3D" parent="." unique_id=2096314225]
+
+[node name="bolt" parent="bolts" unique_id=465530851 instance=ExtResource("3_daq7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.5, 0)
+
+[node name="bolt2" parent="bolts" unique_id=1463931383 instance=ExtResource("3_daq7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.5, 0)
+
+[node name="bolt3" parent="bolts" unique_id=1840802263 instance=ExtResource("3_daq7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.5, 0)
+
+[node name="bolt4" parent="bolts" unique_id=1664140253 instance=ExtResource("3_daq7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.5, 0)

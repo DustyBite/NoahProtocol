@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://buhm5by4dqgu7"]
+
+[ext_resource type="Script" uid="uid://6q2uuor70aw0" path="res://assets/TEMP/unpackingStation/unpackingStationScript.gd" id="1_2xp5v"]
+[ext_resource type="Script" uid="uid://bavb4od4b323l" path="res://assets/bots/chargers/storageSlotScript.gd" id="1_uh7e4"]
+[ext_resource type="PackedScene" uid="uid://bo2nmrxaxn5nn" path="res://assets/TEMP/pallet/pallet.tscn" id="2_0ucdb"]
+[ext_resource type="Material" uid="uid://873nptvltcdk" path="res://DevAssets/Materials/OldPallet/DTPO_Mat_SoftOrange.tres" id="3_10t65"]
+[ext_resource type="PackedScene" uid="uid://ca448i586dvem" path="res://assets/interactables/Slots/crateSlot.tscn" id="4_2xp5v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1.5, 0.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1.5, 0.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(1.25, 1, 1.25)
+
+[node name="unpackingStations" type="Node3D" unique_id=766108499]
+script = ExtResource("1_2xp5v")
+
+[node name="unpackSlotMarker" type="Marker3D" parent="." unique_id=958594522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+script = ExtResource("1_uh7e4")
+
+[node name="unprocessedPallet" parent="." unique_id=1051238000 instance=ExtResource("2_0ucdb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=243480122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+material_override = ExtResource("3_10t65")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="processedSlots" type="Node3D" parent="." unique_id=2125284135]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.15, 0.25, 0)
+
+[node name="slot1" parent="processedSlots" unique_id=1451234101 instance=ExtResource("4_2xp5v")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, -0.2)
+
+[node name="slot2" parent="processedSlots" unique_id=1712193150 instance=ExtResource("4_2xp5v")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, -0.2)
+interactable = true
+
+[node name="unprocessedSlots" type="Node3D" parent="." unique_id=588202687]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.15, 0.25, 0)
+
+[node name="slot1" parent="unprocessedSlots" unique_id=719350739 instance=ExtResource("4_2xp5v")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, -0.2)
+
+[node name="slot2" parent="unprocessedSlots" unique_id=2083990643 instance=ExtResource("4_2xp5v")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, -0.2)
+interactable = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1820888424]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1220667292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=920700647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1235674481]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

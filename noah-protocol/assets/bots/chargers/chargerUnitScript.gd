@@ -20,11 +20,10 @@ var unpacking: Array
 var storageA: Array
 var storageB: Array
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for slot in unpackStations.get_children():
-		unpacking.append(slot)
+		if slot is Marker3D:
+			unpacking.append(slot)
 	
 	if storagePosA != null:
 		for slot in storagePosA.get_children():
@@ -34,18 +33,14 @@ func _ready() -> void:
 		for slot in storagePosB.get_children():
 			storageB.append(slot)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	if checkTimer <= 0:
 		checkTimer = 1.0
 		if assignedBot.currentTask == "idle":
 			getTask()
 	else:
 		checkTimer -= delta
-	
-	#return
-	
 
 func checkArea(area3D, state):
 	for body in area3D.get_overlapping_bodies():

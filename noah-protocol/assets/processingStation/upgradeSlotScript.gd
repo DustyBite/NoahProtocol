@@ -12,7 +12,7 @@ extends Node
 @onready var wipingMat := preload("res://DevAssets/Materials/PalletOne/DM_BrightRed.tres")
 
 @onready var panelSlot := $panelSlot
-@onready var rackSlots: Array[Node] = [$rackSlots/rack1]
+@onready var rackSlots: Array[Node] = [$rackSlots/rack1, $rackSlots/rack2, $rackSlots/rack3, $rackSlots/rack4, $rackSlots/rack5]
 
 # Basic var
 
